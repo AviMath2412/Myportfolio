@@ -1,67 +1,12 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { personalInfo } from "@/data/content";
 
 export default function Contact() {
   const ref = useRef(null);
-  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formRef.current) return;
-
-    const formData = new FormData(formRef.current);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const message = formData.get('message') as string;
-
-    // Client-side validation
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-      return;
-    }
-
-    setStatus("sending");
-
-    try {
-      // Add Web3Forms access key to form data
-      formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY!);
-      
-      // Submit to Web3Forms
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setStatus("success");
-        formRef.current.reset();
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        console.error('Web3Forms error:', result);
-        setStatus("error");
-        setTimeout(() => setStatus("idle"), 3000);
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-    }
-  };
 
   const contactMethods = [
     {
@@ -213,9 +158,8 @@ export default function Contact() {
               >
                 <h3 className="text-heading-3 text-white mb-8">Send a Message</h3>
                 
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                  {/* Web3Forms Configuration */}
-                  <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
+                <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
+                  <input type="hidden" name="access_key" value="e4d267d0-dd2f-4b84-a077-a507bc837768" />
                   <input type="hidden" name="subject" value="New Portfolio Contact Form Submission" />
                   <input type="hidden" name="from_name" value="Portfolio Contact Form" />
                   <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
@@ -263,61 +207,14 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Status messages */}
-                  {status === "success" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3"
-                    >
-                      <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-green-400 text-body-small">Message sent successfully! I'll get back to you soon.</p>
-                    </motion.div>
-                  )}
-
-                  {status === "error" && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-center gap-3"
-                    >
-                      <svg className="w-5 h-5 text-red-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <p className="text-red-400 text-body-small">Failed to send message. Please try again or contact me directly.</p>
-                    </motion.div>
-                  )}
-
                   <button
                     type="submit"
-                    disabled={status === "sending"}
-                    className="w-full premium-button disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full premium-button flex items-center justify-center gap-2"
                   >
-                    {status === "sending" ? (
-                      <>
-                        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </>
-                    ) : status === "success" ? (
-                      <>
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Message Sent!
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                      </>
-                    )}
+                    Send Message
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
                   </button>
                 </form>
               </motion.div>
