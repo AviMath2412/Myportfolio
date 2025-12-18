@@ -19,6 +19,7 @@ export default function Contact() {
     const email = formData.get('email') as string;
     const message = formData.get('message') as string;
 
+    // Client-side validation
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
@@ -35,23 +36,28 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const response = await fetch('/api/contact', {
+      // Add Web3Forms access key to form data
+      formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY!);
+      
+      // Submit to Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message }),
+        body: formData
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         setStatus("success");
         formRef.current.reset();
         setTimeout(() => setStatus("idle"), 5000);
       } else {
+        console.error('Web3Forms error:', result);
         setStatus("error");
         setTimeout(() => setStatus("idle"), 3000);
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
     }
@@ -208,6 +214,12 @@ export default function Contact() {
                 <h3 className="text-heading-3 text-white mb-8">Send a Message</h3>
                 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                  {/* Web3Forms Configuration */}
+                  <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
+                  <input type="hidden" name="subject" value="New Portfolio Contact Form Submission" />
+                  <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-caption text-zinc-400 mb-3">
@@ -218,6 +230,7 @@ export default function Contact() {
                         id="name"
                         name="name"
                         required
+                        placeholder="John Doe"
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all text-white placeholder:text-zinc-500"
                       />
                     </div>
@@ -230,6 +243,7 @@ export default function Contact() {
                         id="email"
                         name="email"
                         required
+                        placeholder="john@example.com"
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all text-white placeholder:text-zinc-500"
                       />
                     </div>
