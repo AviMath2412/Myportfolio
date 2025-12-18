@@ -230,7 +230,7 @@ export default function Contact() {
                         id="name"
                         name="name"
                         required
-                        placeholder="John Doe"
+                        
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all text-white placeholder:text-zinc-500"
                       />
                     </div>
@@ -243,7 +243,7 @@ export default function Contact() {
                         id="email"
                         name="email"
                         required
-                        placeholder="john@example.com"
+                        
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all text-white placeholder:text-zinc-500"
                       />
                     </div>
