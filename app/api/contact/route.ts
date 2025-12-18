@@ -56,8 +56,14 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Error sending email:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      mailUser: process.env.MAIL_USER ? 'Set' : 'Not set',
+      mailPassword: process.env.MAIL_PASSWORD ? 'Set' : 'Not set'
+    });
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: 'Failed to send email', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }

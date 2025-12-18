@@ -1,8 +1,8 @@
 export const personalInfo = {
   name: "Avi Mathur",
   title: "AI/ML Developer • Full Stack Innovator",
-  subtitle: "AI/ML developer specializing in vector search, intelligent automation, full-stack engineering, and high-impact hackathon solutions.",
-  impact: "Building production-ready AI systems that solve real-world problems and deliver measurable business value.",
+  subtitle: "Oracle-certified AI/ML developer specializing in medical AI, vector search, and intelligent automation. Smart India Hackathon 2025 Grand Finale volunteer.",
+  impact: "Building production-ready AI systems for healthcare and enterprise solutions that solve real-world problems and deliver measurable business value.",
   email: "mathuravi668@gmail.com",
   phone: "+91 77009 23732",
   linkedin: "https://www.linkedin.com/in/avi-mathur-a3a25727b/",
@@ -12,7 +12,7 @@ export const personalInfo = {
 export const about = {
   intro: "I'm Avi Mathur, an AI/ML developer and full-stack engineer who enjoys building intelligent, practical systems. I work with vector search, LLM automation, and modern web technologies to create fast, scalable, user-focused applications.",
   builds: "I build intelligent automation tools, AI-powered dashboards, vector search systems, and full-stack web applications that solve real problems with clean engineering and thoughtful design.",
-  education: "B.Tech CSE (AI), CGPA 8.0/10 — Rajasthan Technical University",
+  education: "B.Tech CSE (AI) — Rajasthan Technical University",
   exploring: ["Agentic AI", "RAG Systems", "MCP Servers", "Kubernetes"],
 };
 
@@ -50,9 +50,23 @@ export const experience = [
 
 export const projects = [
   {
+    id: "neuroscan-ai",
+    title: "NeuroScan AI",
+    tag: "Latest",
+    github: "https://github.com/AviMath2412/NeuroScan-AI",
+    tech: ["Python", "TensorFlow", "Keras", "OpenCV", "Streamlit", "NumPy"],
+    highlights: [
+      "AI-powered brain tumor detection from MRI scans",
+      "Deep learning CNN model with 95%+ accuracy",
+      "Real-time image preprocessing and analysis",
+      "Interactive web interface for medical professionals",
+      "Supports multiple tumor classification types",
+    ],
+    color: "from-pink-500 to-purple-500",
+  },
+  {
     id: "ai-resume-analyzer",
     title: "AI Resume Analyzer",
-    tag: "Latest",
     github: "https://github.com/AviMath2412/ai-resume-analyzer",
     live: "https://ai-resume-analyzer-181-3sdgg.puter.site/",
     tech: ["React", "TypeScript", "Tailwind", "Puter.js", "Claude AI", "PDF.js"],
@@ -93,20 +107,29 @@ export const projects = [
   },
 ];
 
-export const certifications = [
+export const achievements = [
   {
     title: "Oracle AI Vector Search Certified Professional",
-    validity: "Valid through 2027",
+    validity: "Valid through October 2027",
     icon: "🎯",
+    type: "certification",
+  },
+  {
+    title: "Smart India Hackathon 2025 - Grand Finale Volunteer",
+    validity: "December 2025",
+    icon: "🏆",
+    type: "achievement",
+  },
+  {
+    title: "SBI Life Hack-AI-Thon Participant",
+    validity: "2024",
+    icon: "🤖",
+    type: "hackathon",
   },
   {
     title: "Oracle OCI Generative AI Professional",
     validity: "2025",
     icon: "☁️",
-  },
-  {
-    title: "NPTEL German Language – Level I",
-    validity: "Jan–Apr 2025",
-    icon: "🇩🇪",
+    type: "certification",
   },
 ];

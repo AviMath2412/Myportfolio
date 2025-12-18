@@ -7,11 +7,7 @@ import SpotlightEffect from "@/components/SpotlightEffect";
 const inter = Inter({ 
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ["latin"],
-  variable: "--font-space",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -101,7 +97,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-bg text-text`}>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <SpotlightEffect />
         <Navigation />
         {children}
