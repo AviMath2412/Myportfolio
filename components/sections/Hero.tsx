@@ -5,35 +5,14 @@ import { personalInfo } from "@/data/content";
 
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16">
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/4 -left-48 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="absolute bottom-1/4 -right-48 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-        />
-      </div>
+    <section 
+      id="hero" 
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16"
+      style={{
+        background: "linear-gradient(135deg, #0B0F19 0%, #111827 45%, #1E3A8A 100%)"
+      }}
+    >
+      {/* Premium gradient applied only to hero section background - maintains readability */}
 
       <div className="container-custom relative z-10">
         <motion.div
@@ -56,22 +35,24 @@ export default function Hero() {
             <span className="text-caption text-zinc-400">Available for opportunities</span>
           </motion.div>
 
-          {/* Main heading */}
+          {/* Main heading - enhanced contrast for gradient background */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-display mb-6 tracking-tight"
+            className="text-display mb-4 tracking-tight text-white"
+            style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.4)' }}
           >
             {personalInfo.name}
           </motion.h1>
 
-          {/* Subtitle with gradient */}
+          {/* Subtitle with gradient - readable on gradient background */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-heading-2 mb-6 accent-gradient font-semibold"
+            style={{ filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))' }}
           >
             {personalInfo.title}
           </motion.h2>
@@ -81,7 +62,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-body-large text-zinc-400 mb-4 max-w-3xl mx-auto"
+            className="text-body-large text-zinc-400 mb-3 max-w-3xl mx-auto"
+            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
           >
             {personalInfo.subtitle}
           </motion.p>
@@ -90,7 +72,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-body text-zinc-500 mb-12 max-w-2xl mx-auto"
+            className="text-body text-zinc-500 mb-8 max-w-2xl mx-auto"
+            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
           >
             {personalInfo.impact}
           </motion.p>
@@ -113,18 +96,14 @@ export default function Hero() {
             </a>
             <a
               href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="secondary-button inline-flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Resume
-            </a>
-            <a
-              href="#contact"
-              className="secondary-button"
-            >
-              Get in Touch
             </a>
           </motion.div>
 

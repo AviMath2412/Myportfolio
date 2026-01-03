@@ -28,7 +28,7 @@ export default function Skills() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Section header */}
-          <div className="mb-20 text-center">
+          <div className="mb-5 text-center">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -89,24 +89,41 @@ export default function Skills() {
                   <div className={`flex flex-wrap gap-2 ${
                     category === "Currently Learning" ? "justify-center" : ""
                   }`}>
-                    {items.map((skill, skillIndex) => (
-                      <motion.span
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ 
-                          delay: 0.6 + index * 0.1 + skillIndex * 0.05, 
-                          duration: 0.4 
-                        }}
-                        className={`px-3 py-1.5 rounded-lg text-body-small transition-all ${
-                          category === "Currently Learning"
-                            ? "bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 hover:bg-yellow-500/20"
-                            : "bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
-                        }`}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
+                    {items.map((skill, skillIndex) => {
+                      // Add context labels for specific skills
+                      const skillContext: Record<string, string> = {
+                        "TensorFlow": "Medical imaging (NeuroScan AI)",
+                        "Vector Search Pipelines": "Oracle AI certification",
+                        "FastAPI": "Backend APIs (projects)"
+                      };
+                      const context = skillContext[skill];
+                      
+                      return (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                          transition={{ 
+                            delay: 0.6 + index * 0.1 + skillIndex * 0.05, 
+                            duration: 0.4 
+                          }}
+                          className="flex flex-col gap-1"
+                        >
+                          <span className={`px-3 py-1.5 rounded-lg text-body-small transition-all ${
+                            category === "Currently Learning"
+                              ? "bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 hover:bg-yellow-500/20"
+                              : "bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
+                          }`}>
+                            {skill}
+                          </span>
+                          {context && (
+                            <span className="text-caption text-zinc-500 px-3">
+                              {context}
+                            </span>
+                          )}
+                        </motion.div>
+                      );
+                    })}
                   </div>
                 </motion.div>
               );

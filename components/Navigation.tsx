@@ -109,7 +109,7 @@ export default function Navigation() {
         <div className="hidden lg:block">
           <a
             href="#contact"
-            className="premium-button text-body-small"
+            className="premium-button-static text-body-small"
           >
             Let's Talk
           </a>
@@ -175,20 +175,15 @@ export default function Navigation() {
                   {link.name}
                 </motion.a>
               ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
-                className="pt-4 border-t border-white/10"
-              >
+              <div className="pt-4 border-t border-white/10">
                 <a
                   href="#contact"
-                  className="block w-full premium-button text-center"
+                  className="block w-full premium-button-static text-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Let's Talk
                 </a>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         )}

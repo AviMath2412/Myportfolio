@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { projects, personalInfo } from "@/data/content";
+import ProjectCaseStudy from "@/components/ProjectCaseStudy";
 
 const ProjectIcon = ({ projectId }: { projectId: string }) => {
   const icons: Record<string, string> = {
@@ -22,6 +23,7 @@ const ProjectIcon = ({ projectId }: { projectId: string }) => {
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
 
   return (
     <section id="projects" ref={ref} className="section-padding relative">
@@ -32,7 +34,7 @@ export default function Projects() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Section header */}
-          <div className="mb-20 text-center">
+          <div className="mb-5 text-center">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -143,6 +145,17 @@ export default function Projects() {
 
                 {/* Bottom actions */}
                 <div className="flex flex-wrap gap-3 pt-6 border-t border-white/10">
+                  {project.hasCaseStudy && (
+                    <button
+                      onClick={() => setOpenCaseStudy(project.id)}
+                      className="premium-button flex items-center gap-2 text-body-small"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      View Case Study
+                    </button>
+                  )}
                   <a
                     href={project.github}
                     target="_blank"
@@ -159,7 +172,7 @@ export default function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="premium-button flex items-center gap-2 text-body-small"
+                      className="secondary-button flex items-center gap-2 text-body-small"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -202,6 +215,21 @@ export default function Projects() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Case Study Modals */}
+      {projects.map((project) => {
+        if (!project.hasCaseStudy || !project.caseStudy) return null;
+        return (
+          <ProjectCaseStudy
+            key={project.id}
+            isOpen={openCaseStudy === project.id}
+            onClose={() => setOpenCaseStudy(null)}
+            title={project.title}
+            tech={project.tech}
+            caseStudy={project.caseStudy}
+          />
+        );
+      })}
     </section>
   );
 }

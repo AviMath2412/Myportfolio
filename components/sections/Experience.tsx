@@ -17,7 +17,7 @@ export default function Experience() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Section header */}
-          <div className="mb-20">
+          <div className="mb-5">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}

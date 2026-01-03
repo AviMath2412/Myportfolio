@@ -1,12 +1,24 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { personalInfo } from "@/data/content";
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
 
   const contactMethods = [
     {
@@ -60,7 +72,7 @@ export default function Contact() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Section header */}
-          <div className="mb-20 text-center">
+          <div className="mb-5 text-center">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -98,11 +110,8 @@ export default function Contact() {
                 <h3 className="text-heading-3 text-white mb-8">Contact Information</h3>
                 <div className="space-y-4">
                   {contactMethods.map((method, index) => (
-                    <motion.a
+                    <motion.div
                       key={method.label}
-                      href={method.href}
-                      target={method.href.startsWith('http') ? '_blank' : undefined}
-                      rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       initial={{ opacity: 0, x: -20 }}
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
@@ -113,14 +122,42 @@ export default function Contact() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-caption text-zinc-400 mb-1">{method.label}</p>
-                        <p className="text-body text-white group-hover:text-indigo-300 transition-colors truncate">
-                          {method.value}
-                        </p>
+                        {method.label === "Email" ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-body text-white group-hover:text-indigo-300 transition-colors truncate">
+                              {method.value}
+                            </p>
+                            <button
+                              onClick={copyEmail}
+                              className="p-1.5 rounded hover:bg-white/10 transition-colors"
+                              title="Copy email"
+                            >
+                              {emailCopied ? (
+                                <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              ) : (
+                                <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                              )}
+                            </button>
+                          </div>
+                        ) : (
+                          <a
+                            href={method.href}
+                            target={method.href.startsWith('http') ? '_blank' : undefined}
+                            rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className="text-body text-white group-hover:text-indigo-300 transition-colors truncate block"
+                          >
+                            {method.value}
+                          </a>
+                        )}
                       </div>
                       <svg className="w-5 h-5 text-zinc-600 group-hover:text-indigo-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    </motion.a>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -158,7 +195,67 @@ export default function Contact() {
               >
                 <h3 className="text-heading-3 text-white mb-8">Send a Message</h3>
                 
-                <form action="https://api.web3forms.com/submit" method="POST" className="space-y-6">
+                {formStatus === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-green-500/20 border border-green-500/30"
+                  >
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-body text-green-300">Message sent successfully! I'll get back to you soon.</p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {formStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-red-500/20 border border-red-500/30"
+                  >
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <p className="text-body text-red-300">Something went wrong. Please try again or email me directly.</p>
+                    </div>
+                  </motion.div>
+                )}
+                
+                <form 
+                  action="https://api.web3forms.com/submit" 
+                  method="POST" 
+                  className="space-y-6"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.currentTarget;
+                    const formData = new FormData(form);
+                    
+                    try {
+                      const response = await fetch(form.action, {
+                        method: "POST",
+                        body: formData
+                      });
+                      
+                      const data = await response.json();
+                      
+                      if (data.success) {
+                        setFormStatus("success");
+                        form.reset();
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                      } else {
+                        setFormStatus("error");
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                      }
+                    } catch (error) {
+                      setFormStatus("error");
+                      setTimeout(() => setFormStatus("idle"), 5000);
+                    }
+                  }}
+                >
                   <input type="hidden" name="access_key" value="e4d267d0-dd2f-4b84-a077-a507bc837768" />
                   <input type="hidden" name="subject" value="New Portfolio Contact Form Submission" />
                   <input type="hidden" name="from_name" value="Portfolio Contact Form" />
@@ -216,6 +313,9 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                   </button>
+                  <p className="text-body-small text-zinc-500 text-center mt-3">
+                    Prefer email? I usually reply within 24 hours.
+                  </p>
                 </form>
               </motion.div>
             </div>
