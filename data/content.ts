@@ -29,7 +29,7 @@ export const experience = [
     company: "Raptbot Technologies",
     description: "Salesforce consulting and CRM automation",
     role: "Salesforce Developer Intern",
-    duration: "Jan 2024 – May 2024",
+    duration: "July 2024 – August 2024",
     highlights: [
       "Architected Salesforce objects + automation (−40% manual work)",
       "Built a Hotel Management System with billing + rewards",

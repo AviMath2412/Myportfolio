@@ -83,11 +83,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center"
           >
             <a
               href="#projects"
-              className="premium-button inline-flex items-center gap-2"
+              className="premium-button inline-flex items-center gap-2 w-full sm:w-auto"
             >
               View Projects
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -96,14 +96,20 @@ export default function Hero() {
             </a>
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="secondary-button inline-flex items-center gap-2"
+              download="Avi_Mathur_Resume.pdf"
+              className="secondary-button inline-flex items-center gap-2 w-full sm:w-auto"
+              title="Download my latest resume"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Resume
+              Download Resume
+            </a>
+            <a
+              href="#contact"
+              className="secondary-button w-full sm:w-auto"
+            >
+              Get in Touch
             </a>
           </motion.div>
 

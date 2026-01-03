@@ -99,9 +99,9 @@ export default function Contact() {
             </motion.p>
           </div>
 
-          <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {/* Contact methods */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-4 lg:space-y-6 order-2 lg:order-1">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -186,7 +186,7 @@ export default function Contact() {
             </div>
 
             {/* Contact form */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-3 order-1 lg:order-2">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -228,7 +228,7 @@ export default function Contact() {
                 <form 
                   action="https://api.web3forms.com/submit" 
                   method="POST" 
-                  className="space-y-6"
+                  className="space-y-4 lg:space-y-6"
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const form = e.currentTarget;
@@ -261,7 +261,7 @@ export default function Contact() {
                   <input type="hidden" name="from_name" value="Portfolio Contact Form" />
                   <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                     <div>
                       <label htmlFor="name" className="block text-caption text-zinc-400 mb-3">
                         Full Name *
