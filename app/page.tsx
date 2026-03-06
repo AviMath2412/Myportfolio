@@ -5,6 +5,7 @@ import Experience from "@/components/sections/Experience";
 import Achievements from "@/components/sections/Achievements";
 import CredibilityStrip from "@/components/sections/CredibilityStrip";
 import Projects from "@/components/sections/Projects";
+import ShowcaseScroll from "@/components/sections/ShowcaseScroll";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Experience />
       <Achievements />
       <CredibilityStrip />
+      <ShowcaseScroll />
       <Projects />
       <Contact />
       <Footer />

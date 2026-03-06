@@ -32,11 +32,11 @@ export const VectorCompass = ({ className = "w-8 h-8" }: { className?: string })
       </filter>
     </defs>
     {/* Center Node */}
-    <circle cx="50" cy="50" r="6" fill="#00C2FF" filter="url(#glow)" />
+    <circle cx="50" cy="50" r="6" fill="white" filter="url(#glow)" />
     {/* Up Arrow */}
     <path
       d="M 50 50 L 50 20 M 45 25 L 50 20 L 55 25"
-      stroke="#00C2FF"
+      stroke="white"
       strokeWidth="2"
       fill="none"
       strokeLinecap="round"
@@ -45,7 +45,7 @@ export const VectorCompass = ({ className = "w-8 h-8" }: { className?: string })
     {/* Right Arrow */}
     <path
       d="M 50 50 L 80 50 M 75 45 L 80 50 L 75 55"
-      stroke="#00C2FF"
+      stroke="white"
       strokeWidth="2"
       fill="none"
       strokeLinecap="round"
@@ -54,15 +54,15 @@ export const VectorCompass = ({ className = "w-8 h-8" }: { className?: string })
     {/* Left Arrow */}
     <path
       d="M 50 50 L 20 50 M 25 45 L 20 50 L 25 55"
-      stroke="#00C2FF"
+      stroke="white"
       strokeWidth="2"
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    {/* Circuit Lines */}
-    <circle cx="50" cy="20" r="2" fill="#6E00FF" opacity="0.6" />
-    <circle cx="80" cy="50" r="2" fill="#6E00FF" opacity="0.6" />
-    <circle cx="20" cy="50" r="2" fill="#6E00FF" opacity="0.6" />
+    {/* Circuit Nodes */}
+    <circle cx="50" cy="20" r="2" fill="#71717a" opacity="0.8" />
+    <circle cx="80" cy="50" r="2" fill="#71717a" opacity="0.8" />
+    <circle cx="20" cy="50" r="2" fill="#71717a" opacity="0.8" />
   </svg>
 );

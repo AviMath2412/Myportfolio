@@ -17,12 +17,12 @@ export default function Experience() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Section header */}
-          <div className="mb-5">
+          <div className="mb-12">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-caption text-indigo-400 mb-4 block"
+              className="text-caption text-zinc-500 mb-4 block"
             >
               Professional Journey
             </motion.span>
@@ -30,7 +30,7 @@ export default function Experience() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-heading-1 mb-6"
+              className="text-heading-1 mb-6 text-white"
             >
               Work <span className="accent-gradient">Experience</span>
             </motion.h2>
@@ -38,7 +38,7 @@ export default function Experience() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-body text-zinc-400 max-w-2xl"
+              className="text-body text-zinc-500 max-w-2xl"
             >
               Building expertise through hands-on experience in AI/ML development and enterprise software solutions
             </motion.p>
@@ -47,7 +47,7 @@ export default function Experience() {
           {/* Timeline */}
           <div className="relative max-w-4xl">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent hidden md:block" />
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-zinc-700 via-zinc-800 to-transparent hidden md:block" />
 
             <div className="space-y-12">
               {experience.map((exp, index) => (
@@ -59,24 +59,24 @@ export default function Experience() {
                   className="relative"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-6 top-8 w-4 h-4 bg-indigo-500 rounded-full border-4 border-zinc-900 hidden md:block" />
-                  
+                  <div className="absolute left-6 top-8 w-4 h-4 bg-zinc-500 rounded-full border-4 border-zinc-900 hidden md:block" />
+
                   {/* Content card */}
-                  <div className="md:ml-20 glass-card rounded-xl p-8 group hover:scale-[1.01] transition-all duration-300">
+                  <div className="md:ml-20 glass-card rounded-xl p-8 group transition-all duration-300">
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                       <div className="flex-1">
-                        <h3 className="text-heading-3 text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                        <h3 className="text-heading-3 text-white mb-2 group-hover:text-zinc-300 transition-colors">
                           {exp.company}
                         </h3>
-                        <p className="text-body-small text-zinc-400 mb-2">{exp.description}</p>
-                        <p className="text-body text-indigo-400 font-medium">{exp.role}</p>
+                        <p className="text-body-small text-zinc-500 mb-2">{exp.description}</p>
+                        <p className="text-body text-zinc-300 font-medium">{exp.role}</p>
                       </div>
-                      <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500/10 rounded-full border border-indigo-500/20">
-                        <svg className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10">
+                        <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <span className="text-body-small text-indigo-300 font-medium whitespace-nowrap">
+                        <span className="text-body-small text-zinc-400 font-medium whitespace-nowrap">
                           {exp.duration}
                         </span>
                       </div>
@@ -84,7 +84,7 @@ export default function Experience() {
 
                     {/* Achievements */}
                     <div className="space-y-4">
-                      <h4 className="text-caption text-zinc-400 mb-3">Key Achievements</h4>
+                      <h4 className="text-caption text-zinc-500 mb-3">Key Highlights</h4>
                       <div className="grid gap-3">
                         {exp.highlights.map((highlight, i) => (
                           <motion.div
@@ -94,8 +94,8 @@ export default function Experience() {
                             transition={{ delay: 0.6 + index * 0.2 + i * 0.1, duration: 0.4 }}
                             className="flex items-start gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
                           >
-                            <div className="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-body text-zinc-300">{highlight}</span>
+                            <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-body text-zinc-400">{highlight}</span>
                           </motion.div>
                         ))}
                       </div>

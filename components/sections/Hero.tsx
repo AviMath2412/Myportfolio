@@ -1,172 +1,259 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { personalInfo } from "@/data/content";
+import { PulseBeams } from "@/components/ui/pulse-beams";
+
+const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const ROLES = [
+  "AI/ML Engineer",
+  "Full Stack Developer",
+  "LLM Automation Builder",
+];
+
+const BEAMS = [
+  {
+    path: "M269 220.5H16.5C10.9772 220.5 6.5 224.977 6.5 230.5V398.5",
+    gradientConfig: {
+      initial: { x1: "0%", x2: "0%", y1: "80%", y2: "100%" },
+      animate: {
+        x1: ["0%", "0%", "200%"],
+        x2: ["0%", "0%", "180%"],
+        y1: ["80%", "0%", "0%"],
+        y2: ["100%", "20%", "20%"],
+      },
+      transition: { duration: 2, repeat: Infinity, repeatType: "loop" as const, ease: "linear", repeatDelay: 2, delay: Math.random() * 2 },
+    },
+    connectionPoints: [{ cx: 6.5, cy: 398.5, r: 6 }, { cx: 269, cy: 220.5, r: 6 }]
+  },
+  {
+    path: "M568 200H841C846.523 200 851 195.523 851 190V40",
+    gradientConfig: {
+      initial: { x1: "0%", x2: "0%", y1: "80%", y2: "100%" },
+      animate: {
+        x1: ["20%", "100%", "100%"],
+        x2: ["0%", "90%", "90%"],
+        y1: ["80%", "80%", "-20%"],
+        y2: ["100%", "100%", "0%"],
+      },
+      transition: { duration: 2, repeat: Infinity, repeatType: "loop" as const, ease: "linear", repeatDelay: 2, delay: Math.random() * 2 },
+    },
+    connectionPoints: [{ cx: 851, cy: 34, r: 6.5 }, { cx: 568, cy: 200, r: 6 }]
+  },
+  {
+    path: "M425.5 274V333C425.5 338.523 421.023 343 415.5 343H152C146.477 343 142 347.477 142 353V426.5",
+    gradientConfig: {
+      initial: { x1: "0%", x2: "0%", y1: "80%", y2: "100%" },
+      animate: {
+        x1: ["0%", "0%", "200%"],
+        x2: ["0%", "0%", "180%"],
+        y1: ["80%", "0%", "0%"],
+        y2: ["100%", "20%", "20%"],
+      },
+      transition: { duration: 2, repeat: Infinity, repeatType: "loop" as const, ease: "linear", repeatDelay: 2, delay: Math.random() * 2 },
+    },
+    connectionPoints: [{ cx: 142, cy: 427, r: 6.5 }, { cx: 425.5, cy: 274, r: 6 }]
+  }
+];
+
+function TypingRole() {
+  const [index, setIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = ROLES[index];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!deleting && displayed.length < current.length) {
+      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 55);
+    } else if (!deleting && displayed.length === current.length) {
+      timeout = setTimeout(() => setDeleting(true), 2200);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 30);
+    } else {
+      setDeleting(false);
+      setIndex((p) => (p + 1) % ROLES.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, index]);
+
+  return (
+    <div className="flex items-center gap-1.5 h-8 mb-5">
+      <span className="text-lg font-mono font-medium text-zinc-400">
+        {displayed}
+      </span>
+      <span
+        className="inline-block w-0.5 h-5 rounded-full bg-zinc-500"
+        style={{
+          animation: "blink 1s ease-in-out infinite",
+        }}
+      />
+    </div>
+  );
+}
+
+const STATS = [
+  { value: "95%+", label: "Model Accuracy" },
+  // { value: "500+", label: "Users Served" },
+  { value: "2×", label: "Oracle Certified" },
+];
 
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+
   return (
-    <section 
-      id="hero" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16"
-      style={{
-        background: "linear-gradient(135deg, #0B0F19 0%, #111827 45%, #1E3A8A 100%)"
-      }}
+    <section
+      ref={ref}
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden bg-transparent"
     >
-      {/* Premium gradient applied only to hero section background - maintains readability */}
-
-      <div className="container-custom relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl mx-auto text-center"
-        >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-caption text-zinc-400">Available for opportunities</span>
-          </motion.div>
-
-          {/* Main heading - enhanced contrast for gradient background */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-display mb-4 tracking-tight text-white"
-            style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.4)' }}
-          >
-            {personalInfo.name}
-          </motion.h1>
-
-          {/* Subtitle with gradient - readable on gradient background */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-heading-2 mb-6 accent-gradient font-semibold"
-            style={{ filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))' }}
-          >
-            {personalInfo.title}
-          </motion.h2>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-body-large text-zinc-400 mb-3 max-w-3xl mx-auto"
-            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
-          >
-            {personalInfo.subtitle}
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-body text-zinc-500 mb-8 max-w-2xl mx-auto"
-            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
-          >
-            {personalInfo.impact}
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center"
-          >
-            <a
-              href="#projects"
-              className="premium-button inline-flex items-center gap-2 w-full sm:w-auto"
-            >
-              View Projects
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a
-              href="/resume.pdf"
-              download="Avi_Mathur_Resume.pdf"
-              className="secondary-button inline-flex items-center gap-2 w-full sm:w-auto"
-              title="Download my latest resume"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Download Resume
-            </a>
-            <a
-              href="#contact"
-              className="secondary-button w-full sm:w-auto"
-            >
-              Get in Touch
-            </a>
-          </motion.div>
-
-          {/* Social proof / Quick links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-16 flex flex-wrap gap-6 justify-center items-center text-body-small text-zinc-500"
-          >
-            <a 
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-              </svg>
-              GitHub
-            </a>
-            <span className="text-zinc-700">•</span>
-            <a 
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              LinkedIn
-            </a>
-            <span className="text-zinc-700">•</span>
-            <a 
-              href={`mailto:${personalInfo.email}`}
-              className="hover:text-white transition-colors flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Email
-            </a>
-          </motion.div>
-        </motion.div>
+      {/* Background Effect: PulseBeams */}
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+        <PulseBeams
+          beams={BEAMS}
+          width={1000}
+          height={600}
+          baseColor="#27272a"
+          accentColor="#52525b"
+          gradientColors={{ start: "#ffffff", middle: "#71717a", end: "#27272a" }}
+        />
       </div>
+
+      {/* 3D sphere — right side ONLY on lg+, hidden on mobile */}
+      <div className="absolute right-0 top-0 w-1/2 h-full pointer-events-none hidden lg:block" style={{ zIndex: 2 }}>
+        <HeroScene />
+      </div>
+
+      {/* Subtler gradient fade: left semi-transparent, right transparent so sphere peeks through */}
+      <div
+        className="absolute inset-0 pointer-events-none hidden lg:block"
+        style={{
+          background: "linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)",
+          zIndex: 3,
+        }}
+      />
+
+
+      {/* ─── Main Content ─── */}
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity, zIndex: 10 }}
+        className="relative w-full"
+      >
+        <div className="container-custom">
+          <div className="max-w-2xl py-32">
+
+            {/* Availability badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-7 text-xs text-zinc-500 font-medium tracking-wide"
+              style={{
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.03)",
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80 flex-shrink-0" style={{ boxShadow: "0 0 10px rgba(16,185,129,0.5)", animation: "pulse 2.5s infinite" }} />
+              Available for opportunities
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="text-display text-white mb-2"
+            >
+              Avi{" "}
+              <span className="accent-gradient">
+                Mathur
+              </span>
+            </motion.h1>
+
+            {/* Typewriter */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
+              <TypingRole />
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.48, duration: 0.65 }}
+              className="text-body-large text-zinc-400 max-w-lg mb-9 leading-relaxed"
+            >
+              AI Engineer building production-grade ML systems, vector search pipelines, and intelligent automation tools.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.55 }}
+              className="flex items-center gap-3 flex-wrap mb-14"
+            >
+              <a href="#projects" className="premium-button">
+                View My Work
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="/Mathur_Avi_resume.pdf" download="Mathur_Avi_resume.pdf" className="secondary-button">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download CV
+              </a>
+              <a href="#contact" className="secondary-button">Get in Touch</a>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex items-start gap-10 pt-8"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+            >
+              {STATS.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.85 + i * 0.1 }}
+                >
+                  <p className="text-2xl font-bold leading-none mb-1 accent-gradient">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs text-zinc-500">{stat.label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+          </div>
+        </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
+        style={{ zIndex: 10 }}
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-caption text-zinc-600">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-zinc-600 to-transparent" />
-        </div>
+        <span className="text-[10px] tracking-[0.25em] uppercase text-zinc-700">Scroll</span>
+        <div className="w-px h-8" style={{ background: "linear-gradient(to bottom, #ffffff, transparent)" }} />
       </motion.div>
     </section>
   );

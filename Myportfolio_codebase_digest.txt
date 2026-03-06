@@ -1,3 +1,3469 @@
+Codebase Analysis for: /Users/apple/Desktop/Myportfolio
+
+Directory Structure:
+└── Myportfolio
+    ├── app
+    │   ├── robots.ts
+    │   ├── favicon.ico
+    │   ├── icon.tsx
+    │   ├── opengraph-image.tsx
+    │   ├── sitemap.ts
+    │   ├── layout.tsx
+    │   ├── page.tsx
+    │   └── globals.css
+    ├── vercel.json
+    ├── postcss.config.mjs
+    ├── README.md
+    ├── tailwind.config.ts
+    ├── components
+    │   ├── sections
+    │   │   ├── Projects.tsx
+    │   │   ├── Hero.tsx
+    │   │   ├── Experience.tsx
+    │   │   ├── Achievements.tsx
+    │   │   ├── Contact.tsx
+    │   │   ├── Skills.tsx
+    │   │   ├── CredibilityStrip.tsx
+    │   │   └── About.tsx
+    │   ├── ProjectCaseStudy.tsx
+    │   ├── SpotlightEffect.tsx
+    │   ├── ScrollReveal.tsx
+    │   ├── Footer.tsx
+    │   ├── ThemeProvider.tsx
+    │   ├── Logo.tsx
+    │   └── Navigation.tsx
+    ├── public
+    │   ├── file.svg
+    │   ├── resume.pdf
+    │   ├── vercel.svg
+    │   ├── manifest.json
+    │   ├── next.svg
+    │   ├── globe.svg
+    │   └── window.svg
+    ├── package-lock.json
+    ├── package.json
+    ├── tsconfig.json
+    ├── data
+    │   └── content.ts
+    ├── eslint.config.mjs
+    └── next.config.ts
+
+Summary:
+Total files analyzed: 40
+Total directories analyzed: 5
+Estimated output size: 411.03 KB
+Actual analyzed size: 527.46 KB
+Total tokens: 147008
+Actual text content size: 406.01 KB
+
+File Contents:
+
+==================================================
+File: Myportfolio/app/robots.ts
+==================================================
+import { MetadataRoute } from "next";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: "https://techwithavi.xyz/sitemap.xml",
+  };
+}
+
+
+==================================================
+File: Myportfolio/app/icon.tsx
+==================================================
+import { ImageResponse } from "next/og";
+
+export const runtime = "edge";
+
+export const size = {
+  width: 32,
+  height: 32,
+};
+
+export const contentType = "image/png";
+
+export default function Icon() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          fontSize: 20,
+          background: "#0f0f0f",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          fontWeight: "bold",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+        }}
+      >
+        AM
+      </div>
+    ),
+    {
+      ...size,
+    }
+  );
+}
+
+
+==================================================
+File: Myportfolio/app/opengraph-image.tsx
+==================================================
+import { ImageResponse } from "next/og";
+
+export const runtime = "edge";
+
+export const alt = "Avi Mathur - AI/ML Developer & Full Stack Engineer";
+export const size = {
+  width: 1200,
+  height: 630,
+};
+
+export const contentType = "image/png";
+
+export default async function Image() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#0A1128",
+          position: "relative",
+        }}
+      >
+        {/* Background gradient blobs */}
+        <div
+          style={{
+            position: "absolute",
+            top: "20%",
+            left: "20%",
+            width: "400px",
+            height: "400px",
+            background: "rgba(0, 194, 255, 0.2)",
+            borderRadius: "50%",
+            filter: "blur(80px)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20%",
+            right: "20%",
+            width: "400px",
+            height: "400px",
+            background: "rgba(110, 0, 255, 0.2)",
+            borderRadius: "50%",
+            filter: "blur(80px)",
+          }}
+        />
+
+        {/* Content */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            zIndex: 10,
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 80,
+              fontWeight: "bold",
+              background: "linear-gradient(135deg, #00C2FF 0%, #6E00FF 100%)",
+              backgroundClip: "text",
+              color: "transparent",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            Avi Mathur
+          </h1>
+          <p
+            style={{
+              fontSize: 36,
+              color: "#00C2FF",
+              margin: "20px 0 0 0",
+            }}
+          >
+            AI/ML Developer • Full Stack Innovator
+          </p>
+          <p
+            style={{
+              fontSize: 24,
+              color: "#F5F7FA",
+              opacity: 0.8,
+              margin: "20px 0 0 0",
+              maxWidth: "800px",
+              textAlign: "center",
+            }}
+          >
+            Specializing in vector search, intelligent automation, and high-impact solutions
+          </p>
+        </div>
+      </div>
+    ),
+    {
+      ...size,
+    }
+  );
+}
+
+
+==================================================
+File: Myportfolio/app/sitemap.ts
+==================================================
+import { MetadataRoute } from "next";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://techwithavi.xyz";
+
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}#about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}#skills`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}#experience`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}#projects`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}#certifications`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}#contact`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+  ];
+}
+
+
+==================================================
+File: Myportfolio/app/layout.tsx
+==================================================
+import type { Metadata } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import Navigation from "@/components/Navigation";
+import SpotlightEffect from "@/components/SpotlightEffect";
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://techwithavi.xyz'),
+  title: "Avi Mathur — AI/ML Developer & Full Stack Engineer",
+  description: "Portfolio of Avi Mathur — AI/ML Developer specializing in vector search, LLM automation, and full-stack engineering. Building intelligent systems that solve real-world problems.",
+  keywords: ["AI Developer", "ML Engineer", "Vector Search", "LLM Automation", "Full Stack Developer", "React", "Next.js", "Python", "TensorFlow", "LangChain"],
+  authors: [{ name: "Avi Mathur" }],
+  creator: "Avi Mathur",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://techwithavi.xyz",
+    title: "Avi Mathur — AI/ML Developer & Full Stack Engineer",
+    description: "AI/ML Developer specializing in vector search, intelligent automation, and full-stack engineering. Building production-ready AI systems.",
+    siteName: "Avi Mathur Portfolio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Avi Mathur - AI/ML Developer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Avi Mathur — AI/ML Developer & Full Stack Engineer",
+    description: "Building intelligent systems with vector search, LLM automation, and modern web technologies.",
+    images: ["/og.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Avi Mathur",
+    url: "https://techwithavi.xyz",
+    image: "https://techwithavi.xyz/og.png",
+    jobTitle: "AI/ML Developer & Full Stack Engineer",
+    description: "AI/ML developer specializing in vector search, intelligent automation, and full-stack engineering.",
+    email: "mathuravi668@gmail.com",
+    telephone: "+91-77009-23732",
+    sameAs: [
+      "https://linkedin.com/in/avi-mathur",
+      "https://github.com/AviMath2412",
+    ],
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Rajasthan Technical University",
+    },
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Vector Search",
+      "LLM Automation",
+      "Full Stack Development",
+      "React.js",
+      "Next.js",
+      "Python",
+      "TensorFlow",
+      "LangChain",
+    ],
+  };
+
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <SpotlightEffect />
+        <Navigation />
+        {children}
+      </body>
+    </html>
+  );
+}
+
+
+==================================================
+File: Myportfolio/app/page.tsx
+==================================================
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Skills from "@/components/sections/Skills";
+import Experience from "@/components/sections/Experience";
+import Achievements from "@/components/sections/Achievements";
+import CredibilityStrip from "@/components/sections/CredibilityStrip";
+import Projects from "@/components/sections/Projects";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <main className="overflow-x-hidden">
+      <Hero />
+      <About />
+      <Skills />
+      <Experience />
+      <Achievements />
+      <CredibilityStrip />
+      <Projects />
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
+
+
+==================================================
+File: Myportfolio/app/globals.css
+==================================================
+@import "tailwindcss";
+
+@theme {
+  --bg-primary: #0B0F19;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #1a1a1a;
+  --text-primary: #E5E7EB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #71717a;
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
+  --color-border: #27272a;
+  --color-border-hover: #3f3f46;
+  
+  /* Legacy support */
+  --color-bg: var(--bg-primary);
+  --color-surface: var(--bg-surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  
+  --font-family-heading: "Inter", system-ui, sans-serif;
+  --font-family-body: "Inter", system-ui, sans-serif;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .premium-button {
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 4px 6px -1px rgba(59, 130, 246, 0.3),
+      0 2px 4px -1px rgba(59, 130, 246, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premium-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .premium-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 
+      0 10px 15px -3px rgba(59, 130, 246, 0.4),
+      0 4px 6px -2px rgba(59, 130, 246, 0.3);
+  }
+
+  .premium-button:hover::before {
+    left: 100%;
+  }
+
+  .premium-button:active {
+    transform: translateY(0);
+  }
+
+  /* Static button for "Let's Talk" - no animations or effects */
+  .premium-button-static {
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+      0 4px 6px -1px rgba(59, 130, 246, 0.3),
+      0 2px 4px -1px rgba(59, 130, 246, 0.2);
+  }
+
+  .premium-button-static:hover {
+    background: var(--accent-hover);
+  }
+
+  .secondary-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .secondary-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+  }
+
+  .secondary-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    color: var(--text-primary);
+  }
+
+  .secondary-button:hover::after {
+    width: 80%;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .accent-gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-padding {
+    padding: 50px 0; /* Reduced by ~58% from 120px (additional 30-35% reduction) */
+  }
+
+  .container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 60px 0; /* Further reduced for mobile */
+    }
+    
+    .container-custom {
+      padding: 0 16px;
+    }
+
+    /* Mobile-optimized buttons */
+    .premium-button, .secondary-button {
+      padding: 14px 20px;
+      font-size: 14px;
+      min-height: 48px; /* Better touch targets */
+      border-radius: 12px;
+    }
+
+    /* Improve touch targets */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Better mobile spacing */
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    .gap-6 {
+      gap: 1.5rem;
+    }
+
+    /* Mobile-specific glass cards */
+    .glass-card {
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    /* Better mobile forms */
+    input, textarea {
+      font-size: 16px; /* Prevents zoom on iOS */
+      -webkit-appearance: none;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    /* Mobile navigation improvements */
+    nav {
+      backdrop-filter: blur(20px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-padding {
+      padding: 40px 0; /* Even more compact for small screens */
+    }
+    
+    .container-custom {
+      padding: 0 12px;
+    }
+
+    /* Stack buttons on very small screens */
+    .flex-wrap {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .flex-wrap > * {
+      width: 100%;
+    }
+
+    /* Full-width buttons on mobile */
+    .premium-button, .secondary-button {
+      width: 100%;
+      justify-content: center;
+      padding: 16px 24px;
+    }
+
+    /* Compact mobile cards */
+    .glass-card {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* Better mobile typography */
+    .text-body-large, .text-body {
+      line-height: 1.8;
+    }
+  }
+}
+
+/* Typography Scale - Reduced gaps between headings */
+.text-display {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.text-heading-1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.text-heading-2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.text-heading-3 {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.text-body-large {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.text-body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.text-body-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Improve mobile animations - reduce motion for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Better mobile scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve mobile text selection */
+  * {
+    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.2);
+  }
+
+  /* Mobile-optimized typography */
+  .text-display {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .text-heading-1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .text-heading-2 {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+
+  /* Better mobile readability */
+  .text-body-large {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.8;
+  }
+
+  .text-body {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    line-height: 1.7;
+  }
+
+  /* Mobile-specific spacing */
+  .mb-16 {
+    margin-bottom: 2rem;
+  }
+
+  .mb-20 {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Improve mobile grid layouts */
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* Very small screens optimization */
+@media (max-width: 360px) {
+  .container-custom {
+    padding: 0 8px;
+  }
+
+  .text-display {
+    font-size: 2rem;
+  }
+
+  .text-heading-1 {
+    font-size: 1.5rem;
+  }
+
+  .premium-button, .secondary-button {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+
+==================================================
+File: Myportfolio/vercel.json
+==================================================
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
+}
+
+
+==================================================
+File: Myportfolio/postcss.config.mjs
+==================================================
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+
+
+==================================================
+File: Myportfolio/README.md
+==================================================
+# Avi Mathur - Portfolio Website
+
+A modern, aesthetic, production-grade portfolio website built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
+
+## 🚀 Features
+
+- ⚡ Built with Next.js 14 App Router
+- 🎨 Styled with Tailwind CSS
+- ✨ Smooth animations with Framer Motion
+- 🌙 Dark mode by default with theme toggle
+- 📱 Fully responsive design
+- 🎯 SEO optimized with metadata and sitemap
+- 🔥 Modern glassmorphism UI
+- 📧 Contact form with EmailJS integration
+- ♿ Accessibility compliant
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Email:** EmailJS
+- **Deployment:** Vercel (recommended)
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📧 EmailJS Setup
+
+To enable the contact form:
+
+1. Sign up at [EmailJS](https://www.emailjs.com/)
+2. Create an email service
+3. Create an email template
+4. Get your credentials (Service ID, Template ID, Public Key)
+5. Update `components/sections/Contact.tsx` with your credentials:
+
+```typescript
+await emailjs.sendForm(
+  "YOUR_SERVICE_ID",
+  "YOUR_TEMPLATE_ID",
+  formRef.current,
+  "YOUR_PUBLIC_KEY"
+);
+```
+
+## 🎨 Customization
+
+### Colors
+Edit `tailwind.config.ts` to customize the color scheme:
+- `deepBlue`: #0A1128
+- `neonAzure`: #00C2FF
+- `softWhite`: #F5F7FA
+- `blueViolet`: #6E00FF
+
+### Content
+All content is centralized in `data/content.ts`. Update:
+- Personal information
+- Skills
+- Experience
+- Projects
+- Certifications
+
+### Logo & Branding
+The logo and vector compass symbol are in `components/Logo.tsx`.
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── app/
+│   ├── layout.tsx          # Root layout with metadata
+│   ├── page.tsx            # Home page
+│   ├── globals.css         # Global styles
+│   ├── sitemap.ts          # SEO sitemap
+│   └── robots.ts           # Robots.txt
+├── components/
+│   ├── sections/           # Page sections
+│   │   ├── Hero.tsx
+│   │   ├── About.tsx
+│   │   ├── Skills.tsx
+│   │   ├── Experience.tsx
+│   │   ├── Projects.tsx
+│   │   └── Contact.tsx
+│   ├── Logo.tsx            # Logo & symbol components
+│   ├── Navigation.tsx      # Navigation bar
+│   ├── ThemeProvider.tsx   # Theme context
+│   └── Footer.tsx          # Footer component
+├── data/
+│   └── content.ts          # All content data
+├── public/                 # Static assets
+└── tailwind.config.ts      # Tailwind configuration
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import your repository on [Vercel](https://vercel.com)
+3. Deploy with one click
+
+### Other Platforms
+
+Build the production version:
+```bash
+npm run build
+```
+
+Start the production server:
+```bash
+npm start
+```
+
+## 📝 SEO Checklist
+
+- [x] Meta tags configured
+- [x] Open Graph tags added
+- [x] Sitemap generated
+- [x] Robots.txt configured
+- [x] Semantic HTML
+- [x] Alt text for images
+- [x] ARIA labels
+- [ ] Add your domain to `sitemap.ts` and `robots.ts`
+- [ ] Create and add `og.png` image to `/public`
+- [ ] Add favicon files
+
+## 🎯 Performance Optimization
+
+- Lazy loading for images
+- Optimized fonts with Next.js font optimization
+- Minimal JavaScript bundle
+- CSS purging with Tailwind
+- Static generation where possible
+
+## 📄 License
+
+MIT License - feel free to use this template for your own portfolio!
+
+## 🤝 Contact
+
+- **Email:** mathuravi668@gmail.com
+- **LinkedIn:** [linkedin.com/in/avi-mathur](https://linkedin.com/in/avi-mathur)
+- **GitHub:** [github.com/AviMath2412](https://github.com/AviMath2412)
+
+---
+
+Built with ❤️ by Avi Mathur
+
+
+==================================================
+File: Myportfolio/tailwind.config.ts
+==================================================
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        bg: "#0a0a0a",
+        surface: "#111111",
+        "surface-elevated": "#1a1a1a",
+        text: {
+          primary: "#ffffff",
+          secondary: "#a1a1aa",
+          muted: "#71717a",
+        },
+        accent: {
+          DEFAULT: "#6366f1",
+          hover: "#4f46e5",
+        },
+        border: {
+          DEFAULT: "#27272a",
+          hover: "#3f3f46",
+        },
+        zinc: {
+          50: "#fafafa",
+          100: "#f4f4f5",
+          200: "#e4e4e7",
+          300: "#d4d4d8",
+          400: "#a1a1aa",
+          500: "#71717a",
+          600: "#52525b",
+          700: "#3f3f46",
+          800: "#27272a",
+          900: "#18181b",
+          950: "#09090b",
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        heading: ["var(--font-inter)", "system-ui", "sans-serif"],
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-in-out",
+        "slide-up": "slideUp 0.5s ease-out",
+        "scale-in": "scaleIn 0.3s ease-out",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { transform: "translateY(20px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        scaleIn: {
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+      },
+      backdropBlur: {
+        xs: "2px",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
+
+
+==================================================
+File: Myportfolio/components/sections/Projects.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { projects, personalInfo } from "@/data/content";
+import ProjectCaseStudy from "@/components/ProjectCaseStudy";
+
+const ProjectIcon = ({ projectId }: { projectId: string }) => {
+  const icons: Record<string, string> = {
+    "neuroscan-ai": "🧠",
+    "ai-resume-analyzer": "📄",
+    "ai-webscraper": "🌐", 
+    "expenseflow-quest": "💰",
+  };
+  
+  return (
+    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+      {icons[projectId] || "🚀"}
+    </div>
+  );
+};
+
+export default function Projects() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
+
+  return (
+    <section id="projects" ref={ref} className="section-padding relative">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-5 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              Featured Work
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Selected <span className="accent-gradient">Projects</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-body text-zinc-400 max-w-2xl mx-auto"
+            >
+              A showcase of innovative solutions combining AI/ML capabilities with modern web technologies
+            </motion.p>
+          </div>
+
+          {/* Projects grid */}
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                className={`glass-card rounded-2xl p-8 group hover:scale-[1.02] transition-all duration-500 ${
+                  index === 0 ? "lg:col-span-2" : ""
+                }`}
+              >
+                {/* Project header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <ProjectIcon projectId={project.id} />
+                    <div>
+                      <h3 className="text-heading-3 text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                        {project.title}
+                      </h3>
+                      {project.tag && (
+                        <span className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-caption border border-indigo-500/30">
+                          {project.tag}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Action buttons - Always visible on mobile */}
+                  <div className="flex gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                      title="View Code"
+                    >
+                      <svg className="w-5 h-5 text-zinc-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                      </svg>
+                    </a>
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 transition-colors"
+                        title="Live Demo"
+                      >
+                        <svg className="w-5 h-5 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tech stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-white/5 text-zinc-400 rounded-lg text-body-small hover:bg-white/10 hover:text-white transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Highlights */}
+                <div className="space-y-3 mb-8">
+                  {project.highlights.map((highlight, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 text-body text-zinc-300"
+                    >
+                      <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 flex-shrink-0" />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom actions */}
+                <div className="flex flex-wrap gap-3 pt-6 border-t border-white/10">
+                  {project.hasCaseStudy && (
+                    <button
+                      onClick={() => setOpenCaseStudy(project.id)}
+                      className="premium-button flex items-center gap-2 text-body-small"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      View Case Study
+                    </button>
+                  )}
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="secondary-button flex items-center gap-2 text-body-small"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                    </svg>
+                    View Code
+                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="secondary-button flex items-center gap-2 text-body-small"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* More projects CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="glass-card rounded-xl p-8 max-w-md mx-auto">
+              <h3 className="text-heading-3 text-white mb-4">More Projects</h3>
+              <p className="text-body text-zinc-400 mb-6">
+                Explore additional projects and contributions on GitHub
+              </p>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="secondary-button inline-flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                </svg>
+                View GitHub Profile
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Case Study Modals */}
+      {projects.map((project) => {
+        if (!project.hasCaseStudy || !project.caseStudy) return null;
+        return (
+          <ProjectCaseStudy
+            key={project.id}
+            isOpen={openCaseStudy === project.id}
+            onClose={() => setOpenCaseStudy(null)}
+            title={project.title}
+            tech={project.tech}
+            caseStudy={project.caseStudy}
+          />
+        );
+      })}
+    </section>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/sections/Hero.tsx
+==================================================
+"use client";
+
+import { motion } from "framer-motion";
+import { personalInfo } from "@/data/content";
+
+export default function Hero() {
+  return (
+    <section 
+      id="hero" 
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16"
+      style={{
+        background: "linear-gradient(135deg, #0B0F19 0%, #111827 45%, #1E3A8A 100%)"
+      }}
+    >
+      {/* Premium gradient applied only to hero section background - maintains readability */}
+
+      <div className="container-custom relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span className="text-caption text-zinc-400">Available for opportunities</span>
+          </motion.div>
+
+          {/* Main heading - enhanced contrast for gradient background */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-display mb-4 tracking-tight text-white"
+            style={{ textShadow: '0 2px 12px rgba(0, 0, 0, 0.4)' }}
+          >
+            {personalInfo.name}
+          </motion.h1>
+
+          {/* Subtitle with gradient - readable on gradient background */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-heading-2 mb-6 accent-gradient font-semibold"
+            style={{ filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))' }}
+          >
+            {personalInfo.title}
+          </motion.h2>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-body-large text-zinc-400 mb-3 max-w-3xl mx-auto"
+            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
+          >
+            {personalInfo.subtitle}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-body text-zinc-500 mb-8 max-w-2xl mx-auto"
+            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
+          >
+            {personalInfo.impact}
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center"
+          >
+            <a
+              href="#projects"
+              className="premium-button inline-flex items-center gap-2 w-full sm:w-auto"
+            >
+              View Projects
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Avi_Mathur_Resume.pdf"
+              className="secondary-button inline-flex items-center gap-2 w-full sm:w-auto"
+              title="Download my latest resume"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download Resume
+            </a>
+            <a
+              href="#contact"
+              className="secondary-button w-full sm:w-auto"
+            >
+              Get in Touch
+            </a>
+          </motion.div>
+
+          {/* Social proof / Quick links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="mt-16 flex flex-wrap gap-6 justify-center items-center text-body-small text-zinc-500"
+          >
+            <a 
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+              GitHub
+            </a>
+            <span className="text-zinc-700">•</span>
+            <a 
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+            <span className="text-zinc-700">•</span>
+            <a 
+              href={`mailto:${personalInfo.email}`}
+              className="hover:text-white transition-colors flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Email
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        animate={{ y: [0, 12, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-caption text-zinc-600">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-zinc-600 to-transparent" />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/sections/Experience.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { experience } from "@/data/content";
+
+export default function Experience() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="experience" ref={ref} className="section-padding relative">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-5">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              Professional Journey
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Work <span className="accent-gradient">Experience</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-body text-zinc-400 max-w-2xl"
+            >
+              Building expertise through hands-on experience in AI/ML development and enterprise software solutions
+            </motion.p>
+          </div>
+
+          {/* Timeline */}
+          <div className="relative max-w-4xl">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-transparent hidden md:block" />
+
+            <div className="space-y-12">
+              {experience.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.4 + index * 0.2, duration: 0.6 }}
+                  className="relative"
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-6 top-8 w-4 h-4 bg-indigo-500 rounded-full border-4 border-zinc-900 hidden md:block" />
+                  
+                  {/* Content card */}
+                  <div className="md:ml-20 glass-card rounded-xl p-8 group hover:scale-[1.01] transition-all duration-300">
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                      <div className="flex-1">
+                        <h3 className="text-heading-3 text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                          {exp.company}
+                        </h3>
+                        <p className="text-body-small text-zinc-400 mb-2">{exp.description}</p>
+                        <p className="text-body text-indigo-400 font-medium">{exp.role}</p>
+                      </div>
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500/10 rounded-full border border-indigo-500/20">
+                        <svg className="w-4 h-4 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-body-small text-indigo-300 font-medium whitespace-nowrap">
+                          {exp.duration}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Achievements */}
+                    <div className="space-y-4">
+                      <h4 className="text-caption text-zinc-400 mb-3">Key Achievements</h4>
+                      <div className="grid gap-3">
+                        {exp.highlights.map((highlight, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={isInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ delay: 0.6 + index * 0.2 + i * 0.1, duration: 0.4 }}
+                            className="flex items-start gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                          >
+                            <div className="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-body text-zinc-300">{highlight}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="text-center mt-16"
+          >
+            <p className="text-body text-zinc-400 mb-6">
+              Ready to bring this experience to your next project
+            </p>
+            <a
+              href="#contact"
+              className="premium-button inline-flex items-center gap-2"
+            >
+              Let's Work Together
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/sections/Achievements.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+const achievements = [
+  {
+    title: "Smart India Hackathon 2025",
+    role: "Grand Finale Volunteer",
+    description: "Selected as a volunteer for India's largest hackathon organized by the Ministry of Education, Government of India",
+    icon: "🏆",
+    color: "from-yellow-500/20 to-orange-500/20",
+    highlights: [
+      "Ministry of Education, Government of India initiative",
+      "Grand Finale volunteer selection",
+      "Supporting innovation and technology development",
+      "Facilitating collaboration among top innovators",
+    ],
+  },
+  {
+    title: "Oracle AI Vector Search",
+    role: "Certified Professional",
+    description: "Oracle-certified professional in AI Vector Search technology, valid through October 2027",
+    icon: "🎯",
+    color: "from-red-500/20 to-orange-500/20",
+    highlights: [
+      "Advanced vector database expertise",
+      "AI-powered search implementations",
+      "Production-grade vector solutions",
+      "Valid through October 2027",
+    ],
+  },
+  {
+    title: "SBI Life Hack-AI-Thon",
+    role: "Participant",
+    description: "Participated in SBI Life's AI-focused hackathon, contributing to innovative financial technology solutions",
+    icon: "🤖",
+    color: "from-purple-500/20 to-pink-500/20",
+    highlights: [
+      "AI solutions for financial services",
+      "Innovative fintech development",
+      "Collaborative problem-solving",
+      "Industry-focused innovation",
+    ],
+  },
+];
+
+export default function Achievements() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="achievements" ref={ref} className="section-padding relative">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-5 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              Recognition & Impact
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Notable <span className="accent-gradient">Achievements</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-body text-zinc-400 max-w-2xl mx-auto"
+            >
+              Recognition for contributions to AI innovation, hackathons, and professional certifications
+            </motion.p>
+          </div>
+
+          {/* Achievements grid */}
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={achievement.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                className="glass-card rounded-2xl p-8 group hover:scale-[1.02] transition-all duration-500"
+              >
+                {/* Achievement header */}
+                <div className="mb-6">
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${achievement.color} flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform`}>
+                    {achievement.icon}
+                  </div>
+                  <h3 className="text-heading-3 text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                    {achievement.title}
+                  </h3>
+                  <p className="text-body text-indigo-400 font-medium mb-3">
+                    {achievement.role}
+                  </p>
+                  <p className="text-body-small text-zinc-400 leading-relaxed">
+                    {achievement.description}
+                  </p>
+                </div>
+
+                {/* Highlights */}
+                <div className="space-y-3">
+                  {achievement.highlights.map((highlight, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 text-body-small text-zinc-300"
+                    >
+                      <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2 flex-shrink-0" />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="text-center mt-16"
+          >
+            <p className="text-body text-zinc-400 mb-6">
+              Continuously seeking opportunities to contribute to innovative projects and technological advancement
+            </p>
+            <a
+              href="#projects"
+              className="secondary-button inline-flex items-center gap-2"
+            >
+              View My Projects
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+==================================================
+File: Myportfolio/components/sections/Contact.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { personalInfo } from "@/data/content";
+
+export default function Contact() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
+  const contactMethods = [
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+      label: "Email",
+      value: personalInfo.email,
+      href: `mailto:${personalInfo.email}`,
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+      ),
+      label: "Phone",
+      value: personalInfo.phone,
+      href: `tel:${personalInfo.phone}`,
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      ),
+      label: "LinkedIn",
+      value: "Connect with me",
+      href: personalInfo.linkedin,
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+        </svg>
+      ),
+      label: "GitHub",
+      value: "View my work",
+      href: personalInfo.github,
+    },
+  ];
+
+  return (
+    <section id="contact" ref={ref} className="section-padding relative">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-5 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              Get In Touch
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Let's Build Something <span className="accent-gradient">Amazing</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-body text-zinc-400 max-w-2xl mx-auto"
+            >
+              Ready to discuss your next project? I'm always excited to collaborate on innovative solutions and bring ideas to life.
+            </motion.p>
+          </div>
+
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            {/* Contact methods */}
+            <div className="lg:col-span-2 space-y-4 lg:space-y-6 order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                <h3 className="text-heading-3 text-white mb-8">Contact Information</h3>
+                <div className="space-y-4">
+                  {contactMethods.map((method, index) => (
+                    <motion.div
+                      key={method.label}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
+                      className="glass-card rounded-xl p-4 flex items-center gap-4 group hover:scale-[1.02] transition-all"
+                    >
+                      <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500/30 transition-colors">
+                        {method.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-caption text-zinc-400 mb-1">{method.label}</p>
+                        {method.label === "Email" ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-body text-white group-hover:text-indigo-300 transition-colors truncate">
+                              {method.value}
+                            </p>
+                            <button
+                              onClick={copyEmail}
+                              className="p-1.5 rounded hover:bg-white/10 transition-colors"
+                              title="Copy email"
+                            >
+                              {emailCopied ? (
+                                <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              ) : (
+                                <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                              )}
+                            </button>
+                          </div>
+                        ) : (
+                          <a
+                            href={method.href}
+                            target={method.href.startsWith('http') ? '_blank' : undefined}
+                            rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className="text-body text-white group-hover:text-indigo-300 transition-colors truncate block"
+                          >
+                            {method.value}
+                          </a>
+                        )}
+                      </div>
+                      <svg className="w-5 h-5 text-zinc-600 group-hover:text-indigo-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Quick response note */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="glass-card rounded-xl p-6"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-body font-medium text-white mb-2">Quick Response</h4>
+                    <p className="text-body-small text-zinc-400">
+                      I typically respond within 24 hours. For urgent matters, feel free to call directly.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Contact form */}
+            <div className="lg:col-span-3 order-1 lg:order-2">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="glass-card rounded-2xl p-8"
+              >
+                <h3 className="text-heading-3 text-white mb-8">Send a Message</h3>
+                
+                {formStatus === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-green-500/20 border border-green-500/30"
+                  >
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-body text-green-300">Message sent successfully! I'll get back to you soon.</p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {formStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-red-500/20 border border-red-500/30"
+                  >
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      <p className="text-body text-red-300">Something went wrong. Please try again or email me directly.</p>
+                    </div>
+                  </motion.div>
+                )}
+                
+                <form 
+                  action="https://api.web3forms.com/submit" 
+                  method="POST" 
+                  className="space-y-4 lg:space-y-6"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const form = e.currentTarget;
+                    const formData = new FormData(form);
+                    
+                    try {
+                      const response = await fetch(form.action, {
+                        method: "POST",
+                        body: formData
+                      });
+                      
+                      const data = await response.json();
+                      
+                      if (data.success) {
+                        setFormStatus("success");
+                        form.reset();
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                      } else {
+                        setFormStatus("error");
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                      }
+                    } catch (error) {
+                      setFormStatus("error");
+                      setTimeout(() => setFormStatus("idle"), 5000);
+                    }
+                  }}
+                >
+                  <input type="hidden" name="access_key" value="e4d267d0-dd2f-4b84-a077-a507bc837768" />
+                  <input type="hidden" name="subject" value="New Portfolio Contact Form Submission" />
+                  <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-caption text-zinc-400 mb-3">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all text-white placeholder:text-zinc-500"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-caption text-zinc-400 mb-3">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all text-white placeholder:text-zinc-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-caption text-zinc-400 mb-3">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={6}
+                      placeholder="Tell me about your project or how I can help..."
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none text-white placeholder:text-zinc-500"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full premium-button flex items-center justify-center gap-2"
+                  >
+                    Send Message
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                  <p className="text-body-small text-zinc-500 text-center mt-3">
+                    Prefer email? I usually reply within 24 hours.
+                  </p>
+                </form>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/sections/Skills.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { skills } from "@/data/content";
+
+export default function Skills() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const categories = Object.entries(skills);
+
+  // Define category colors and icons
+  const categoryStyles: Record<string, { color: string; icon: string }> = {
+    "Languages": { color: "from-blue-500/20 to-cyan-500/20", icon: "💻" },
+    "AI/ML": { color: "from-purple-500/20 to-pink-500/20", icon: "🤖" },
+    "Web": { color: "from-green-500/20 to-emerald-500/20", icon: "🌐" },
+    "Cloud & Tools": { color: "from-orange-500/20 to-red-500/20", icon: "☁️" },
+    "Currently Learning": { color: "from-yellow-500/20 to-amber-500/20", icon: "📚" },
+  };
+
+  return (
+    <section id="skills" ref={ref} className="section-padding relative">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-5 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              Technical Expertise
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Skills & <span className="accent-gradient">Technologies</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-body text-zinc-400 max-w-2xl mx-auto"
+            >
+              A comprehensive toolkit for building modern, scalable applications and AI-powered solutions
+            </motion.p>
+          </div>
+
+          {/* Skills grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {categories.map(([category, items], index) => {
+              const style = categoryStyles[category] || categoryStyles["Languages"];
+              
+              return (
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                  className={`glass-card rounded-xl p-6 group hover:scale-[1.02] transition-all duration-300 ${
+                    category === "Currently Learning" ? "lg:col-span-3" : ""
+                  }`}
+                >
+                  {/* Category header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${style.color} flex items-center justify-center text-xl group-hover:scale-110 transition-transform`}>
+                      {style.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-heading-3 text-white group-hover:text-indigo-300 transition-colors">
+                        {category}
+                      </h3>
+                      <p className="text-caption text-zinc-500">
+                        {items.length} {items.length === 1 ? 'skill' : 'skills'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Skills list */}
+                  <div className={`flex flex-wrap gap-2 ${
+                    category === "Currently Learning" ? "justify-center" : ""
+                  }`}>
+                    {items.map((skill, skillIndex) => {
+                      // Add context labels for specific skills
+                      const skillContext: Record<string, string> = {
+                        "TensorFlow": "Medical imaging (NeuroScan AI)",
+                        "Vector Search Pipelines": "Oracle AI certification",
+                        "FastAPI": "Backend APIs (projects)"
+                      };
+                      const context = skillContext[skill];
+                      
+                      return (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                          transition={{ 
+                            delay: 0.6 + index * 0.1 + skillIndex * 0.05, 
+                            duration: 0.4 
+                          }}
+                          className="flex flex-col gap-1"
+                        >
+                          <span className={`px-3 py-1.5 rounded-lg text-body-small transition-all ${
+                            category === "Currently Learning"
+                              ? "bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 hover:bg-yellow-500/20"
+                              : "bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
+                          }`}>
+                            {skill}
+                          </span>
+                          {context && (
+                            <span className="text-caption text-zinc-500 px-3">
+                              {context}
+                            </span>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="text-center mt-16"
+          >
+            <p className="text-body text-zinc-400 mb-6">
+              Always learning and exploring new technologies to stay at the forefront of innovation
+            </p>
+            <a
+              href="#projects"
+              className="secondary-button inline-flex items-center gap-2"
+            >
+              See Skills in Action
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/sections/CredibilityStrip.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+export default function CredibilityStrip() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const credibilityItems = [
+    {
+      type: "metric",
+      title: "Automation Impact",
+      highlight: "−40% manual work reduction",
+      icon: "⚡"
+    },
+    {
+      type: "metric",
+      title: "User Scale",
+      highlight: "500+ users",
+      icon: "👥"
+    },
+    {
+      type: "metric",
+      title: "Efficiency Gain",
+      highlight: "45% approval time reduction",
+      icon: "⏱️"
+    }
+  ];
+
+  return (
+    <section ref={ref} className="section-padding relative bg-gradient-to-b from-transparent via-zinc-900/30 to-transparent">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-10 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              Trust Signals
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Proven <span className="accent-gradient">Impact</span>
+            </motion.h2>
+          </div>
+
+          {/* Credibility items */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {credibilityItems.map((item, index) => (
+              <motion.div
+                key={`${item.type}-${index}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
+                className="glass-card rounded-xl p-6 group hover:scale-[1.02] transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl flex-shrink-0 ${
+                    "bg-indigo-500/20"
+                  }`}>
+                    {item.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-heading-3 text-white mb-2 group-hover:text-indigo-300 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-body-small text-zinc-400 leading-relaxed">
+                      {item.highlight}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
+
+==================================================
+File: Myportfolio/components/sections/About.tsx
+==================================================
+"use client";
+
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { about, achievements } from "@/data/content";
+
+export default function About() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="about" ref={ref} className="section-padding relative">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Section header */}
+          <div className="mb-5">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-caption text-indigo-400 mb-4 block"
+            >
+              About Me
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-heading-1 mb-6"
+            >
+              Building the future with{" "}
+              <span className="accent-gradient">intelligent systems</span>
+            </motion.h2>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
+            {/* Main content */}
+            <div className="lg:col-span-2 space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="space-y-6"
+              >
+                <p className="text-body-large text-zinc-300 leading-relaxed">
+                  {about.intro}
+                </p>
+
+                <p className="text-body text-zinc-400 leading-relaxed">
+                  {about.builds}
+                </p>
+              </motion.div>
+
+              {/* Education */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="glass-card rounded-xl p-6"
+              >
+                <h3 className="text-caption text-indigo-400 mb-3">Education</h3>
+                <p className="text-body text-zinc-300">{about.education}</p>
+              </motion.div>
+
+              {/* Currently exploring */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                <h3 className="text-caption text-indigo-400 mb-4">Currently Exploring</h3>
+                <div className="flex flex-wrap gap-3">
+                  {about.exploring.map((item, index) => (
+                    <motion.span
+                      key={item}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
+                      className="px-4 py-2 glass-card rounded-full text-body-small text-zinc-300 hover:text-white transition-colors"
+                    >
+                      {item}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Certifications sidebar */}
+            <div className="lg:col-span-1">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                <h3 className="text-caption text-indigo-400 mb-6">Achievements & Certifications</h3>
+                <div className="space-y-4">
+                  {achievements.map((achievement, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
+                      className="glass-card rounded-lg p-4 group hover:scale-[1.02] transition-transform"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="text-2xl">{achievement.icon}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="text-body-small font-medium text-white group-hover:text-indigo-300 transition-colors">
+                              {achievement.title}
+                            </h4>
+                            <span className={`px-2 py-0.5 rounded-full text-xs ${
+                              achievement.type === 'certification' ? 'bg-blue-500/20 text-blue-300' :
+                              achievement.type === 'hackathon' ? 'bg-purple-500/20 text-purple-300' :
+                              'bg-green-500/20 text-green-300'
+                            }`}>
+                              {achievement.type}
+                            </span>
+                          </div>
+                          <p className="text-caption text-zinc-500">{achievement.validity}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/ProjectCaseStudy.tsx
+==================================================
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+
+export interface CaseStudyData {
+  problem: string;
+  myRole: string;
+  solutionArchitecture: string[];
+  keyChallenges: string[];
+  results: {
+    label: string;
+    value: string;
+    isEstimate?: boolean;
+  }[];
+  improvements: string[];
+  whyThisApproach: string;
+}
+
+interface ProjectCaseStudyProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  tech: string[];
+  caseStudy: CaseStudyData;
+}
+
+export default function ProjectCaseStudy({
+  isOpen,
+  onClose,
+  title,
+  tech,
+  caseStudy,
+}: ProjectCaseStudyProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+          />
+
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="fixed inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-4xl md:max-h-[90vh] z-50 overflow-hidden"
+          >
+            <div className="glass-card rounded-2xl h-full md:h-auto md:max-h-[90vh] flex flex-col overflow-hidden">
+              {/* Header */}
+              <div className="flex items-start justify-between p-6 border-b border-white/10">
+                <div className="flex-1">
+                  <h2 className="text-heading-2 text-white mb-2">{title}</h2>
+                  <div className="flex flex-wrap gap-2">
+                    {tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-1 bg-indigo-500/20 text-indigo-300 rounded text-body-small text-xs"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="ml-4 p-2 rounded-lg hover:bg-white/10 transition-colors"
+                  aria-label="Close"
+                >
+                  <svg
+                    className="w-6 h-6 text-zinc-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Content - Scrollable */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                {/* Problem */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    Problem
+                  </h3>
+                  <p className="text-body text-zinc-300 leading-relaxed">
+                    {caseStudy.problem}
+                  </p>
+                </section>
+
+                {/* My Role */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    My Role
+                  </h3>
+                  <p className="text-body text-zinc-300 leading-relaxed">
+                    {caseStudy.myRole}
+                  </p>
+                </section>
+
+                {/* Solution Architecture */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    Solution Architecture
+                  </h3>
+                  <ul className="space-y-2">
+                    {caseStudy.solutionArchitecture.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-body text-zinc-300"
+                      >
+                        <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Key Challenges */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    Key Challenges
+                  </h3>
+                  <ul className="space-y-2">
+                    {caseStudy.keyChallenges.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-body text-zinc-300"
+                      >
+                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-2.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {/* Why This Approach */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    Why This Approach?
+                  </h3>
+                  <p className="text-body text-zinc-300 leading-relaxed">
+                    {caseStudy.whyThisApproach}
+                  </p>
+                </section>
+
+                {/* Results */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    Results
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {caseStudy.results.map((result, i) => (
+                      <div
+                        key={i}
+                        className="glass-card rounded-lg p-4 border border-white/5"
+                      >
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <span className="text-heading-3 text-white">
+                            {result.value}
+                          </span>
+                          {result.isEstimate && (
+                            <span className="text-caption text-zinc-500">
+                              (estimate)
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-body-small text-zinc-400">
+                          {result.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* What I'd Improve Next */}
+                <section>
+                  <h3 className="text-heading-3 text-white mb-3 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-indigo-500 rounded-full" />
+                    What I'd Improve Next
+                  </h3>
+                  <ul className="space-y-2">
+                    {caseStudy.improvements.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-body text-zinc-300"
+                      >
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2.5 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+
+
+==================================================
+File: Myportfolio/components/SpotlightEffect.tsx
+==================================================
+"use client";
+
+import { useEffect } from "react";
+
+export default function SpotlightEffect() {
+  useEffect(() => {
+    const updateSpotlight = (e: MouseEvent) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+
+    document.addEventListener('mousemove', updateSpotlight);
+
+    return () => {
+      document.removeEventListener('mousemove', updateSpotlight);
+    };
+  }, []);
+
+  return null;
+}
+
+
+==================================================
+File: Myportfolio/components/ScrollReveal.tsx
+==================================================
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef, ReactNode } from "react";
+
+interface ScrollRevealProps {
+  children: ReactNode;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right";
+}
+
+export default function ScrollReveal({ 
+  children, 
+  delay = 0,
+  direction = "up" 
+}: ScrollRevealProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const directions = {
+    up: { y: 40, x: 0 },
+    down: { y: -40, x: 0 },
+    left: { y: 0, x: 40 },
+    right: { y: 0, x: -40 },
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ 
+        opacity: 0, 
+        ...directions[direction]
+      }}
+      animate={isInView ? { 
+        opacity: 1, 
+        y: 0, 
+        x: 0 
+      } : {}}
+      transition={{ 
+        duration: 0.6, 
+        delay,
+        ease: "easeOut"
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/Footer.tsx
+==================================================
+"use client";
+
+import { motion } from "framer-motion";
+import { personalInfo } from "@/data/content";
+import { Logo } from "./Logo";
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
+  const socialLinks = [
+    {
+      name: "GitHub",
+      href: personalInfo.github,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+        </svg>
+      ),
+    },
+    {
+      name: "LinkedIn",
+      href: personalInfo.linkedin,
+      icon: (
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      ),
+    },
+    {
+      name: "Email",
+      href: `mailto:${personalInfo.email}`,
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <footer className="relative mt-32">
+      {/* Gradient separator */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
+      
+      <div className="container-custom py-16">
+        <div className="max-w-4xl mx-auto">
+          {/* Main footer content */}
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+            {/* Brand section */}
+            <div className="md:col-span-1">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-3 mb-4"
+              >
+                <Logo className="w-10 h-10" />
+                <span className="font-bold text-xl text-white">Avi Mathur</span>
+              </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-body-small text-zinc-400 leading-relaxed"
+              >
+                AI/ML Developer building intelligent systems that solve real-world problems with modern technologies.
+              </motion.p>
+            </div>
+
+            {/* Quick links */}
+            <div className="md:col-span-1">
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-caption text-white mb-4"
+              >
+                Quick Links
+              </motion.h3>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="space-y-3"
+              >
+                {["About", "Skills", "Experience", "Achievements", "Projects", "Contact"].map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase()}`}
+                    className="block text-body-small text-zinc-400 hover:text-white transition-colors"
+                  >
+                    {link}
+                  </a>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Contact info */}
+            <div className="md:col-span-1">
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-caption text-white mb-4"
+              >
+                Get In Touch
+              </motion.h3>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="space-y-3"
+              >
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="block text-body-small text-zinc-400 hover:text-white transition-colors"
+                >
+                  {personalInfo.email}
+                </a>
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="block text-body-small text-zinc-400 hover:text-white transition-colors"
+                >
+                  {personalInfo.phone}
+                </a>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Bottom section */}
+          <div className="pt-8 border-t border-zinc-800">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              {/* Copyright */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-body-small text-zinc-500"
+              >
+                © {currentYear} {personalInfo.name}. All rights reserved.
+              </motion.p>
+
+              {/* Social links */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex items-center gap-4"
+              >
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    target={social.href.startsWith('http') ? '_blank' : undefined}
+                    rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="p-2 glass-card rounded-lg text-zinc-400 hover:text-white hover:scale-110 transition-all"
+                    aria-label={social.name}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Back to top */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-8"
+          >
+            <a
+              href="#hero"
+              className="inline-flex items-center gap-2 text-body-small text-zinc-500 hover:text-white transition-colors group"
+            >
+              <svg className="w-4 h-4 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+              Back to top
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/ThemeProvider.tsx
+==================================================
+"use client";
+
+import { createContext, useContext, useEffect, useState } from "react";
+
+type Theme = "dark" | "light";
+
+const ThemeContext = createContext<{
+  theme: Theme;
+  toggleTheme: () => void;
+}>({
+  theme: "dark",
+  toggleTheme: () => {},
+});
+
+export const useTheme = () => useContext(ThemeContext);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Theme>("dark");
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+
+==================================================
+File: Myportfolio/components/Logo.tsx
+==================================================
+export const Logo = ({ className = "w-12 h-12" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 100 100"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Minimal A shape */}
+    <path
+      d="M 50 20 L 75 80 M 50 20 L 25 80 M 35 60 L 65 60"
+      fill="none"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const VectorCompass = ({ className = "w-8 h-8" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 100 100"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    {/* Center Node */}
+    <circle cx="50" cy="50" r="6" fill="#00C2FF" filter="url(#glow)" />
+    {/* Up Arrow */}
+    <path
+      d="M 50 50 L 50 20 M 45 25 L 50 20 L 55 25"
+      stroke="#00C2FF"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Right Arrow */}
+    <path
+      d="M 50 50 L 80 50 M 75 45 L 80 50 L 75 55"
+      stroke="#00C2FF"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Left Arrow */}
+    <path
+      d="M 50 50 L 20 50 M 25 45 L 20 50 L 25 55"
+      stroke="#00C2FF"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    {/* Circuit Lines */}
+    <circle cx="50" cy="20" r="2" fill="#6E00FF" opacity="0.6" />
+    <circle cx="80" cy="50" r="2" fill="#6E00FF" opacity="0.6" />
+    <circle cx="20" cy="50" r="2" fill="#6E00FF" opacity="0.6" />
+  </svg>
+);
+
+
+==================================================
+File: Myportfolio/components/Navigation.tsx
+==================================================
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Logo } from "./Logo";
+
+const navLinks = [
+  { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "Achievements", href: "#achievements" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
+
+export default function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Detect active section
+      const sections = navLinks.map(link => link.href.replace('#', ''));
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled 
+          ? "glass-card backdrop-blur-xl py-4 mx-4 mt-4 rounded-2xl" 
+          : "bg-transparent py-6"
+      }`}
+    >
+      <div className="container-custom flex items-center justify-between">
+        {/* Logo */}
+        <motion.a 
+          href="#hero" 
+          className="flex items-center gap-3 group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="relative">
+            <Logo className="w-10 h-10 group-hover:scale-110 transition-transform" />
+            <div className="absolute inset-0 bg-indigo-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+          <span className="font-bold text-xl text-white group-hover:text-indigo-300 transition-colors">
+            Avi Mathur
+          </span>
+        </motion.a>
+
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center">
+          <div className="flex items-center gap-1 p-1 glass-card rounded-full">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className={`relative px-4 py-2 text-sm font-medium transition-all rounded-full ${
+                    isActive 
+                      ? 'text-white' 
+                      : 'text-zinc-400 hover:text-white'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavSection"
+                      className="absolute inset-0 bg-indigo-500/20 rounded-full border border-indigo-500/30"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.name}</span>
+                </motion.a>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="hidden lg:block">
+          <a
+            href="#contact"
+            className="premium-button-static text-body-small"
+          >
+            Let's Talk
+          </a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <motion.button
+          className="lg:hidden p-2 glass-card rounded-xl"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="w-6 h-5 flex flex-col justify-between">
+            <motion.span 
+              className="w-full h-0.5 bg-white origin-center"
+              animate={{
+                rotate: mobileMenuOpen ? 45 : 0,
+                y: mobileMenuOpen ? 8 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span 
+              className="w-full h-0.5 bg-white"
+              animate={{
+                opacity: mobileMenuOpen ? 0 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span 
+              className="w-full h-0.5 bg-white origin-center"
+              animate={{
+                rotate: mobileMenuOpen ? -45 : 0,
+                y: mobileMenuOpen ? -8 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+        </motion.button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden absolute top-full left-4 right-4 mt-2"
+          >
+            <div className="glass-card rounded-2xl p-6 space-y-2">
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="block px-4 py-3 text-zinc-300 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                  onClick={() => setMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+              <div className="pt-4 border-t border-white/10">
+                <a
+                  href="#contact"
+                  className="block w-full premium-button-static text-center"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Let's Talk
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
+}
+
+
+==================================================
+File: Myportfolio/public/file.svg
+==================================================
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+
+==================================================
+File: Myportfolio/public/vercel.svg
+==================================================
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+
+==================================================
+File: Myportfolio/public/manifest.json
+==================================================
+{
+  "name": "Avi Mathur - AI/ML Developer Portfolio",
+  "short_name": "Avi Mathur",
+  "description": "Portfolio of Avi Mathur — AI/ML Developer specializing in vector search, intelligent automation, and full-stack engineering",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
+
+==================================================
+File: Myportfolio/public/next.svg
+==================================================
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+
+==================================================
+File: Myportfolio/public/globe.svg
+==================================================
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+
+==================================================
+File: Myportfolio/public/window.svg
+==================================================
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+
+==================================================
+File: Myportfolio/package-lock.json
+==================================================
 {
   "name": "avi-mathur-portfolio",
   "version": "1.0.0",
@@ -9,36 +3475,19 @@
       "version": "1.0.0",
       "dependencies": {
         "@emailjs/browser": "^4.4.1",
-        "@gsap/react": "^2.1.2",
-        "@react-three/drei": "^10.7.7",
-        "@react-three/fiber": "^9.5.0",
-        "@splinetool/react-spline": "^4.1.0",
-        "@splinetool/runtime": "^1.12.67",
         "@types/nodemailer": "^7.0.3",
-        "class-variance-authority": "^0.7.1",
-        "clsx": "^2.1.1",
         "dotenv": "^17.2.3",
-        "framer-motion": "^12.35.0",
-        "gsap": "^3.14.2",
-        "lenis": "^1.3.18",
-        "lucide-react": "^0.577.0",
-        "motion": "^12.35.0",
+        "framer-motion": "^12.23.24",
         "next": "^16.0.10",
-        "next-themes": "^0.4.6",
         "nodemailer": "^7.0.10",
         "react": "19.2.0",
-        "react-dom": "19.2.0",
-        "tailwind-merge": "^3.5.0",
-        "tailwindcss-animate": "^1.0.7",
-        "three": "^0.183.2",
-        "usehooks-ts": "^3.1.1"
+        "react-dom": "19.2.0"
       },
       "devDependencies": {
         "@tailwindcss/postcss": "^4",
         "@types/node": "20.19.27",
         "@types/react": "^19",
         "@types/react-dom": "^19",
-        "@types/three": "^0.183.1",
         "eslint": "^9",
         "eslint-config-next": "16.0.3",
         "tailwindcss": "^4",
@@ -908,15 +4357,6 @@
         "node": ">=6.0.0"
       }
     },
-    "node_modules/@babel/runtime": {
-      "version": "7.28.6",
-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.6.tgz",
-      "integrity": "sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=6.9.0"
-      }
-    },
     "node_modules/@babel/template": {
       "version": "7.27.2",
       "resolved": "https://registry.npmjs.org/@babel/template/-/template-7.27.2.tgz",
@@ -964,12 +4404,6 @@
       "engines": {
         "node": ">=6.9.0"
       }
-    },
-    "node_modules/@dimforge/rapier3d-compat": {
-      "version": "0.12.0",
-      "resolved": "https://registry.npmjs.org/@dimforge/rapier3d-compat/-/rapier3d-compat-0.12.0.tgz",
-      "integrity": "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow==",
-      "license": "Apache-2.0"
     },
     "node_modules/@emailjs/browser": {
       "version": "4.4.1",
@@ -1155,16 +4589,6 @@
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
-      }
-    },
-    "node_modules/@gsap/react": {
-      "version": "2.1.2",
-      "resolved": "https://registry.npmjs.org/@gsap/react/-/react-2.1.2.tgz",
-      "integrity": "sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw==",
-      "license": "SEE LICENSE AT https://gsap.com/standard-license",
-      "peerDependencies": {
-        "gsap": "^3.12.5",
-        "react": ">=17"
       }
     },
     "node_modules/@humanfs/core": {
@@ -1735,24 +5159,6 @@
         "@jridgewell/sourcemap-codec": "^1.4.14"
       }
     },
-    "node_modules/@mediapipe/tasks-vision": {
-      "version": "0.10.17",
-      "resolved": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.17.tgz",
-      "integrity": "sha512-CZWV/q6TTe8ta61cZXjfnnHsfWIdFhms03M9T7Cnd5y2mdpylJM0rF1qRq+wsQVRMLz1OYPVEBU9ph2Bx8cxrg==",
-      "license": "Apache-2.0"
-    },
-    "node_modules/@monogrid/gainmap-js": {
-      "version": "3.4.0",
-      "resolved": "https://registry.npmjs.org/@monogrid/gainmap-js/-/gainmap-js-3.4.0.tgz",
-      "integrity": "sha512-2Z0FATFHaoYJ8b+Y4y4Hgfn3FRFwuU5zRrk+9dFWp4uGAdHGqVEdP7HP+gLA3X469KXHmfupJaUbKo1b/aDKIg==",
-      "license": "MIT",
-      "dependencies": {
-        "promise-worker-transferable": "^1.0.4"
-      },
-      "peerDependencies": {
-        "three": ">= 0.159.0"
-      }
-    },
     "node_modules/@napi-rs/wasm-runtime": {
       "version": "0.2.12",
       "resolved": "https://registry.npmjs.org/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.12.tgz",
@@ -1956,94 +5362,6 @@
       "license": "MIT",
       "engines": {
         "node": ">=12.4.0"
-      }
-    },
-    "node_modules/@react-three/drei": {
-      "version": "10.7.7",
-      "resolved": "https://registry.npmjs.org/@react-three/drei/-/drei-10.7.7.tgz",
-      "integrity": "sha512-ff+J5iloR0k4tC++QtD/j9u3w5fzfgFAWDtAGQah9pF2B1YgOq/5JxqY0/aVoQG5r3xSZz0cv5tk2YuBob4xEQ==",
-      "license": "MIT",
-      "dependencies": {
-        "@babel/runtime": "^7.26.0",
-        "@mediapipe/tasks-vision": "0.10.17",
-        "@monogrid/gainmap-js": "^3.0.6",
-        "@use-gesture/react": "^10.3.1",
-        "camera-controls": "^3.1.0",
-        "cross-env": "^7.0.3",
-        "detect-gpu": "^5.0.56",
-        "glsl-noise": "^0.0.0",
-        "hls.js": "^1.5.17",
-        "maath": "^0.10.8",
-        "meshline": "^3.3.1",
-        "stats-gl": "^2.2.8",
-        "stats.js": "^0.17.0",
-        "suspend-react": "^0.1.3",
-        "three-mesh-bvh": "^0.8.3",
-        "three-stdlib": "^2.35.6",
-        "troika-three-text": "^0.52.4",
-        "tunnel-rat": "^0.1.2",
-        "use-sync-external-store": "^1.4.0",
-        "utility-types": "^3.11.0",
-        "zustand": "^5.0.1"
-      },
-      "peerDependencies": {
-        "@react-three/fiber": "^9.0.0",
-        "react": "^19",
-        "react-dom": "^19",
-        "three": ">=0.159"
-      },
-      "peerDependenciesMeta": {
-        "react-dom": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/@react-three/fiber": {
-      "version": "9.5.0",
-      "resolved": "https://registry.npmjs.org/@react-three/fiber/-/fiber-9.5.0.tgz",
-      "integrity": "sha512-FiUzfYW4wB1+PpmsE47UM+mCads7j2+giRBltfwH7SNhah95rqJs3ltEs9V3pP8rYdS0QlNne+9Aj8dS/SiaIA==",
-      "license": "MIT",
-      "dependencies": {
-        "@babel/runtime": "^7.17.8",
-        "@types/webxr": "*",
-        "base64-js": "^1.5.1",
-        "buffer": "^6.0.3",
-        "its-fine": "^2.0.0",
-        "react-use-measure": "^2.1.7",
-        "scheduler": "^0.27.0",
-        "suspend-react": "^0.1.3",
-        "use-sync-external-store": "^1.4.0",
-        "zustand": "^5.0.3"
-      },
-      "peerDependencies": {
-        "expo": ">=43.0",
-        "expo-asset": ">=8.4",
-        "expo-file-system": ">=11.0",
-        "expo-gl": ">=11.0",
-        "react": ">=19 <19.3",
-        "react-dom": ">=19 <19.3",
-        "react-native": ">=0.78",
-        "three": ">=0.156"
-      },
-      "peerDependenciesMeta": {
-        "expo": {
-          "optional": true
-        },
-        "expo-asset": {
-          "optional": true
-        },
-        "expo-file-system": {
-          "optional": true
-        },
-        "expo-gl": {
-          "optional": true
-        },
-        "react-dom": {
-          "optional": true
-        },
-        "react-native": {
-          "optional": true
-        }
       }
     },
     "node_modules/@rtsao/scc": {
@@ -2633,37 +5951,6 @@
         "node": ">=18.0.0"
       }
     },
-    "node_modules/@splinetool/react-spline": {
-      "version": "4.1.0",
-      "resolved": "https://registry.npmjs.org/@splinetool/react-spline/-/react-spline-4.1.0.tgz",
-      "integrity": "sha512-Y379gm17gw+1nxT/YXTCJnVIWuu7tsUH1tp/YxsYb0pZnc9Gljk7Om4Kpq7WPq0bZ4zidVCxf6xn6jgDcbHifQ==",
-      "dependencies": {
-        "blurhash": "2.0.5",
-        "lodash.debounce": "4.0.8",
-        "react-merge-refs": "2.1.1",
-        "thumbhash": "0.1.1"
-      },
-      "peerDependencies": {
-        "@splinetool/runtime": "*",
-        "next": ">=14.2.0",
-        "react": "*",
-        "react-dom": "*"
-      },
-      "peerDependenciesMeta": {
-        "next": {
-          "optional": true
-        }
-      }
-    },
-    "node_modules/@splinetool/runtime": {
-      "version": "1.12.67",
-      "resolved": "https://registry.npmjs.org/@splinetool/runtime/-/runtime-1.12.67.tgz",
-      "integrity": "sha512-jKE5asBgqTlYkOgdUDXUAbiCenPTP3hnb4RaeO8YUZLPlUB4RFlxx579n79I/0wS/alBqv6C06h3Csclc+IwQg==",
-      "dependencies": {
-        "on-change": "4.0.0",
-        "semver-compare": "1.0.0"
-      }
-    },
     "node_modules/@swc/helpers": {
       "version": "0.5.15",
       "resolved": "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.15.tgz",
@@ -2944,12 +6231,6 @@
         "tailwindcss": "4.1.17"
       }
     },
-    "node_modules/@tweenjs/tween.js": {
-      "version": "23.1.3",
-      "resolved": "https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-23.1.3.tgz",
-      "integrity": "sha512-vJmvvwFxYuGnF2axRtPYocag6Clbb5YS7kLL+SO/TeVFzHqDIWrNKYtcsPMibjDx9O+bu+psAy9NKfWklassUA==",
-      "license": "MIT"
-    },
     "node_modules/@tybys/wasm-util": {
       "version": "0.10.1",
       "resolved": "https://registry.npmjs.org/@tybys/wasm-util/-/wasm-util-0.10.1.tgz",
@@ -2960,12 +6241,6 @@
       "dependencies": {
         "tslib": "^2.4.0"
       }
-    },
-    "node_modules/@types/draco3d": {
-      "version": "1.4.10",
-      "resolved": "https://registry.npmjs.org/@types/draco3d/-/draco3d-1.4.10.tgz",
-      "integrity": "sha512-AX22jp8Y7wwaBgAixaSvkoG4M/+PlAcm3Qs4OW8yT9DM4xUpWKeFhLueTAyZF39pviAdcDdeJoACapiAceqNcw==",
-      "license": "MIT"
     },
     "node_modules/@types/estree": {
       "version": "1.0.8",
@@ -3007,16 +6282,11 @@
         "@types/node": "*"
       }
     },
-    "node_modules/@types/offscreencanvas": {
-      "version": "2019.7.3",
-      "resolved": "https://registry.npmjs.org/@types/offscreencanvas/-/offscreencanvas-2019.7.3.tgz",
-      "integrity": "sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==",
-      "license": "MIT"
-    },
     "node_modules/@types/react": {
       "version": "19.2.5",
       "resolved": "https://registry.npmjs.org/@types/react/-/react-19.2.5.tgz",
       "integrity": "sha512-keKxkZMqnDicuvFoJbzrhbtdLSPhj/rZThDlKWCDbgXmUg0rEUFtRssDXKYmtXluZlIqiC5VqkCgRwzuyLHKHw==",
+      "dev": true,
       "license": "MIT",
       "dependencies": {
         "csstype": "^3.0.2"
@@ -3031,42 +6301,6 @@
       "peerDependencies": {
         "@types/react": "^19.2.0"
       }
-    },
-    "node_modules/@types/react-reconciler": {
-      "version": "0.28.9",
-      "resolved": "https://registry.npmjs.org/@types/react-reconciler/-/react-reconciler-0.28.9.tgz",
-      "integrity": "sha512-HHM3nxyUZ3zAylX8ZEyrDNd2XZOnQ0D5XfunJF5FLQnZbHHYq4UWvW1QfelQNXv1ICNkwYhfxjwfnqivYB6bFg==",
-      "license": "MIT",
-      "peerDependencies": {
-        "@types/react": "*"
-      }
-    },
-    "node_modules/@types/stats.js": {
-      "version": "0.17.4",
-      "resolved": "https://registry.npmjs.org/@types/stats.js/-/stats.js-0.17.4.tgz",
-      "integrity": "sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==",
-      "license": "MIT"
-    },
-    "node_modules/@types/three": {
-      "version": "0.183.1",
-      "resolved": "https://registry.npmjs.org/@types/three/-/three-0.183.1.tgz",
-      "integrity": "sha512-f2Pu5Hrepfgavttdye3PsH5RWyY/AvdZQwIVhrc4uNtvF7nOWJacQKcoVJn0S4f0yYbmAE6AR+ve7xDcuYtMGw==",
-      "license": "MIT",
-      "dependencies": {
-        "@dimforge/rapier3d-compat": "~0.12.0",
-        "@tweenjs/tween.js": "~23.1.3",
-        "@types/stats.js": "*",
-        "@types/webxr": ">=0.5.17",
-        "@webgpu/types": "*",
-        "fflate": "~0.8.2",
-        "meshoptimizer": "~1.0.1"
-      }
-    },
-    "node_modules/@types/webxr": {
-      "version": "0.5.24",
-      "resolved": "https://registry.npmjs.org/@types/webxr/-/webxr-0.5.24.tgz",
-      "integrity": "sha512-h8fgEd/DpoS9CBrjEQXR+dIDraopAEfu4wYVNY2tEPwk60stPWhvZMf4Foo5FakuQ7HFZoa8WceaWFervK2Ovg==",
-      "license": "MIT"
     },
     "node_modules/@typescript-eslint/eslint-plugin": {
       "version": "8.46.4",
@@ -3638,30 +6872,6 @@
         "win32"
       ]
     },
-    "node_modules/@use-gesture/core": {
-      "version": "10.3.1",
-      "resolved": "https://registry.npmjs.org/@use-gesture/core/-/core-10.3.1.tgz",
-      "integrity": "sha512-WcINiDt8WjqBdUXye25anHiNxPc0VOrlT8F6LLkU6cycrOGUDyY/yyFmsg3k8i5OLvv25llc0QC45GhR/C8llw==",
-      "license": "MIT"
-    },
-    "node_modules/@use-gesture/react": {
-      "version": "10.3.1",
-      "resolved": "https://registry.npmjs.org/@use-gesture/react/-/react-10.3.1.tgz",
-      "integrity": "sha512-Yy19y6O2GJq8f7CHf7L0nxL8bf4PZCPaVOCgJrusOeFHY1LvHgYXnmnXg6N5iwAnbgbZCDjo60SiM6IPJi9C5g==",
-      "license": "MIT",
-      "dependencies": {
-        "@use-gesture/core": "10.3.1"
-      },
-      "peerDependencies": {
-        "react": ">= 16.8.0"
-      }
-    },
-    "node_modules/@webgpu/types": {
-      "version": "0.1.69",
-      "resolved": "https://registry.npmjs.org/@webgpu/types/-/types-0.1.69.tgz",
-      "integrity": "sha512-RPmm6kgRbI8e98zSD3RVACvnuktIja5+yLgDAkTmxLr90BEwdTXRQWNLF3ETTTyH/8mKhznZuN5AveXYFEsMGQ==",
-      "license": "BSD-3-Clause"
-    },
     "node_modules/acorn": {
       "version": "8.15.0",
       "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.15.0.tgz",
@@ -3955,26 +7165,6 @@
       "dev": true,
       "license": "MIT"
     },
-    "node_modules/base64-js": {
-      "version": "1.5.1",
-      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
-      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==",
-      "funding": [
-        {
-          "type": "github",
-          "url": "https://github.com/sponsors/feross"
-        },
-        {
-          "type": "patreon",
-          "url": "https://www.patreon.com/feross"
-        },
-        {
-          "type": "consulting",
-          "url": "https://feross.org/support"
-        }
-      ],
-      "license": "MIT"
-    },
     "node_modules/baseline-browser-mapping": {
       "version": "2.8.28",
       "resolved": "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.8.28.tgz",
@@ -3983,21 +7173,6 @@
       "bin": {
         "baseline-browser-mapping": "dist/cli.js"
       }
-    },
-    "node_modules/bidi-js": {
-      "version": "1.0.3",
-      "resolved": "https://registry.npmjs.org/bidi-js/-/bidi-js-1.0.3.tgz",
-      "integrity": "sha512-RKshQI1R3YQ+n9YJz2QQ147P66ELpa1FQEg20Dk8oW9t2KgLbpDLLp9aGZ7y8WHSshDknG0bknqGw5/tyCs5tw==",
-      "license": "MIT",
-      "dependencies": {
-        "require-from-string": "^2.0.2"
-      }
-    },
-    "node_modules/blurhash": {
-      "version": "2.0.5",
-      "resolved": "https://registry.npmjs.org/blurhash/-/blurhash-2.0.5.tgz",
-      "integrity": "sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==",
-      "license": "MIT"
     },
     "node_modules/bowser": {
       "version": "2.14.1",
@@ -4063,30 +7238,6 @@
         "node": "^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7"
       }
     },
-    "node_modules/buffer": {
-      "version": "6.0.3",
-      "resolved": "https://registry.npmjs.org/buffer/-/buffer-6.0.3.tgz",
-      "integrity": "sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==",
-      "funding": [
-        {
-          "type": "github",
-          "url": "https://github.com/sponsors/feross"
-        },
-        {
-          "type": "patreon",
-          "url": "https://www.patreon.com/feross"
-        },
-        {
-          "type": "consulting",
-          "url": "https://feross.org/support"
-        }
-      ],
-      "license": "MIT",
-      "dependencies": {
-        "base64-js": "^1.3.1",
-        "ieee754": "^1.2.1"
-      }
-    },
     "node_modules/call-bind": {
       "version": "1.0.8",
       "resolved": "https://registry.npmjs.org/call-bind/-/call-bind-1.0.8.tgz",
@@ -4147,19 +7298,6 @@
         "node": ">=6"
       }
     },
-    "node_modules/camera-controls": {
-      "version": "3.1.2",
-      "resolved": "https://registry.npmjs.org/camera-controls/-/camera-controls-3.1.2.tgz",
-      "integrity": "sha512-xkxfpG2ECZ6Ww5/9+kf4mfg1VEYAoe9aDSY+IwF0UEs7qEzwy0aVRfs2grImIECs/PoBtWFrh7RXsQkwG922JA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=22.0.0",
-        "npm": ">=10.5.1"
-      },
-      "peerDependencies": {
-        "three": ">=0.126.1"
-      }
-    },
     "node_modules/caniuse-lite": {
       "version": "1.0.30001755",
       "resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001755.tgz",
@@ -4197,32 +7335,11 @@
         "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
-    "node_modules/class-variance-authority": {
-      "version": "0.7.1",
-      "resolved": "https://registry.npmjs.org/class-variance-authority/-/class-variance-authority-0.7.1.tgz",
-      "integrity": "sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==",
-      "license": "Apache-2.0",
-      "dependencies": {
-        "clsx": "^2.1.1"
-      },
-      "funding": {
-        "url": "https://polar.sh/cva"
-      }
-    },
     "node_modules/client-only": {
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz",
       "integrity": "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==",
       "license": "MIT"
-    },
-    "node_modules/clsx": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz",
-      "integrity": "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=6"
-      }
     },
     "node_modules/color-convert": {
       "version": "2.0.1",
@@ -4258,28 +7375,11 @@
       "dev": true,
       "license": "MIT"
     },
-    "node_modules/cross-env": {
-      "version": "7.0.3",
-      "resolved": "https://registry.npmjs.org/cross-env/-/cross-env-7.0.3.tgz",
-      "integrity": "sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==",
-      "license": "MIT",
-      "dependencies": {
-        "cross-spawn": "^7.0.1"
-      },
-      "bin": {
-        "cross-env": "src/bin/cross-env.js",
-        "cross-env-shell": "src/bin/cross-env-shell.js"
-      },
-      "engines": {
-        "node": ">=10.14",
-        "npm": ">=6",
-        "yarn": ">=1"
-      }
-    },
     "node_modules/cross-spawn": {
       "version": "7.0.6",
       "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
       "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
+      "dev": true,
       "license": "MIT",
       "dependencies": {
         "path-key": "^3.1.0",
@@ -4294,6 +7394,7 @@
       "version": "3.2.1",
       "resolved": "https://registry.npmjs.org/csstype/-/csstype-3.2.1.tgz",
       "integrity": "sha512-98XGutrXoh75MlgLihlNxAGbUuFQc7l1cqcnEZlLNKc0UrVdPndgmaDmYTDDh929VS/eqTZV0rozmhu2qqT1/g==",
+      "dev": true,
       "license": "MIT"
     },
     "node_modules/damerau-levenshtein": {
@@ -4418,15 +7519,6 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/detect-gpu": {
-      "version": "5.0.70",
-      "resolved": "https://registry.npmjs.org/detect-gpu/-/detect-gpu-5.0.70.tgz",
-      "integrity": "sha512-bqerEP1Ese6nt3rFkwPnGbsUF9a4q+gMmpTVVOEzoCyeCc+y7/RvJnQZJx1JwhgQI5Ntg0Kgat8Uu7XpBqnz1w==",
-      "license": "MIT",
-      "dependencies": {
-        "webgl-constants": "^1.1.1"
-      }
-    },
     "node_modules/detect-libc": {
       "version": "2.1.2",
       "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
@@ -4461,12 +7553,6 @@
       "funding": {
         "url": "https://dotenvx.com"
       }
-    },
-    "node_modules/draco3d": {
-      "version": "1.5.7",
-      "resolved": "https://registry.npmjs.org/draco3d/-/draco3d-1.5.7.tgz",
-      "integrity": "sha512-m6WCKt/erDXcw+70IJXnG7M3awwQPAsZvJGX5zY7beBqpELw6RDGkYVU0W43AFxye4pDZ5i2Lbyc/NNGqwjUVQ==",
-      "license": "Apache-2.0"
     },
     "node_modules/dunder-proto": {
       "version": "1.0.1",
@@ -5214,12 +8300,6 @@
         "reusify": "^1.0.4"
       }
     },
-    "node_modules/fflate": {
-      "version": "0.8.2",
-      "resolved": "https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz",
-      "integrity": "sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==",
-      "license": "MIT"
-    },
     "node_modules/file-entry-cache": {
       "version": "8.0.0",
       "resolved": "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-8.0.0.tgz",
@@ -5301,13 +8381,13 @@
       }
     },
     "node_modules/framer-motion": {
-      "version": "12.35.0",
-      "resolved": "https://registry.npmjs.org/framer-motion/-/framer-motion-12.35.0.tgz",
-      "integrity": "sha512-w8hghCMQ4oq10j6aZh3U2yeEQv5K69O/seDI/41PK4HtgkLrcBovUNc0ayBC3UyyU7V1mrY2yLzvYdWJX9pGZQ==",
+      "version": "12.23.24",
+      "resolved": "https://registry.npmjs.org/framer-motion/-/framer-motion-12.23.24.tgz",
+      "integrity": "sha512-HMi5HRoRCTou+3fb3h9oTLyJGBxHfW+HnNE25tAXOvVx/IvwMHK0cx7IR4a2ZU6sh3IX1Z+4ts32PcYBOqka8w==",
       "license": "MIT",
       "dependencies": {
-        "motion-dom": "^12.35.0",
-        "motion-utils": "^12.29.2",
+        "motion-dom": "^12.23.23",
+        "motion-utils": "^12.23.6",
         "tslib": "^2.4.0"
       },
       "peerDependencies": {
@@ -5501,12 +8581,6 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/glsl-noise": {
-      "version": "0.0.0",
-      "resolved": "https://registry.npmjs.org/glsl-noise/-/glsl-noise-0.0.0.tgz",
-      "integrity": "sha512-b/ZCF6amfAUb7dJM/MxRs7AetQEahYzJ8PtgfrmEdtw6uyGOr+ZSGtgjFm6mfsBkxJ4d2W7kg+Nlqzqvn3Bc0w==",
-      "license": "MIT"
-    },
     "node_modules/gopd": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
@@ -5533,12 +8607,6 @@
       "integrity": "sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==",
       "dev": true,
       "license": "MIT"
-    },
-    "node_modules/gsap": {
-      "version": "3.14.2",
-      "resolved": "https://registry.npmjs.org/gsap/-/gsap-3.14.2.tgz",
-      "integrity": "sha512-P8/mMxVLU7o4+55+1TCnQrPmgjPKnwkzkXOK1asnR9Jg2lna4tEY5qBJjMmAaOBDDZWtlRjBXjLa0w53G/uBLA==",
-      "license": "Standard 'no charge' license: https://gsap.com/standard-license."
     },
     "node_modules/has-bigints": {
       "version": "1.1.0",
@@ -5651,32 +8719,6 @@
         "hermes-estree": "0.25.1"
       }
     },
-    "node_modules/hls.js": {
-      "version": "1.6.15",
-      "resolved": "https://registry.npmjs.org/hls.js/-/hls.js-1.6.15.tgz",
-      "integrity": "sha512-E3a5VwgXimGHwpRGV+WxRTKeSp2DW5DI5MWv34ulL3t5UNmyJWCQ1KmLEHbYzcfThfXG8amBL+fCYPneGHC4VA==",
-      "license": "Apache-2.0"
-    },
-    "node_modules/ieee754": {
-      "version": "1.2.1",
-      "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz",
-      "integrity": "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==",
-      "funding": [
-        {
-          "type": "github",
-          "url": "https://github.com/sponsors/feross"
-        },
-        {
-          "type": "patreon",
-          "url": "https://www.patreon.com/feross"
-        },
-        {
-          "type": "consulting",
-          "url": "https://feross.org/support"
-        }
-      ],
-      "license": "BSD-3-Clause"
-    },
     "node_modules/ignore": {
       "version": "5.3.2",
       "resolved": "https://registry.npmjs.org/ignore/-/ignore-5.3.2.tgz",
@@ -5686,12 +8728,6 @@
       "engines": {
         "node": ">= 4"
       }
-    },
-    "node_modules/immediate": {
-      "version": "3.0.6",
-      "resolved": "https://registry.npmjs.org/immediate/-/immediate-3.0.6.tgz",
-      "integrity": "sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==",
-      "license": "MIT"
     },
     "node_modules/import-fresh": {
       "version": "3.3.1",
@@ -6005,12 +9041,6 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/is-promise": {
-      "version": "2.2.2",
-      "resolved": "https://registry.npmjs.org/is-promise/-/is-promise-2.2.2.tgz",
-      "integrity": "sha512-+lP4/6lKUBfQjZ2pdxThZvLUAafmZb8OAxFb8XXtiQmS35INgr85hdOGoEs124ez1FCnZJt6jau/T+alh58QFQ==",
-      "license": "MIT"
-    },
     "node_modules/is-regex": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/is-regex/-/is-regex-1.2.1.tgz",
@@ -6167,6 +9197,7 @@
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",
       "integrity": "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==",
+      "dev": true,
       "license": "ISC"
     },
     "node_modules/iterator.prototype": {
@@ -6185,18 +9216,6 @@
       },
       "engines": {
         "node": ">= 0.4"
-      }
-    },
-    "node_modules/its-fine": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/its-fine/-/its-fine-2.0.0.tgz",
-      "integrity": "sha512-KLViCmWx94zOvpLwSlsx6yOCeMhZYaxrJV87Po5k/FoZzcPSahvK5qJ7fYhS61sZi5ikmh2S3Hz55A2l3U69ng==",
-      "license": "MIT",
-      "dependencies": {
-        "@types/react-reconciler": "^0.28.9"
-      },
-      "peerDependencies": {
-        "react": "^19.0.0"
       }
     },
     "node_modules/jiti": {
@@ -6322,32 +9341,6 @@
         "node": ">=0.10"
       }
     },
-    "node_modules/lenis": {
-      "version": "1.3.18",
-      "resolved": "https://registry.npmjs.org/lenis/-/lenis-1.3.18.tgz",
-      "integrity": "sha512-7KBl3V7vx5y1h05pu9fNFZS66I0+1eZ+zUGNNNBKtEn3BONZy+nkHWvdEe2b+zKT+6WX1x7zyOb1zbYYOs6tcg==",
-      "license": "MIT",
-      "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/darkroomengineering"
-      },
-      "peerDependencies": {
-        "@nuxt/kit": ">=3.0.0",
-        "react": ">=17.0.0",
-        "vue": ">=3.0.0"
-      },
-      "peerDependenciesMeta": {
-        "@nuxt/kit": {
-          "optional": true
-        },
-        "react": {
-          "optional": true
-        },
-        "vue": {
-          "optional": true
-        }
-      }
-    },
     "node_modules/levn": {
       "version": "0.4.1",
       "resolved": "https://registry.npmjs.org/levn/-/levn-0.4.1.tgz",
@@ -6360,15 +9353,6 @@
       },
       "engines": {
         "node": ">= 0.8.0"
-      }
-    },
-    "node_modules/lie": {
-      "version": "3.3.0",
-      "resolved": "https://registry.npmjs.org/lie/-/lie-3.3.0.tgz",
-      "integrity": "sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==",
-      "license": "MIT",
-      "dependencies": {
-        "immediate": "~3.0.5"
       }
     },
     "node_modules/lightningcss": {
@@ -6648,12 +9632,6 @@
         "url": "https://github.com/sponsors/sindresorhus"
       }
     },
-    "node_modules/lodash.debounce": {
-      "version": "4.0.8",
-      "resolved": "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz",
-      "integrity": "sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==",
-      "license": "MIT"
-    },
     "node_modules/lodash.merge": {
       "version": "4.6.2",
       "resolved": "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz",
@@ -6682,25 +9660,6 @@
       "license": "ISC",
       "dependencies": {
         "yallist": "^3.0.2"
-      }
-    },
-    "node_modules/lucide-react": {
-      "version": "0.577.0",
-      "resolved": "https://registry.npmjs.org/lucide-react/-/lucide-react-0.577.0.tgz",
-      "integrity": "sha512-4LjoFv2eEPwYDPg/CUdBJQSDfPyzXCRrVW1X7jrx/trgxnxkHFjnVZINbzvzxjN70dxychOfg+FTYwBiS3pQ5A==",
-      "license": "ISC",
-      "peerDependencies": {
-        "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0"
-      }
-    },
-    "node_modules/maath": {
-      "version": "0.10.8",
-      "resolved": "https://registry.npmjs.org/maath/-/maath-0.10.8.tgz",
-      "integrity": "sha512-tRvbDF0Pgqz+9XUa4jjfgAQ8/aPKmQdWXilFu2tMy4GWj4NOsx99HlULO4IeREfbO3a0sA145DZYyvXPkybm0g==",
-      "license": "MIT",
-      "peerDependencies": {
-        "@types/three": ">=0.134.0",
-        "three": ">=0.134.0"
       }
     },
     "node_modules/magic-string": {
@@ -6732,21 +9691,6 @@
       "engines": {
         "node": ">= 8"
       }
-    },
-    "node_modules/meshline": {
-      "version": "3.3.1",
-      "resolved": "https://registry.npmjs.org/meshline/-/meshline-3.3.1.tgz",
-      "integrity": "sha512-/TQj+JdZkeSUOl5Mk2J7eLcYTLiQm2IDzmlSvYm7ov15anEcDJ92GHqqazxTSreeNgfnYu24kiEvvv0WlbCdFQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "three": ">=0.137"
-      }
-    },
-    "node_modules/meshoptimizer": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/meshoptimizer/-/meshoptimizer-1.0.1.tgz",
-      "integrity": "sha512-Vix+QlA1YYT3FwmBBZ+49cE5y/b+pRrcXKqGpS5ouh33d3lSp2PoTpCw19E0cKDFWalembrHnIaZetf27a+W2g==",
-      "license": "MIT"
     },
     "node_modules/micromatch": {
       "version": "4.0.8",
@@ -6785,45 +9729,19 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/motion": {
-      "version": "12.35.0",
-      "resolved": "https://registry.npmjs.org/motion/-/motion-12.35.0.tgz",
-      "integrity": "sha512-BQUhNUIGvUcwXCzwmnT1JpjUqab34lIwxHnXUyWRht1WC1vAyp7/4qgMiUXxN3K6hgUhyoR+HNnLeQMwUZjVjw==",
-      "license": "MIT",
-      "dependencies": {
-        "framer-motion": "^12.35.0",
-        "tslib": "^2.4.0"
-      },
-      "peerDependencies": {
-        "@emotion/is-prop-valid": "*",
-        "react": "^18.0.0 || ^19.0.0",
-        "react-dom": "^18.0.0 || ^19.0.0"
-      },
-      "peerDependenciesMeta": {
-        "@emotion/is-prop-valid": {
-          "optional": true
-        },
-        "react": {
-          "optional": true
-        },
-        "react-dom": {
-          "optional": true
-        }
-      }
-    },
     "node_modules/motion-dom": {
-      "version": "12.35.0",
-      "resolved": "https://registry.npmjs.org/motion-dom/-/motion-dom-12.35.0.tgz",
-      "integrity": "sha512-FFMLEnIejK/zDABn+vqGVAUN4T0+3fw+cVAY8MMT65yR+j5uMuvWdd4npACWhh94OVWQs79CrBBuwOwGRZAQiA==",
+      "version": "12.23.23",
+      "resolved": "https://registry.npmjs.org/motion-dom/-/motion-dom-12.23.23.tgz",
+      "integrity": "sha512-n5yolOs0TQQBRUFImrRfs/+6X4p3Q4n1dUEqt/H58Vx7OW6RF+foWEgmTVDhIWJIMXOuNNL0apKH2S16en9eiA==",
       "license": "MIT",
       "dependencies": {
-        "motion-utils": "^12.29.2"
+        "motion-utils": "^12.23.6"
       }
     },
     "node_modules/motion-utils": {
-      "version": "12.29.2",
-      "resolved": "https://registry.npmjs.org/motion-utils/-/motion-utils-12.29.2.tgz",
-      "integrity": "sha512-G3kc34H2cX2gI63RqU+cZq+zWRRPSsNIOjpdl9TN4AQwC4sgwYPl/Q/Obf/d53nOm569T0fYK+tcoSV50BWx8A==",
+      "version": "12.23.6",
+      "resolved": "https://registry.npmjs.org/motion-utils/-/motion-utils-12.23.6.tgz",
+      "integrity": "sha512-eAWoPgr4eFEOFfg2WjIsMoqJTW6Z8MTUCgn/GZ3VRpClWBdnbjryiA3ZSNLyxCTmCQx4RmYX6jX1iWHbenUPNQ==",
       "license": "MIT"
     },
     "node_modules/ms": {
@@ -6925,16 +9843,6 @@
         "sass": {
           "optional": true
         }
-      }
-    },
-    "node_modules/next-themes": {
-      "version": "0.4.6",
-      "resolved": "https://registry.npmjs.org/next-themes/-/next-themes-0.4.6.tgz",
-      "integrity": "sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==",
-      "license": "MIT",
-      "peerDependencies": {
-        "react": "^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc",
-        "react-dom": "^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc"
       }
     },
     "node_modules/next/node_modules/postcss": {
@@ -7104,18 +10012,6 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/on-change": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/on-change/-/on-change-4.0.0.tgz",
-      "integrity": "sha512-PTu7C9Jsz4b+sNMDpH0eZFTr7uxdOtoDWRnhaVNK50bgrrnW5nvbWI0jm5DG9qOoTnIhBzE9xoKVFPD9xgtbdg==",
-      "license": "MIT",
-      "engines": {
-        "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-      },
-      "funding": {
-        "url": "https://github.com/sindresorhus/on-change?sponsor=1"
-      }
-    },
     "node_modules/optionator": {
       "version": "0.9.4",
       "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.9.4.tgz",
@@ -7211,6 +10107,7 @@
       "version": "3.1.1",
       "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
       "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",
+      "dev": true,
       "license": "MIT",
       "engines": {
         "node": ">=8"
@@ -7281,12 +10178,6 @@
         "node": "^10 || ^12 || >=14"
       }
     },
-    "node_modules/potpack": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/potpack/-/potpack-1.0.2.tgz",
-      "integrity": "sha512-choctRBIV9EMT9WGAZHn3V7t0Z2pMQyl0EZE6pFc/6ml3ssw7Dlf/oAOvFwjm1HVsqfQN8GfeFyJ+d8tRzqueQ==",
-      "license": "ISC"
-    },
     "node_modules/prelude-ls": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz",
@@ -7295,16 +10186,6 @@
       "license": "MIT",
       "engines": {
         "node": ">= 0.8.0"
-      }
-    },
-    "node_modules/promise-worker-transferable": {
-      "version": "1.0.4",
-      "resolved": "https://registry.npmjs.org/promise-worker-transferable/-/promise-worker-transferable-1.0.4.tgz",
-      "integrity": "sha512-bN+0ehEnrXfxV2ZQvU2PetO0n4gqBD4ulq3MI1WOPLgr7/Mg9yRQkX5+0v1vagr74ZTsl7XtzlaYDo2EuCeYJw==",
-      "license": "Apache-2.0",
-      "dependencies": {
-        "is-promise": "^2.1.0",
-        "lie": "^3.0.2"
       }
     },
     "node_modules/prop-types": {
@@ -7378,31 +10259,6 @@
       "dev": true,
       "license": "MIT"
     },
-    "node_modules/react-merge-refs": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/react-merge-refs/-/react-merge-refs-2.1.1.tgz",
-      "integrity": "sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag==",
-      "license": "MIT",
-      "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/gregberge"
-      }
-    },
-    "node_modules/react-use-measure": {
-      "version": "2.1.7",
-      "resolved": "https://registry.npmjs.org/react-use-measure/-/react-use-measure-2.1.7.tgz",
-      "integrity": "sha512-KrvcAo13I/60HpwGO5jpW7E9DfusKyLPLvuHlUyP5zqnmAPhNc6qTRjUQrdTADl0lpPpDVU2/Gg51UlOGHXbdg==",
-      "license": "MIT",
-      "peerDependencies": {
-        "react": ">=16.13",
-        "react-dom": ">=16.13"
-      },
-      "peerDependenciesMeta": {
-        "react-dom": {
-          "optional": true
-        }
-      }
-    },
     "node_modules/reflect.getprototypeof": {
       "version": "1.0.10",
       "resolved": "https://registry.npmjs.org/reflect.getprototypeof/-/reflect.getprototypeof-1.0.10.tgz",
@@ -7445,15 +10301,6 @@
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
-      }
-    },
-    "node_modules/require-from-string": {
-      "version": "2.0.2",
-      "resolved": "https://registry.npmjs.org/require-from-string/-/require-from-string-2.0.2.tgz",
-      "integrity": "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=0.10.0"
       }
     },
     "node_modules/resolve": {
@@ -7603,12 +10450,6 @@
         "semver": "bin/semver.js"
       }
     },
-    "node_modules/semver-compare": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/semver-compare/-/semver-compare-1.0.0.tgz",
-      "integrity": "sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==",
-      "license": "MIT"
-    },
     "node_modules/set-function-length": {
       "version": "1.2.2",
       "resolved": "https://registry.npmjs.org/set-function-length/-/set-function-length-1.2.2.tgz",
@@ -7720,6 +10561,7 @@
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",
       "integrity": "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==",
+      "dev": true,
       "license": "MIT",
       "dependencies": {
         "shebang-regex": "^3.0.0"
@@ -7732,6 +10574,7 @@
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz",
       "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==",
+      "dev": true,
       "license": "MIT",
       "engines": {
         "node": ">=8"
@@ -7827,32 +10670,6 @@
       "resolved": "https://registry.npmjs.org/stable-hash/-/stable-hash-0.0.5.tgz",
       "integrity": "sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==",
       "dev": true,
-      "license": "MIT"
-    },
-    "node_modules/stats-gl": {
-      "version": "2.4.2",
-      "resolved": "https://registry.npmjs.org/stats-gl/-/stats-gl-2.4.2.tgz",
-      "integrity": "sha512-g5O9B0hm9CvnM36+v7SFl39T7hmAlv541tU81ME8YeSb3i1CIP5/QdDeSB3A0la0bKNHpxpwxOVRo2wFTYEosQ==",
-      "license": "MIT",
-      "dependencies": {
-        "@types/three": "*",
-        "three": "^0.170.0"
-      },
-      "peerDependencies": {
-        "@types/three": "*",
-        "three": "*"
-      }
-    },
-    "node_modules/stats-gl/node_modules/three": {
-      "version": "0.170.0",
-      "resolved": "https://registry.npmjs.org/three/-/three-0.170.0.tgz",
-      "integrity": "sha512-FQK+LEpYc0fBD+J8g6oSEyyNzjp+Q7Ks1C568WWaoMRLW+TkNNWmenWeGgJjV105Gd+p/2ql1ZcjYvNiPZBhuQ==",
-      "license": "MIT"
-    },
-    "node_modules/stats.js": {
-      "version": "0.17.0",
-      "resolved": "https://registry.npmjs.org/stats.js/-/stats.js-0.17.0.tgz",
-      "integrity": "sha512-hNKz8phvYLPEcRkeG1rsGmV5ChMjKDAWU7/OJJdDErPBNChQXxCo3WZurGpnWc6gZhAzEPFad1aVgyOANH1sMw==",
       "license": "MIT"
     },
     "node_modules/stop-iteration-iterator": {
@@ -8066,39 +10883,12 @@
         "url": "https://github.com/sponsors/ljharb"
       }
     },
-    "node_modules/suspend-react": {
-      "version": "0.1.3",
-      "resolved": "https://registry.npmjs.org/suspend-react/-/suspend-react-0.1.3.tgz",
-      "integrity": "sha512-aqldKgX9aZqpoDp3e8/BZ8Dm7x1pJl+qI3ZKxDN0i/IQTWUwBx/ManmlVJ3wowqbno6c2bmiIfs+Um6LbsjJyQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "react": ">=17.0"
-      }
-    },
-    "node_modules/tailwind-merge": {
-      "version": "3.5.0",
-      "resolved": "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-3.5.0.tgz",
-      "integrity": "sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==",
-      "license": "MIT",
-      "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/dcastil"
-      }
-    },
     "node_modules/tailwindcss": {
       "version": "4.1.17",
       "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.1.17.tgz",
       "integrity": "sha512-j9Ee2YjuQqYT9bbRTfTZht9W/ytp5H+jJpZKiYdP/bpnXARAuELt9ofP0lPnmHjbga7SNQIxdTAXCmtKVYjN+Q==",
+      "dev": true,
       "license": "MIT"
-    },
-    "node_modules/tailwindcss-animate": {
-      "version": "1.0.7",
-      "resolved": "https://registry.npmjs.org/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz",
-      "integrity": "sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==",
-      "license": "MIT",
-      "peerDependencies": {
-        "tailwindcss": ">=3.0.0 || insiders"
-      }
     },
     "node_modules/tapable": {
       "version": "2.3.0",
@@ -8113,50 +10903,6 @@
         "type": "opencollective",
         "url": "https://opencollective.com/webpack"
       }
-    },
-    "node_modules/three": {
-      "version": "0.183.2",
-      "resolved": "https://registry.npmjs.org/three/-/three-0.183.2.tgz",
-      "integrity": "sha512-di3BsL2FEQ1PA7Hcvn4fyJOlxRRgFYBpMTcyOgkwJIaDOdJMebEFPA+t98EvjuljDx4hNulAGwF6KIjtwI5jgQ==",
-      "license": "MIT"
-    },
-    "node_modules/three-mesh-bvh": {
-      "version": "0.8.3",
-      "resolved": "https://registry.npmjs.org/three-mesh-bvh/-/three-mesh-bvh-0.8.3.tgz",
-      "integrity": "sha512-4G5lBaF+g2auKX3P0yqx+MJC6oVt6sB5k+CchS6Ob0qvH0YIhuUk1eYr7ktsIpY+albCqE80/FVQGV190PmiAg==",
-      "license": "MIT",
-      "peerDependencies": {
-        "three": ">= 0.159.0"
-      }
-    },
-    "node_modules/three-stdlib": {
-      "version": "2.36.1",
-      "resolved": "https://registry.npmjs.org/three-stdlib/-/three-stdlib-2.36.1.tgz",
-      "integrity": "sha512-XyGQrFmNQ5O/IoKm556ftwKsBg11TIb301MB5dWNicziQBEs2g3gtOYIf7pFiLa0zI2gUwhtCjv9fmjnxKZ1Cg==",
-      "license": "MIT",
-      "dependencies": {
-        "@types/draco3d": "^1.4.0",
-        "@types/offscreencanvas": "^2019.6.4",
-        "@types/webxr": "^0.5.2",
-        "draco3d": "^1.4.1",
-        "fflate": "^0.6.9",
-        "potpack": "^1.0.1"
-      },
-      "peerDependencies": {
-        "three": ">=0.128.0"
-      }
-    },
-    "node_modules/three-stdlib/node_modules/fflate": {
-      "version": "0.6.10",
-      "resolved": "https://registry.npmjs.org/fflate/-/fflate-0.6.10.tgz",
-      "integrity": "sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==",
-      "license": "MIT"
-    },
-    "node_modules/thumbhash": {
-      "version": "0.1.1",
-      "resolved": "https://registry.npmjs.org/thumbhash/-/thumbhash-0.1.1.tgz",
-      "integrity": "sha512-kH5pKeIIBPQXAOni2AiY/Cu/NKdkFREdpH+TLdM0g6WA7RriCv0kPLgP731ady67MhTAqrVG/4mnEeibVuCJcg==",
-      "license": "MIT"
     },
     "node_modules/tinyglobby": {
       "version": "0.2.15",
@@ -8219,36 +10965,6 @@
         "node": ">=8.0"
       }
     },
-    "node_modules/troika-three-text": {
-      "version": "0.52.4",
-      "resolved": "https://registry.npmjs.org/troika-three-text/-/troika-three-text-0.52.4.tgz",
-      "integrity": "sha512-V50EwcYGruV5rUZ9F4aNsrytGdKcXKALjEtQXIOBfhVoZU9VAqZNIoGQ3TMiooVqFAbR1w15T+f+8gkzoFzawg==",
-      "license": "MIT",
-      "dependencies": {
-        "bidi-js": "^1.0.2",
-        "troika-three-utils": "^0.52.4",
-        "troika-worker-utils": "^0.52.0",
-        "webgl-sdf-generator": "1.1.1"
-      },
-      "peerDependencies": {
-        "three": ">=0.125.0"
-      }
-    },
-    "node_modules/troika-three-utils": {
-      "version": "0.52.4",
-      "resolved": "https://registry.npmjs.org/troika-three-utils/-/troika-three-utils-0.52.4.tgz",
-      "integrity": "sha512-NORAStSVa/BDiG52Mfudk4j1FG4jC4ILutB3foPnfGbOeIs9+G5vZLa0pnmnaftZUGm4UwSoqEpWdqvC7zms3A==",
-      "license": "MIT",
-      "peerDependencies": {
-        "three": ">=0.125.0"
-      }
-    },
-    "node_modules/troika-worker-utils": {
-      "version": "0.52.0",
-      "resolved": "https://registry.npmjs.org/troika-worker-utils/-/troika-worker-utils-0.52.0.tgz",
-      "integrity": "sha512-W1CpvTHykaPH5brv5VHLfQo9D1OYuo0cSBEUQFFT/nBUzM8iD6Lq2/tgG/f1OelbAS1WtaTPQzE5uM49egnngw==",
-      "license": "MIT"
-    },
     "node_modules/ts-api-utils": {
       "version": "2.1.0",
       "resolved": "https://registry.npmjs.org/ts-api-utils/-/ts-api-utils-2.1.0.tgz",
@@ -8293,43 +11009,6 @@
       "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz",
       "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
       "license": "0BSD"
-    },
-    "node_modules/tunnel-rat": {
-      "version": "0.1.2",
-      "resolved": "https://registry.npmjs.org/tunnel-rat/-/tunnel-rat-0.1.2.tgz",
-      "integrity": "sha512-lR5VHmkPhzdhrM092lI2nACsLO4QubF0/yoOhzX7c+wIpbN1GjHNzCc91QlpxBi+cnx8vVJ+Ur6vL5cEoQPFpQ==",
-      "license": "MIT",
-      "dependencies": {
-        "zustand": "^4.3.2"
-      }
-    },
-    "node_modules/tunnel-rat/node_modules/zustand": {
-      "version": "4.5.7",
-      "resolved": "https://registry.npmjs.org/zustand/-/zustand-4.5.7.tgz",
-      "integrity": "sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw==",
-      "license": "MIT",
-      "dependencies": {
-        "use-sync-external-store": "^1.2.2"
-      },
-      "engines": {
-        "node": ">=12.7.0"
-      },
-      "peerDependencies": {
-        "@types/react": ">=16.8",
-        "immer": ">=9.0.6",
-        "react": ">=16.8"
-      },
-      "peerDependenciesMeta": {
-        "@types/react": {
-          "optional": true
-        },
-        "immer": {
-          "optional": true
-        },
-        "react": {
-          "optional": true
-        }
-      }
     },
     "node_modules/type-check": {
       "version": "0.4.0",
@@ -8561,54 +11240,11 @@
         "punycode": "^2.1.0"
       }
     },
-    "node_modules/use-sync-external-store": {
-      "version": "1.6.0",
-      "resolved": "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.6.0.tgz",
-      "integrity": "sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==",
-      "license": "MIT",
-      "peerDependencies": {
-        "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
-      }
-    },
-    "node_modules/usehooks-ts": {
-      "version": "3.1.1",
-      "resolved": "https://registry.npmjs.org/usehooks-ts/-/usehooks-ts-3.1.1.tgz",
-      "integrity": "sha512-I4diPp9Cq6ieSUH2wu+fDAVQO43xwtulo+fKEidHUwZPnYImbtkTjzIJYcDcJqxgmX31GVqNFURodvcgHcW0pA==",
-      "license": "MIT",
-      "dependencies": {
-        "lodash.debounce": "^4.0.8"
-      },
-      "engines": {
-        "node": ">=16.15.0"
-      },
-      "peerDependencies": {
-        "react": "^16.8.0  || ^17 || ^18 || ^19 || ^19.0.0-rc"
-      }
-    },
-    "node_modules/utility-types": {
-      "version": "3.11.0",
-      "resolved": "https://registry.npmjs.org/utility-types/-/utility-types-3.11.0.tgz",
-      "integrity": "sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==",
-      "license": "MIT",
-      "engines": {
-        "node": ">= 4"
-      }
-    },
-    "node_modules/webgl-constants": {
-      "version": "1.1.1",
-      "resolved": "https://registry.npmjs.org/webgl-constants/-/webgl-constants-1.1.1.tgz",
-      "integrity": "sha512-LkBXKjU5r9vAW7Gcu3T5u+5cvSvh5WwINdr0C+9jpzVB41cjQAP5ePArDtk/WHYdVj0GefCgM73BA7FlIiNtdg=="
-    },
-    "node_modules/webgl-sdf-generator": {
-      "version": "1.1.1",
-      "resolved": "https://registry.npmjs.org/webgl-sdf-generator/-/webgl-sdf-generator-1.1.1.tgz",
-      "integrity": "sha512-9Z0JcMTFxeE+b2x1LJTdnaT8rT8aEp7MVxkNwoycNmJWwPdzoXzMh0BjJSh/AEFP+KPYZUli814h8bJZFIZ2jA==",
-      "license": "MIT"
-    },
     "node_modules/which": {
       "version": "2.0.2",
       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
       "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",
+      "dev": true,
       "license": "ISC",
       "dependencies": {
         "isexe": "^2.0.0"
@@ -8761,35 +11397,356 @@
       "peerDependencies": {
         "zod": "^3.25.0 || ^4.0.0"
       }
-    },
-    "node_modules/zustand": {
-      "version": "5.0.11",
-      "resolved": "https://registry.npmjs.org/zustand/-/zustand-5.0.11.tgz",
-      "integrity": "sha512-fdZY+dk7zn/vbWNCYmzZULHRrss0jx5pPFiOuMZ/5HJN6Yv3u+1Wswy/4MpZEkEGhtNH+pwxZB8OKgUBPzYAGg==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=12.20.0"
-      },
-      "peerDependencies": {
-        "@types/react": ">=18.0.0",
-        "immer": ">=9.0.6",
-        "react": ">=18.0.0",
-        "use-sync-external-store": ">=1.2.0"
-      },
-      "peerDependenciesMeta": {
-        "@types/react": {
-          "optional": true
-        },
-        "immer": {
-          "optional": true
-        },
-        "react": {
-          "optional": true
-        },
-        "use-sync-external-store": {
-          "optional": true
-        }
-      }
     }
   }
 }
+
+
+==================================================
+File: Myportfolio/package.json
+==================================================
+{
+  "name": "avi-mathur-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio website of Avi Mathur - AI/ML Developer & Full Stack Engineer",
+  "author": "Avi Mathur <mathuravi668@gmail.com>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@types/nodemailer": "^7.0.3",
+    "dotenv": "^17.2.3",
+    "framer-motion": "^12.23.24",
+    "next": "^16.0.10",
+    "nodemailer": "^7.0.10",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "20.19.27",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+
+
+==================================================
+File: Myportfolio/tsconfig.json
+==================================================
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
+==================================================
+File: Myportfolio/data/content.ts
+==================================================
+export const personalInfo = {
+  name: "Avi Mathur",
+  title: "AI/ML Developer • Full Stack Innovator",
+  subtitle: "Oracle-certified AI/ML developer specializing in medical AI, vector search, and intelligent automation. Smart India Hackathon 2025 Grand Finale volunteer.",
+  impact: "I build production-ready AI systems — from medical imaging to enterprise automation — focused on accuracy, scale, and real-world impact.",
+  email: "mathuravi668@gmail.com",
+  phone: "+91 77009 23732",
+  linkedin: "https://www.linkedin.com/in/avi-mathur-a3a25727b/",
+  github: "https://github.com/AviMath2412",
+};
+
+export const about = {
+  intro: "I'm Avi Mathur, an AI/ML developer and full-stack engineer who enjoys building intelligent, practical systems. I work with vector search, LLM automation, and modern web technologies to create fast, scalable, user-focused applications.",
+  builds: "I build intelligent automation tools, AI-powered dashboards, vector search systems, and full-stack web applications that solve real problems with clean engineering and thoughtful design. I care deeply about clean architecture, measurable impact, and systems that scale beyond demos.",
+  education: "B.Tech CSE (AI) — Rajasthan Technical University",
+  exploring: ["Agentic AI", "RAG Systems", "Kubernetes"],
+};
+
+export const skills = {
+  Languages: ["Python", "C++", "SQL", "TypeScript", "JavaScript"],
+  "AI/ML": ["TensorFlow", "Pandas", "NumPy", "OpenAI API", "Vector Search Pipelines"],
+  Web: ["React.js", "Next.js", "Node.js", "FastAPI", "Tailwind CSS"],
+  "Cloud & Tools": ["Oracle Cloud (OCI)", "Docker", "Git/GitHub", "Salesforce CRM", "Jupyter", "VS Code"],
+  "Currently Learning": ["Agentic AI", "RAG Systems", "Kubernetes"],
+};
+
+export const experience = [
+  {
+    company: "Raptbot Technologies",
+    description: "Salesforce consulting and CRM automation",
+    role: "Salesforce Developer Intern",
+    duration: "July 2024 – August 2024",
+    highlights: [
+      "Architected Salesforce objects + automation (−40% manual work)",
+      "Built a Hotel Management System with billing + rewards",
+      "Optimized SOQL queries by 35%",
+    ],
+  },
+];
+
+import { CaseStudyData } from "@/components/ProjectCaseStudy";
+
+export const projects = [
+  {
+    id: "neuroscan-ai",
+    title: "NeuroScan AI",
+    tag: "Latest",
+    github: "https://github.com/AviMath2412/NeuroScan-AI",
+    tech: ["Python", "TensorFlow", "Keras", "OpenCV", "Streamlit", "NumPy"],
+    highlights: [
+      "AI-powered brain tumor detection from MRI scans",
+      "Deep learning CNN model with 95%+ accuracy",
+      "Real-time image preprocessing and analysis",
+      "Interactive web interface for medical professionals",
+      "Supports multiple tumor classification types",
+    ],
+    color: "from-pink-500 to-purple-500",
+    hasCaseStudy: true,
+    caseStudy: {
+      problem: "Manual brain tumor detection from MRI scans is time-consuming and prone to human error, delaying critical diagnoses for patients.",
+      myRole: "Sole developer responsible for end-to-end implementation: CNN architecture design, dataset preprocessing, model training, and Streamlit web interface development.",
+      solutionArchitecture: [
+        "VGG16-based CNN architecture adapted for medical imaging",
+        "OpenCV pipeline for MRI normalization and noise reduction",
+        "TensorFlow/Keras for model training with data augmentation",
+        "Streamlit interface for real-time inference and visualization",
+        "NumPy for efficient tensor operations and data manipulation"
+      ],
+      keyChallenges: [
+        "Balancing model accuracy with inference speed for real-time use",
+        "Handling diverse MRI scan formats and quality variations",
+        "Ensuring medical-grade preprocessing without losing diagnostic information",
+        "Creating intuitive UI for non-technical medical professionals"
+      ],
+      results: [
+        { label: "Model Accuracy", value: "95.2%", isEstimate: false },
+        { label: "Inference Time", value: "< 2 seconds", isEstimate: false },
+        { label: "Supported Tumor Types", value: "3 classifications", isEstimate: false }
+      ],
+      improvements: [
+        "Expand training dataset with more diverse MRI scans",
+        "Implement multi-class segmentation for precise tumor boundaries",
+        "Add confidence scoring system for medical decision support",
+        "Integrate DICOM format support for hospital workflows"
+      ],
+      whyThisApproach: "Chose VGG16-based architecture over custom CNNs because it provides proven transfer learning capabilities for medical imaging while maintaining inference speed suitable for real-time clinical use."
+    } as CaseStudyData
+  },
+  {
+    id: "expenseflow-quest",
+    title: "ExpenseFlow Quest",
+    github: "https://github.com/AviMath2412/expense-flow-quest",
+    tech: ["React", "TypeScript", "PostgreSQL", "Prisma"],
+    highlights: [
+      "Enterprise expense management",
+      "RBAC + multi-currency",
+      "Automation reduces approval time by 45%",
+      "500+ users on backend",
+    ],
+    color: "from-emerald-500 to-blue-500",
+    hasCaseStudy: true,
+    caseStudy: {
+      problem: "Enterprise teams struggle with manual expense tracking, slow approval workflows, and lack of multi-currency support, leading to delayed reimbursements and poor financial visibility.",
+      myRole: "Full-stack developer: architected PostgreSQL schema with Prisma ORM, implemented RBAC system, built React frontend with TypeScript, and designed automated approval workflows.",
+      solutionArchitecture: [
+        "PostgreSQL database with Prisma ORM for type-safe data access",
+        "Role-based access control (RBAC) with granular permissions",
+        "React + TypeScript frontend with component-based architecture",
+        "Multi-currency support with real-time exchange rate integration",
+        "Automated approval workflows based on expense amount and department rules"
+      ],
+      keyChallenges: [
+        "Designing scalable RBAC system that supports complex organizational hierarchies",
+        "Implementing multi-currency calculations with accurate exchange rates",
+        "Building efficient approval workflow engine without backend complexity",
+        "Ensuring data consistency across concurrent expense submissions"
+      ],
+      results: [
+        { label: "Approval Time Reduction", value: "45%", isEstimate: false },
+        { label: "Backend Users", value: "500+", isEstimate: false },
+        { label: "Supported Currencies", value: "Multi-currency", isEstimate: false }
+      ],
+      improvements: [
+        "Add receipt OCR for automatic expense extraction",
+        "Implement advanced analytics dashboard for finance teams",
+        "Create mobile app for on-the-go expense submission",
+        "Add integration with accounting software (QuickBooks, Xero)"
+      ],
+      whyThisApproach: "Selected Prisma ORM over raw SQL to ensure type safety across the stack, reducing runtime errors and enabling faster development while maintaining database performance through optimized queries."
+    } as CaseStudyData
+  },
+  {
+    id: "ai-resume-analyzer",
+    title: "AI Resume Analyzer",
+    github: "https://github.com/AviMath2412/ai-resume-analyzer",
+    live: "https://ai-resume-analyzer-181-3sdgg.puter.site/",
+    tech: ["React", "TypeScript", "Tailwind", "Puter.js", "Claude AI", "PDF.js"],
+    highlights: [
+      "ATS compatibility scoring",
+      "AI-based content improvement",
+      "Resume portfolio dashboard",
+      "Cloud storage + auth",
+      "Real-time PDF → Image preview",
+    ],
+    color: "from-blue-500 to-cyan-500",
+    hasCaseStudy: true,
+    caseStudy: {
+      problem: "Job seekers struggle to optimize resumes for ATS systems and lack actionable, AI-powered feedback on content quality and keyword optimization.",
+      myRole: "Full-stack developer: designed React frontend architecture, integrated Claude AI API for content analysis, implemented PDF parsing with PDF.js, and built cloud storage integration using Puter.js.",
+      solutionArchitecture: [
+        "React + TypeScript frontend with Tailwind CSS for responsive UI",
+        "PDF.js for client-side PDF parsing and real-time preview generation",
+        "Claude AI API for intelligent content analysis and ATS scoring",
+        "Puter.js for cloud storage, authentication, and resume portfolio management",
+        "State management for real-time PDF-to-image conversion and caching"
+      ],
+      keyChallenges: [
+        "Parsing complex PDF layouts without losing formatting information",
+        "Implementing accurate ATS scoring algorithm based on industry standards",
+        "Handling large PDF files efficiently in browser without backend",
+        "Creating intuitive UX for resume improvement suggestions"
+      ],
+      results: [
+        { label: "Response Time", value: "< 5 seconds", isEstimate: false },
+        { label: "Supported Formats", value: "PDF", isEstimate: false },
+        { label: "ATS Score Accuracy", value: "Industry-standard based", isEstimate: true }
+      ],
+      improvements: [
+        "Add support for Word document formats (.docx)",
+        "Implement industry-specific ATS scoring (tech, finance, healthcare)",
+        "Create resume templates based on job description analysis",
+        "Add multi-language support for international job markets"
+      ],
+      whyThisApproach: "Used client-side PDF.js parsing instead of server-side processing to eliminate backend costs, improve privacy (no data leaves the browser), and enable instant preview generation without API latency."
+    } as CaseStudyData
+  },
+  {
+    id: "ai-webscraper",
+    title: "AI Web Scraper",
+    github: "https://github.com/AviMath2412/AI-Webscrapper",
+    tech: ["Python", "Selenium", "OpenAI API", "Prompt Engineering"],
+    highlights: [
+      "85% success on protected sites",
+      "Proxy rotation + rate limiting",
+      "1000+ concurrent tasks",
+      "Modular AI scraping framework",
+    ],
+    color: "from-purple-500 to-blue-500",
+    hasCaseStudy: false
+  },
+];
+
+export const achievements = [
+  {
+    title: "Oracle AI Vector Search Certified Professional",
+    validity: "Valid through October 2027",
+    icon: "🎯",
+    type: "certification",
+  },
+  {
+    title: "Smart India Hackathon 2025 - Grand Finale Volunteer",
+    validity: "December 2025",
+    icon: "🏆",
+    type: "achievement",
+  },
+  {
+    title: "SBI Life Hack-AI-Thon Participant",
+    validity: "2024",
+    icon: "🤖",
+    type: "hackathon",
+  },
+  {
+    title: "Oracle OCI Generative AI Professional",
+    validity: "2025",
+    icon: "☁️",
+    type: "certification",
+  },
+  {
+    title: "SHIFT: New-Gen Creative Festival 2025",
+    validity: "Industry participation • Creative + Tech ecosystem exposure • Dec 2025",
+    icon: "🎨",
+    type: "achievement",
+  },
+];
+
+
+==================================================
+File: Myportfolio/eslint.config.mjs
+==================================================
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+
+
+==================================================
+File: Myportfolio/next.config.ts
+==================================================
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+

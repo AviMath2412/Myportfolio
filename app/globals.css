@@ -1,448 +1,294 @@
 @import "tailwindcss";
 
 @theme {
-  --bg-primary: #0B0F19;
-  --bg-surface: #111827;
-  --bg-surface-elevated: #1a1a1a;
-  --text-primary: #E5E7EB;
-  --text-secondary: #9CA3AF;
-  --text-muted: #71717a;
-  --accent: #3B82F6;
-  --accent-hover: #2563EB;
-  --color-border: #27272a;
-  --color-border-hover: #3f3f46;
-  
-  /* Legacy support */
-  --color-bg: var(--bg-primary);
-  --color-surface: var(--bg-surface);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  
+  --bg-primary: var(--color-bg-primary);
+  --bg-surface: var(--color-bg-surface);
+  --bg-surface-elevated: var(--color-bg-surface-elevated);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --accent: #ffffff;
+  --accent-hover: #e2e8f0;
+  --color-border: var(--color-border-var);
+  --color-border-hover: var(--color-border-hover-var);
+
   --font-family-heading: "Inter", system-ui, sans-serif;
   --font-family-body: "Inter", system-ui, sans-serif;
-  
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-elevated: #f8fafc;
+  --color-text-primary: #09090b;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-border-var: #e2e8f0;
+  --color-border-hover-var: #cbd5e1;
+  --spotlight-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
+  --color-bg-primary: #000000;
+  --color-bg-surface: #09090b;
+  --color-bg-surface-elevated: #18181b;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #52525b;
+  --color-border-var: #27272a;
+  --color-border-hover-var: #3f3f46;
+  --spotlight-color: rgba(255, 255, 255, 0.03);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
+    box-sizing: border-box;
   }
-  
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background: var(--bg-primary);
+    background: radial-gradient(circle at 50% -20%, #111111 0%, #000000 100%);
+    background-attachment: fixed;
     color: var(--text-primary);
     font-feature-settings: "rlig" 1, "calt" 1;
-    position: relative;
     overflow-x: hidden;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .dark body {
+    background: radial-gradient(circle at 50% -20%, #111111 0%, #000000 100%);
+  }
 }
 
 @layer utilities {
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
 
-  .glass-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 
-      0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .premium-button {
-    background: var(--accent);
-    color: white;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 
-      0 4px 6px -1px rgba(59, 130, 246, 0.3),
-      0 2px 4px -1px rgba(59, 130, 246, 0.2);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .premium-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .premium-button:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 
-      0 10px 15px -3px rgba(59, 130, 246, 0.4),
-      0 4px 6px -2px rgba(59, 130, 246, 0.3);
-  }
-
-  .premium-button:hover::before {
-    left: 100%;
-  }
-
-  .premium-button:active {
-    transform: translateY(0);
-  }
-
-  /* Static button for "Let's Talk" - no animations or effects */
-  .premium-button-static {
-    background: var(--accent);
-    color: white;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 
-      0 4px 6px -1px rgba(59, 130, 246, 0.3),
-      0 2px 4px -1px rgba(59, 130, 246, 0.2);
-  }
-
-  .premium-button-static:hover {
-    background: var(--accent-hover);
-  }
-
-  .secondary-button {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
-    font-weight: 500;
-    padding: 12px 24px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-
-  .secondary-button::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(-50%);
-  }
-
-  .secondary-button:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
-    color: var(--text-primary);
-  }
-
-  .secondary-button:hover::after {
-    width: 80%;
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .accent-gradient {
-    background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .section-padding {
-    padding: 50px 0; /* Reduced by ~58% from 120px (additional 30-35% reduction) */
-  }
-
+  /* Layout */
   .container-custom {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 1.5rem;
   }
 
-  @media (max-width: 768px) {
-    .section-padding {
-      padding: 60px 0; /* Further reduced for mobile */
-    }
-    
-    .container-custom {
-      padding: 0 16px;
-    }
-
-    /* Mobile-optimized buttons */
-    .premium-button, .secondary-button {
-      padding: 14px 20px;
-      font-size: 14px;
-      min-height: 48px; /* Better touch targets */
-      border-radius: 12px;
-    }
-
-    /* Improve touch targets */
-    button, a {
-      min-height: 44px;
-      min-width: 44px;
-    }
-
-    /* Better mobile spacing */
-    .space-y-6 > * + * {
-      margin-top: 1.5rem;
-    }
-
-    .gap-4 {
-      gap: 1rem;
-    }
-
-    .gap-6 {
-      gap: 1.5rem;
-    }
-
-    /* Mobile-specific glass cards */
-    .glass-card {
-      padding: 20px;
-      border-radius: 16px;
-    }
-
-    /* Better mobile forms */
-    input, textarea {
-      font-size: 16px; /* Prevents zoom on iOS */
-      -webkit-appearance: none;
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    /* Mobile navigation improvements */
-    nav {
-      backdrop-filter: blur(20px);
-    }
+  .section-padding {
+    padding: 6rem 0;
   }
 
-  @media (max-width: 480px) {
-    .section-padding {
-      padding: 40px 0; /* Even more compact for small screens */
-    }
-    
-    .container-custom {
-      padding: 0 12px;
-    }
-
-    /* Stack buttons on very small screens */
-    .flex-wrap {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 12px;
-    }
-
-    .flex-wrap > * {
-      width: 100%;
-    }
-
-    /* Full-width buttons on mobile */
-    .premium-button, .secondary-button {
-      width: 100%;
-      justify-content: center;
-      padding: 16px 24px;
-    }
-
-    /* Compact mobile cards */
-    .glass-card {
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-
-    /* Better mobile typography */
-    .text-body-large, .text-body {
-      line-height: 1.8;
-    }
-  }
-}
-
-/* Typography Scale - Reduced gaps between headings */
-.text-display {
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-.text-heading-1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.75rem;
-}
-
-.text-heading-2 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  line-height: 1.3;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.text-heading-3 {
-  font-size: clamp(1.25rem, 3vw, 1.875rem);
-  line-height: 1.4;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.text-body-large {
-  font-size: 1.125rem;
-  line-height: 1.7;
-}
-
-.text-body {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.text-body-small {
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.text-caption {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border-hover);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
-}
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* Mobile-specific improvements */
-@media (max-width: 768px) {
-  /* Improve mobile animations - reduce motion for better performance */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  /* Glass cards */
+  .glass-card {
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Better mobile scrolling */
-  body {
-    -webkit-overflow-scrolling: touch;
+  .dark .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  /* Improve mobile text selection */
-  * {
-    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.2);
+  .glass-card:hover {
+    background: var(--bg-surface-elevated);
+    border-color: rgba(99, 102, 241, 0.2);
   }
 
-  /* Mobile-optimized typography */
+  .dark .glass-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Gradient text */
+  .accent-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Buttons */
+  .premium-button {
+    background: #ffffff;
+    color: #000000;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.625rem;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .dark .premium-button {
+    background: #fafafa;
+    color: #09090b;
+  }
+
+  .premium-button:hover {
+    background: #f4f4f5;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+  }
+
+  .secondary-button {
+    background: rgba(255, 255, 255, 0.04);
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.625rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .secondary-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* Typography scale */
   .text-display {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
   }
 
   .text-heading-1 {
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   .text-heading-2 {
-    font-size: clamp(1.25rem, 5vw, 2rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.3;
   }
 
-  /* Better mobile readability */
+  .text-heading-3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
   .text-body-large {
-    font-size: clamp(1rem, 2.5vw, 1.125rem);
-    line-height: 1.8;
-  }
-
-  .text-body {
-    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-size: 1.125rem;
     line-height: 1.7;
   }
 
-  /* Mobile-specific spacing */
-  .mb-16 {
-    margin-bottom: 2rem;
+  .text-body {
+    font-size: 0.9375rem;
+    line-height: 1.65;
   }
 
-  .mb-20 {
-    margin-bottom: 2.5rem;
+  .text-body-small {
+    font-size: 0.8125rem;
+    line-height: 1.5;
   }
 
-  /* Improve mobile grid layouts */
-  .grid {
-    gap: 1rem;
+  .text-caption {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Holographic border */
+  .holographic-border {
+    border: 1px solid transparent;
+    background: linear-gradient(var(--bg-primary), var(--bg-primary)) padding-box,
+      linear-gradient(135deg, #ffffff, #52525b) border-box;
+  }
+
+  /* Subtle grid */
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 }
 
-/* Very small screens optimization */
-@media (max-width: 360px) {
-  .container-custom {
-    padding: 0 8px;
+/* Spotlight animation */
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
   }
 
-  .text-display {
-    font-size: 2rem;
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease 0.75s 1 forwards;
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
   }
 
-  .text-heading-1 {
-    font-size: 1.5rem;
+  50% {
+    opacity: 0;
   }
+}
 
-  .premium-button, .secondary-button {
-    padding: 12px 16px;
-    font-size: 13px;
-  }
+/* Custom UI utilities */
+.ai-input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.dark .ai-input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ai-input:focus {
+  background: var(--bg-surface-elevated);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+
+.dark .ai-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gradient-text-ai {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

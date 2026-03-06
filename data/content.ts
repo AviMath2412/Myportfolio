@@ -1,10 +1,24 @@
+import { CaseStudyData } from "@/components/ProjectCaseStudy";
+
+export interface Project {
+  id: string;
+  title: string;
+  github: string;
+  tech: string[];
+  highlights: string[];
+  color: string;
+  hasCaseStudy: boolean;
+  caseStudy?: CaseStudyData;
+  live?: string;
+  tag?: string;
+}
+
 export const personalInfo = {
   name: "Avi Mathur",
   title: "AI/ML Developer • Full Stack Innovator",
-  subtitle: "Oracle-certified AI/ML developer specializing in medical AI, vector search, and intelligent automation. Smart India Hackathon 2025 Grand Finale volunteer.",
+  subtitle: "B.Tech in Computer Science & Engineering (Artificial Intelligence) from Rajasthan Technical University. Specialize in medical AI, vector search, and intelligent automation.",
   impact: "I build production-ready AI systems — from medical imaging to enterprise automation — focused on accuracy, scale, and real-world impact.",
   email: "mathuravi668@gmail.com",
-  phone: "+91 77009 23732",
   linkedin: "https://www.linkedin.com/in/avi-mathur-a3a25727b/",
   github: "https://github.com/AviMath2412",
 };
@@ -12,49 +26,109 @@ export const personalInfo = {
 export const about = {
   intro: "I'm Avi Mathur, an AI/ML developer and full-stack engineer who enjoys building intelligent, practical systems. I work with vector search, LLM automation, and modern web technologies to create fast, scalable, user-focused applications.",
   builds: "I build intelligent automation tools, AI-powered dashboards, vector search systems, and full-stack web applications that solve real problems with clean engineering and thoughtful design. I care deeply about clean architecture, measurable impact, and systems that scale beyond demos.",
-  education: "B.Tech CSE (AI) — Rajasthan Technical University",
+  education: "B.Tech CSE (AI) — Rajasthan Technical University (Aug 2023 – July 2027)",
   exploring: ["Agentic AI", "RAG Systems", "Kubernetes"],
 };
 
-export const skills = {
-  Languages: ["Python", "C++", "SQL", "TypeScript", "JavaScript"],
-  "AI/ML": ["TensorFlow", "Pandas", "NumPy", "OpenAI API", "Vector Search Pipelines"],
-  Web: ["React.js", "Next.js", "Node.js", "FastAPI", "Tailwind CSS"],
-  "Cloud & Tools": ["Oracle Cloud (OCI)", "Docker", "Git/GitHub", "Salesforce CRM", "Jupyter", "VS Code"],
+export const skills: Record<string, string[]> = {
+  "Languages": ["Python", "C++", "SQL"],
+  "AI/ML": ["Generative AI", "Machine learning models", "TensorFlow", "Pandas", "NumPy", "Matplotlib", "OpenAI API", "Vector Search Pipelines"],
+  "Web": ["Next.js", "Flask", "FastAPI", "Tailwind CSS"],
+  "Cloud & Tools": ["Google Cloud Platform (GCP)", "Oracle Cloud Infrastructure (OCI)", "Docker", "Git/GitHub", "Salesforce CRM", "Jupyter", "VS Code"],
+  "Core CS": ["Data Structures & Algorithms", "Software Architecture", "UML Design"],
   "Currently Learning": ["Agentic AI", "RAG Systems", "Kubernetes"],
 };
 
 export const experience = [
   {
+    company: "Hibiscustech GR Private Limited",
+    description: "Contributing to development of scalable full-stack applications using modular architecture and production-grade engineering practices.",
+    role: "Full Stack Intern",
+    duration: "Feb 2026 – Present",
+    highlights: [
+      "Contributing to development of scalable full-stack applications using modular architecture",
+      "Strengthening frontend engineering expertise with emphasis on performance optimization",
+      "Implementing maintainable components and clean data flow design",
+    ],
+  },
+  {
+    company: "Walmart USA (Forage)",
+    description: "Advanced Software Engineering Virtual Experience focused on complex technical challenges and data structures.",
+    role: "Advanced Software Engineering Virtual Intern",
+    duration: "Dec 2025 – Jan 2026",
+    highlights: [
+      "Engineered a novel heap data structure improving package routing efficiency",
+      "Solved complex technical challenges spanning data structures and system architecture",
+      "Designed relational database schemas for large-scale logistics scenarios",
+    ],
+  },
+  {
     company: "Raptbot Technologies",
-    description: "Salesforce consulting and CRM automation",
-    role: "Salesforce Developer Intern",
+    description: "Salesforce consulting and CRM automation.",
+    role: "Salesforce Intern",
     duration: "July 2024 – August 2024",
     highlights: [
-      "Architected Salesforce objects + automation (−40% manual work)",
-      "Built a Hotel Management System with billing + rewards",
-      "Optimized SOQL queries by 35%",
+      "Developed Hotel Management System and Bank Management System",
+      "Learned CRM architecture concepts",
     ],
   },
 ];
 
-import { CaseStudyData } from "@/components/ProjectCaseStudy";
-
-export const projects = [
+export const projects: Project[] = [
+  {
+    id: "ai-content-modernization",
+    title: "AI Content Modernization Platform",
+    tag: "Latest",
+    github: "https://github.com/AviMath2412/content_mordernization", // Placeholder if not in resume
+    tech: ["Next.js", "Flask", "PostgreSQL", "Google Cloud", "Perspective API"],
+    highlights: [
+      "Integrated Google Perspective API via GCP for automated content assessment",
+      "Enables intelligent rephrasing and content evaluation",
+      "Designed responsive frontend architecture using scalable components",
+      "Currently extending functionality and performance optimization",
+    ],
+    color: "from-zinc-200 to-zinc-500",
+    hasCaseStudy: true,
+    caseStudy: {
+      problem: "Traditional content moderation and modernization processes are often manual, slow, and fail to catch subtle toxic nuances or maintain consistent brand voice.",
+      myRole: "Full-stack developer responsible for the end-to-end integration: setting up GCP infrastructure for Perspective API, building the Flask backend for text processing, and designing the Next.js frontend.",
+      solutionArchitecture: [
+        "Next.js frontend for high-performance user interaction",
+        "Flask-based REST API for efficient text analysis and processing",
+        "Google Cloud Platform (GCP) integration using Perspective API for toxic content assessment",
+        "PostgreSQL for persistence and structured data management",
+        "Tailwind CSS for a responsive and intuitive design system"
+      ],
+      keyChallenges: [
+        "Asynchronous processing of large text blocks without blocking the UI",
+        "Optimizing API calls to minimize latency during real-time content assessment",
+        "Designing a robust error handling system for potential network or API failures"
+      ],
+      results: [
+        { label: "Content Assessment Time", value: "< 1 second", isEstimate: false },
+        { label: "Infrastructure", value: "Google Cloud Ecosystem", isEstimate: false },
+        { label: "Frontend Speed", value: "Optimized LCP", isEstimate: true }
+      ],
+      improvements: [
+        "Include multi-language support leveraging advanced LLM capabilities",
+        "Implement a 'Brand Voice' fine-tuning feature using custom datasets",
+        "Integrate real-time collaborative editing features"
+      ],
+      whyThisApproach: "Next.js was chosen for the frontend to ensure modern performance standards (SSR/ISR) while providing a highly interactive user experience. Flask provides a lightweight, flexible backend for Python-based AI integrations, and the Google Perspective API provides production-grade content analysis."
+    } as CaseStudyData
+  },
   {
     id: "neuroscan-ai",
     title: "NeuroScan AI",
-    tag: "Latest",
     github: "https://github.com/AviMath2412/NeuroScan-AI",
-    tech: ["Python", "TensorFlow", "Keras", "OpenCV", "Streamlit", "NumPy"],
+    tech: ["Python", "TensorFlow", "Keras", "OpenCV", "Streamlit", "Docker"],
     highlights: [
-      "AI-powered brain tumor detection from MRI scans",
+      "AI-powered brain tumor detection from MRI scans achieves high accuracy",
+      "Containerized application using Docker for reproducible deployment",
+      "Implemented lightweight interface for image upload and real-time predictions",
       "Deep learning CNN model with 95%+ accuracy",
-      "Real-time image preprocessing and analysis",
-      "Interactive web interface for medical professionals",
-      "Supports multiple tumor classification types",
     ],
-    color: "from-pink-500 to-purple-500",
+    color: "from-zinc-100 to-zinc-400",
     hasCaseStudy: true,
     caseStudy: {
       problem: "Manual brain tumor detection from MRI scans is time-consuming and prone to human error, delaying critical diagnoses for patients.",
@@ -64,24 +138,22 @@ export const projects = [
         "OpenCV pipeline for MRI normalization and noise reduction",
         "TensorFlow/Keras for model training with data augmentation",
         "Streamlit interface for real-time inference and visualization",
-        "NumPy for efficient tensor operations and data manipulation"
+        "Containerized deployment using Docker for scalability"
       ],
       keyChallenges: [
         "Balancing model accuracy with inference speed for real-time use",
         "Handling diverse MRI scan formats and quality variations",
-        "Ensuring medical-grade preprocessing without losing diagnostic information",
-        "Creating intuitive UI for non-technical medical professionals"
+        "Ensuring medical-grade preprocessing without losing diagnostic information"
       ],
       results: [
         { label: "Model Accuracy", value: "95.2%", isEstimate: false },
         { label: "Inference Time", value: "< 2 seconds", isEstimate: false },
-        { label: "Supported Tumor Types", value: "3 classifications", isEstimate: false }
+        { label: "Scale", value: "Docker Containerized", isEstimate: false }
       ],
       improvements: [
         "Expand training dataset with more diverse MRI scans",
         "Implement multi-class segmentation for precise tumor boundaries",
-        "Add confidence scoring system for medical decision support",
-        "Integrate DICOM format support for hospital workflows"
+        "Add confidence scoring system for medical decision support"
       ],
       whyThisApproach: "Chose VGG16-based architecture over custom CNNs because it provides proven transfer learning capabilities for medical imaging while maintaining inference speed suitable for real-time clinical use."
     } as CaseStudyData
@@ -92,133 +164,67 @@ export const projects = [
     github: "https://github.com/AviMath2412/expense-flow-quest",
     tech: ["React", "TypeScript", "PostgreSQL", "Prisma"],
     highlights: [
-      "Enterprise expense management",
-      "RBAC + multi-currency",
+      "Enterprise expense management with RBAC + multi-currency",
       "Automation reduces approval time by 45%",
-      "500+ users on backend",
+      "Serves 500+ users on backend with scaled database design",
     ],
-    color: "from-emerald-500 to-blue-500",
+    color: "from-zinc-300 to-zinc-600",
     hasCaseStudy: true,
     caseStudy: {
-      problem: "Enterprise teams struggle with manual expense tracking, slow approval workflows, and lack of multi-currency support, leading to delayed reimbursements and poor financial visibility.",
-      myRole: "Full-stack developer: architected PostgreSQL schema with Prisma ORM, implemented RBAC system, built React frontend with TypeScript, and designed automated approval workflows.",
+      problem: "Enterprise teams struggle with manual expense tracking, slow approval workflows, and lack of multi-currency support.",
+      myRole: "Full-stack developer: architected PostgreSQL schema with Prisma ORM, implemented RBAC system, and built React frontend.",
       solutionArchitecture: [
-        "PostgreSQL database with Prisma ORM for type-safe data access",
-        "Role-based access control (RBAC) with granular permissions",
-        "React + TypeScript frontend with component-based architecture",
-        "Multi-currency support with real-time exchange rate integration",
-        "Automated approval workflows based on expense amount and department rules"
+        "PostgreSQL database with Prisma ORM",
+        "Role-based access control (RBAC)",
+        "React + TypeScript frontend",
+        "Multi-currency support with real-time exchange rates"
       ],
       keyChallenges: [
-        "Designing scalable RBAC system that supports complex organizational hierarchies",
-        "Implementing multi-currency calculations with accurate exchange rates",
-        "Building efficient approval workflow engine without backend complexity",
-        "Ensuring data consistency across concurrent expense submissions"
+        "Designing scalable RBAC system for complex hierarchies",
+        "Implementing multi-currency calculations with accurate exchange rates"
       ],
       results: [
         { label: "Approval Time Reduction", value: "45%", isEstimate: false },
-        { label: "Backend Users", value: "500+", isEstimate: false },
-        { label: "Supported Currencies", value: "Multi-currency", isEstimate: false }
+        { label: "Backend Users", value: "500+", isEstimate: false }
       ],
       improvements: [
         "Add receipt OCR for automatic expense extraction",
-        "Implement advanced analytics dashboard for finance teams",
-        "Create mobile app for on-the-go expense submission",
-        "Add integration with accounting software (QuickBooks, Xero)"
+        "Implement advanced analytics dashboard"
       ],
-      whyThisApproach: "Selected Prisma ORM over raw SQL to ensure type safety across the stack, reducing runtime errors and enabling faster development while maintaining database performance through optimized queries."
+      whyThisApproach: "Selected Prisma ORM for type safety and faster development while maintaining performance."
     } as CaseStudyData
-  },
-  {
-    id: "ai-resume-analyzer",
-    title: "AI Resume Analyzer",
-    github: "https://github.com/AviMath2412/ai-resume-analyzer",
-    live: "https://ai-resume-analyzer-181-3sdgg.puter.site/",
-    tech: ["React", "TypeScript", "Tailwind", "Puter.js", "Claude AI", "PDF.js"],
-    highlights: [
-      "ATS compatibility scoring",
-      "AI-based content improvement",
-      "Resume portfolio dashboard",
-      "Cloud storage + auth",
-      "Real-time PDF → Image preview",
-    ],
-    color: "from-blue-500 to-cyan-500",
-    hasCaseStudy: true,
-    caseStudy: {
-      problem: "Job seekers struggle to optimize resumes for ATS systems and lack actionable, AI-powered feedback on content quality and keyword optimization.",
-      myRole: "Full-stack developer: designed React frontend architecture, integrated Claude AI API for content analysis, implemented PDF parsing with PDF.js, and built cloud storage integration using Puter.js.",
-      solutionArchitecture: [
-        "React + TypeScript frontend with Tailwind CSS for responsive UI",
-        "PDF.js for client-side PDF parsing and real-time preview generation",
-        "Claude AI API for intelligent content analysis and ATS scoring",
-        "Puter.js for cloud storage, authentication, and resume portfolio management",
-        "State management for real-time PDF-to-image conversion and caching"
-      ],
-      keyChallenges: [
-        "Parsing complex PDF layouts without losing formatting information",
-        "Implementing accurate ATS scoring algorithm based on industry standards",
-        "Handling large PDF files efficiently in browser without backend",
-        "Creating intuitive UX for resume improvement suggestions"
-      ],
-      results: [
-        { label: "Response Time", value: "< 5 seconds", isEstimate: false },
-        { label: "Supported Formats", value: "PDF", isEstimate: false },
-        { label: "ATS Score Accuracy", value: "Industry-standard based", isEstimate: true }
-      ],
-      improvements: [
-        "Add support for Word document formats (.docx)",
-        "Implement industry-specific ATS scoring (tech, finance, healthcare)",
-        "Create resume templates based on job description analysis",
-        "Add multi-language support for international job markets"
-      ],
-      whyThisApproach: "Used client-side PDF.js parsing instead of server-side processing to eliminate backend costs, improve privacy (no data leaves the browser), and enable instant preview generation without API latency."
-    } as CaseStudyData
-  },
-  {
-    id: "ai-webscraper",
-    title: "AI Web Scraper",
-    github: "https://github.com/AviMath2412/AI-Webscrapper",
-    tech: ["Python", "Selenium", "OpenAI API", "Prompt Engineering"],
-    highlights: [
-      "85% success on protected sites",
-      "Proxy rotation + rate limiting",
-      "1000+ concurrent tasks",
-      "Modular AI scraping framework",
-    ],
-    color: "from-purple-500 to-blue-500",
-    hasCaseStudy: false
   },
 ];
 
 export const achievements = [
   {
+    title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
+    validity: "Oct 2025",
+    icon: null,
+    type: "certification",
+  },
+  {
     title: "Oracle AI Vector Search Certified Professional",
-    validity: "Valid through October 2027",
-    icon: "🎯",
+    validity: "Oct 2025",
+    icon: null,
+    type: "certification",
+  },
+  {
+    title: "Walmart USA Advanced Software Engineering Virtual Experience",
+    validity: "Jan 2026",
+    icon: null,
     type: "certification",
   },
   {
     title: "Smart India Hackathon 2025 - Grand Finale Volunteer",
-    validity: "December 2025",
-    icon: "🏆",
+    validity: "Dec 2025",
+    icon: null,
     type: "achievement",
   },
   {
-    title: "SBI Life Hack-AI-Thon Participant",
-    validity: "2024",
-    icon: "🤖",
+    title: "Led technical teams in national hackathons (SBI Life, EY Techathon)",
+    validity: "2024-2025",
+    icon: null,
     type: "hackathon",
-  },
-  {
-    title: "Oracle OCI Generative AI Professional",
-    validity: "2025",
-    icon: "☁️",
-    type: "certification",
-  },
-  {
-    title: "SHIFT: New-Gen Creative Festival 2025",
-    validity: "Industry participation • Creative + Tech ecosystem exposure • Dec 2025",
-    icon: "🎨",
-    type: "achievement",
   },
 ];
