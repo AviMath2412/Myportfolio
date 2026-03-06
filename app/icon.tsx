@@ -14,19 +14,32 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 20,
-          background: "#0f0f0f",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
-          fontWeight: "bold",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
+          background: "linear-gradient(135deg, #bfdbfe 0%, #3b82f6 100%)",
+          borderRadius: "6px",
         }}
       >
-        AM
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Geometric M lettermark — two A-shapes merged */}
+          <path
+            d="M2 20 L8 4 L12 13 L16 4 L22 20"
+            stroke="#0a0a0a"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </svg>
       </div>
     ),
     {

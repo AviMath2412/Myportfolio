@@ -4,72 +4,92 @@ import React, { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 
 export function CustomCursor() {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isVisible, setIsVisible] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
 
-    const springConfig = { damping: 25, stiffness: 200 };
-    const cursorX = useSpring(0, springConfig);
-    const cursorY = useSpring(0, springConfig);
+    const springConfig = { damping: 28, stiffness: 220, mass: 0.5 };
+    const cursorX = useSpring(-100, springConfig);
+    const cursorY = useSpring(-100, springConfig);
 
     useEffect(() => {
+        // Hide the native cursor globally
+        document.body.style.cursor = "none";
+        document.documentElement.style.cursor = "none";
+
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
-            setPosition({ x: e.clientX, y: e.clientY });
+            if (!isVisible) setIsVisible(true);
         };
 
-        const handleHover = () => setIsHovering(true);
-        const handleUnhover = () => setIsHovering(false);
+        const handleHoverStart = () => setIsHovering(true);
+        const handleHoverEnd = () => setIsHovering(false);
+
+        const attachListeners = () => {
+            const interactiveEls = document.querySelectorAll(
+                'a, button, [role="button"], input, textarea, select, label, .cursor-pointer'
+            );
+            interactiveEls.forEach((el) => {
+                el.addEventListener("mouseenter", handleHoverStart);
+                el.addEventListener("mouseleave", handleHoverEnd);
+            });
+            return interactiveEls;
+        };
 
         window.addEventListener("mousemove", moveCursor);
+        const elements = attachListeners();
 
-        const interactiveElements = document.querySelectorAll(
-            'a, button, [role="button"], input, textarea, .cursor-pointer'
-        );
-
-        interactiveElements.forEach((el) => {
-            el.addEventListener("mouseenter", handleHover);
-            el.addEventListener("mouseleave", handleUnhover);
-        });
+        // Re-attach after a short delay to catch dynamically rendered elements
+        const timeout = setTimeout(() => attachListeners(), 1500);
 
         return () => {
+            document.body.style.cursor = "";
+            document.documentElement.style.cursor = "";
             window.removeEventListener("mousemove", moveCursor);
-            interactiveElements.forEach((el) => {
-                el.removeEventListener("mouseenter", handleHover);
-                el.removeEventListener("mouseleave", handleUnhover);
+            clearTimeout(timeout);
+            elements.forEach((el) => {
+                el.removeEventListener("mouseenter", handleHoverStart);
+                el.removeEventListener("mouseleave", handleHoverEnd);
             });
         };
-    }, [cursorX, cursorY]);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[9999] mix-blend-difference hidden md:block">
-            {/* Outer Circle */}
+        <div
+            className="fixed inset-0 pointer-events-none z-[9999] hidden md:block"
+            style={{ mixBlendMode: "difference" }}
+        >
+            {/* Outer ring — lags slightly for a silky feel */}
             <motion.div
                 style={{
                     translateX: cursorX,
                     translateY: cursorY,
                     x: "-50%",
                     y: "-50%",
+                    opacity: isVisible ? 1 : 0,
                 }}
-                className="absolute w-8 h-8 rounded-full border border-white opacity-50"
                 animate={{
-                    scale: isHovering ? 1.5 : 1,
-                    backgroundColor: isHovering ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)",
+                    scale: isHovering ? 1.6 : 1,
+                    backgroundColor: isHovering
+                        ? "rgba(255,255,255,0.15)"
+                        : "rgba(255,255,255,0)",
                 }}
-                transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                className="absolute w-8 h-8 rounded-full border border-white"
             />
-            {/* Inner Dot */}
+
+            {/* Inner dot — snaps to cursor position quickly */}
             <motion.div
                 style={{
                     translateX: cursorX,
                     translateY: cursorY,
                     x: "-50%",
                     y: "-50%",
+                    opacity: isVisible ? 1 : 0,
                 }}
-                className="absolute w-1 h-1 rounded-full bg-white"
-                animate={{
-                    scale: isHovering ? 2 : 1,
-                }}
+                animate={{ scale: isHovering ? 0 : 1 }}
+                transition={{ duration: 0.15 }}
+                className="absolute w-1.5 h-1.5 rounded-full bg-white"
             />
         </div>
     );
