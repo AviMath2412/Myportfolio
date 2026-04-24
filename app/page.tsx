@@ -1,27 +1,25 @@
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
+import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
+import AcademicSection from "@/components/sections/academic-section";
 import Experience from "@/components/sections/Experience";
 import Achievements from "@/components/sections/Achievements";
-import CredibilityStrip from "@/components/sections/CredibilityStrip";
-import Projects from "@/components/sections/Projects";
-import ShowcaseScroll from "@/components/sections/ShowcaseScroll";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main id="main-content" className="overflow-x-hidden">
       <Hero />
-      <About />
       <Skills />
+      <About />
+      <Projects />
+      <AcademicSection />
       <Experience />
       <Achievements />
-      <CredibilityStrip />
-      <ShowcaseScroll />
-      <Projects />
       <Contact />
       <Footer />
     </main>
-  );
+  )
 }

@@ -15,216 +15,241 @@ export interface Project {
 
 export const personalInfo = {
   name: "Avi Mathur",
-  title: "AI/ML Developer • Full Stack Innovator",
-  subtitle: "B.Tech in Computer Science & Engineering (Artificial Intelligence) from Rajasthan Technical University. Specialize in medical AI, vector search, and intelligent automation.",
-  impact: "I build production-ready AI systems — from medical imaging to enterprise automation — focused on accuracy, scale, and real-world impact.",
+  title: "AI/ML Research Engineer • RL, LLM Evaluation, Systems",
+  subtitle:
+    "Third-year B.Tech CSE (AI) student at Poornima Institute of Engineering and Technology, Jaipur, focused on reinforcement learning environments, deployed neural systems, and generative AI tools.",
+  impact:
+    "I design and deploy research-oriented AI systems with emphasis on sparse-reward RL, reproducible pipelines, and practical social impact.",
   email: "mathuravi668@gmail.com",
   linkedin: "https://www.linkedin.com/in/avi-mathur-a3a25727b/",
   github: "https://github.com/AviMath2412",
 };
 
 export const about = {
-  intro: "I'm Avi Mathur, an AI/ML developer and full-stack engineer who enjoys building intelligent, practical systems. I work with vector search, LLM automation, and modern web technologies to create fast, scalable, user-focused applications.",
-  builds: "I build intelligent automation tools, AI-powered dashboards, vector search systems, and full-stack web applications that solve real problems with clean engineering and thoughtful design. I care deeply about clean architecture, measurable impact, and systems that scale beyond demos.",
-  education: "B.Tech CSE (AI) — Rajasthan Technical University (Aug 2023 – July 2027)",
-  exploring: ["Agentic AI", "RAG Systems", "Kubernetes"],
+  intro:
+    "I am a third-year B.Tech CSE (AI) student with a strong interest in AI/ML research driven by building and deploying practical systems such as RL environments, neural models, and generative AI tooling.",
+  builds:
+    "I approach research by building, measuring, and iterating. My current focus is to strengthen theoretical depth and research rigor while contributing to meaningful AI/ML work under mentorship.",
+  education:
+    "B.Tech Computer Science and Engineering (Artificial Intelligence), Poornima Institute of Engineering and Technology, Jaipur (Aug 2023 – Jul 2027), CGPA: 8.01/10",
+  exploring: [
+    "Reinforcement Learning for Sparse Rewards",
+    "LLM Evaluation",
+    "Generative AI Systems",
+  ],
 };
 
 export const skills: Record<string, string[]> = {
   "Languages": ["Python", "C++", "SQL"],
-  "AI/ML": ["Generative AI", "Machine learning models", "TensorFlow", "Pandas", "NumPy", "Matplotlib", "OpenAI API", "Vector Search Pipelines"],
-  "Web": ["Next.js", "Flask", "FastAPI", "Tailwind CSS"],
-  "Cloud & Tools": ["Google Cloud Platform (GCP)", "Oracle Cloud Infrastructure (OCI)", "Docker", "Git/GitHub", "Salesforce CRM", "Jupyter", "VS Code"],
+  "AI/ML": [
+    "Reinforcement Learning",
+    "TensorFlow",
+    "RAG Pipelines",
+    "LangChain",
+    "Generative AI",
+    "Pandas",
+    "NumPy",
+    "Scikit-learn",
+  ],
+  "Web": ["Next.js", "FastAPI", "Flask", "Tailwind CSS", "Streamlit"],
+  "Cloud & Tools": [
+    "Docker",
+    "Hugging Face Spaces",
+    "PostgreSQL",
+    "Chroma",
+    "Google Cloud Platform",
+    "Git/GitHub",
+  ],
   "Core CS": ["Data Structures & Algorithms", "Software Architecture", "UML Design"],
-  "Currently Learning": ["Agentic AI", "RAG Systems", "Kubernetes"],
+  "Research Interests": ["Sparse-Reward RL", "Agentic Tasks", "LLM Evaluation", "AI for Social Good"],
 };
 
 export const experience = [
   {
-    company: "Hibiscustech GR Private Limited",
-    description: "Contributing to development of scalable full-stack applications using modular architecture and production-grade engineering practices.",
-    role: "Full Stack Intern",
-    duration: "Feb 2026 – Present",
-    highlights: [
-      "Contributing to development of scalable full-stack applications using modular architecture",
-      "Strengthening frontend engineering expertise with emphasis on performance optimization",
-      "Implementing maintainable components and clean data flow design",
-    ],
-  },
-  {
     company: "Walmart USA (Forage)",
-    description: "Advanced Software Engineering Virtual Experience focused on complex technical challenges and data structures.",
+    description:
+      "Advanced software engineering virtual internship focused on data structures, architecture, and relational systems.",
     role: "Advanced Software Engineering Virtual Intern",
     duration: "Dec 2025 – Jan 2026",
     highlights: [
-      "Engineered a novel heap data structure improving package routing efficiency",
-      "Solved complex technical challenges spanning data structures and system architecture",
-      "Designed relational database schemas for large-scale logistics scenarios",
+      "Worked on novel heap data structure for multi-package routing logistics.",
+      "Completed challenges across data structures, software architecture, and database design.",
+      "Built stronger systems-level engineering intuition through structured tasks.",
     ],
   },
   {
-    company: "Raptbot Technologies",
-    description: "Salesforce consulting and CRM automation.",
-    role: "Salesforce Intern",
-    duration: "July 2024 – August 2024",
+    company: "Raptbot Technologies, Jaipur",
+    description:
+      "Salesforce CRM internship building workflow-driven enterprise systems.",
+    role: "Salesforce CRM Intern",
+    duration: "Jul 2024 – Aug 2024",
     highlights: [
-      "Developed Hotel Management System and Bank Management System",
-      "Learned CRM architecture concepts",
+      "Built Hotel and Bank Management Systems using Salesforce CRM.",
+      "Worked on workflow automation and database modeling.",
+      "Delivered business-focused CRM customizations in collaborative setup.",
     ],
   },
 ];
 
 export const projects: Project[] = [
   {
-    id: "ai-content-modernization",
-    title: "AI Content Modernization Platform",
-    tag: "Latest",
-    github: "https://github.com/AviMath2412/content_mordernization", // Placeholder if not in resume
-    tech: ["Next.js", "Flask", "PostgreSQL", "Google Cloud", "Perspective API"],
+    id: "email-triage-rl-environment",
+    title: "Email Triage RL Environment",
+    tag: "Primary Node",
+    github: "https://github.com/AviMath2412/email-triage-env",
+    live: "https://huggingface.co/spaces/AviMath/email-triage-env",
+    tech: ["Python", "OpenEnv", "FastAPI", "Docker", "Hugging Face Spaces"],
     highlights: [
-      "Integrated Google Perspective API via GCP for automated content assessment",
-      "Enables intelligent rephrasing and content evaluation",
-      "Designed responsive frontend architecture using scalable components",
-      "Currently extending functionality and performance optimization",
+      "Framed email triage as a multi-tier RL benchmark (easy/medium/hard).",
+      "Designed step-wise reward with correctness, efficiency, and routing signals.",
+      "Containerized and deployed with docs and client SDK support.",
+      "Meta x PyTorch OpenEnv Hackathon Grand Finalist submission.",
     ],
-    color: "from-zinc-200 to-zinc-500",
+    color: "from-emerald-300 to-emerald-600",
     hasCaseStudy: true,
     caseStudy: {
-      problem: "Traditional content moderation and modernization processes are often manual, slow, and fail to catch subtle toxic nuances or maintain consistent brand voice.",
-      myRole: "Full-stack developer responsible for the end-to-end integration: setting up GCP infrastructure for Perspective API, building the Flask backend for text processing, and designing the Next.js frontend.",
+      problem:
+        "Knowledge-work agent tasks often suffer from sparse terminal rewards, making policy learning unstable and slow.",
+      myRole:
+        "Designed and implemented the environment, reward strategy, deployment stack, and interface for reproducible testing.",
       solutionArchitecture: [
-        "Next.js frontend for high-performance user interaction",
-        "Flask-based REST API for efficient text analysis and processing",
-        "Google Cloud Platform (GCP) integration using Perspective API for toxic content assessment",
-        "PostgreSQL for persistence and structured data management",
-        "Tailwind CSS for a responsive and intuitive design system"
+        "OpenEnv-compatible environment design for tiered RL scenarios",
+        "FastAPI endpoints and SDK-oriented integration surface",
+        "Dense reward decomposition for correctness/efficiency/routing",
+        "Dockerized runtime and Hugging Face Spaces deployment",
       ],
       keyChallenges: [
-        "Asynchronous processing of large text blocks without blocking the UI",
-        "Optimizing API calls to minimize latency during real-time content assessment",
-        "Designing a robust error handling system for potential network or API failures"
+        "Reducing sparse reward bottlenecks in realistic triage workflows",
+        "Balancing reward shaping with policy robustness and generalization",
+        "Designing reproducible benchmark tiers with meaningful difficulty",
       ],
       results: [
-        { label: "Content Assessment Time", value: "< 1 second", isEstimate: false },
-        { label: "Infrastructure", value: "Google Cloud Ecosystem", isEstimate: false },
-        { label: "Frontend Speed", value: "Optimized LCP", isEstimate: true }
+        { label: "Benchmark Design", value: "3 Difficulty Tiers", isEstimate: false },
+        { label: "Deployment", value: "HF Spaces + Docker", isEstimate: false },
+        { label: "Outcome", value: "Meta x PyTorch Finalist", isEstimate: false },
       ],
       improvements: [
-        "Include multi-language support leveraging advanced LLM capabilities",
-        "Implement a 'Brand Voice' fine-tuning feature using custom datasets",
-        "Integrate real-time collaborative editing features"
+        "Extend to longer-horizon multi-agent triage workflows",
+        "Add controlled perturbation suites for robustness analysis",
+        "Publish standardized evaluation cards for reproducibility",
       ],
-      whyThisApproach: "Next.js was chosen for the frontend to ensure modern performance standards (SSR/ISR) while providing a highly interactive user experience. Flask provides a lightweight, flexible backend for Python-based AI integrations, and the Google Perspective API provides production-grade content analysis."
-    } as CaseStudyData
+      whyThisApproach:
+        "A dense reward decomposition and OpenEnv compatibility provide practical training feedback while preserving benchmark usefulness for research-oriented agent development.",
+    } as CaseStudyData,
   },
   {
     id: "neuroscan-ai",
-    title: "NeuroScan AI",
+    title: "Neuro Scan - Medical Image Diagnosis",
     github: "https://github.com/AviMath2412/NeuroScan-AI",
-    tech: ["Python", "TensorFlow", "Keras", "OpenCV", "Streamlit", "Docker"],
+    tag: "Primary Node",
+    tech: ["Python", "TensorFlow", "CNN", "Docker"],
     highlights: [
-      "AI-powered brain tumor detection from MRI scans achieves high accuracy",
-      "Containerized application using Docker for reproducible deployment",
-      "Implemented lightweight interface for image upload and real-time predictions",
-      "Deep learning CNN model with 95%+ accuracy",
+      "Built CNN pipelines for medical image classification on imbalanced datasets.",
+      "Analyzed architecture tradeoffs: depth, skip connections, and pooling.",
+      "Containerized deployment for reproducible inference workflow.",
+      "Designed interface usable in non-technical healthcare contexts.",
     ],
-    color: "from-zinc-100 to-zinc-400",
+    color: "from-blue-300 to-blue-600",
     hasCaseStudy: true,
     caseStudy: {
-      problem: "Manual brain tumor detection from MRI scans is time-consuming and prone to human error, delaying critical diagnoses for patients.",
-      myRole: "Sole developer responsible for end-to-end implementation: CNN architecture design, dataset preprocessing, model training, and Streamlit web interface development.",
+      problem:
+        "Clinical image classification on imbalanced datasets requires robust modeling and reproducible deployment for practical adoption.",
+      myRole:
+        "Built end-to-end model experimentation, preprocessing, and deployment pipeline.",
       solutionArchitecture: [
-        "VGG16-based CNN architecture adapted for medical imaging",
-        "OpenCV pipeline for MRI normalization and noise reduction",
-        "TensorFlow/Keras for model training with data augmentation",
-        "Streamlit interface for real-time inference and visualization",
-        "Containerized deployment using Docker for scalability"
+        "TensorFlow CNN models tuned for medical image domain",
+        "Data preprocessing and balancing-aware experimentation",
+        "Dockerized setup for reproducibility across systems",
+        "Inference interface for easier practitioner interaction",
       ],
       keyChallenges: [
-        "Balancing model accuracy with inference speed for real-time use",
-        "Handling diverse MRI scan formats and quality variations",
-        "Ensuring medical-grade preprocessing without losing diagnostic information"
+        "Managing class imbalance without overfitting",
+        "Testing architecture depth vs. generalization tradeoffs",
+        "Keeping deployment lightweight while retaining model quality",
       ],
       results: [
-        { label: "Model Accuracy", value: "95.2%", isEstimate: false },
-        { label: "Inference Time", value: "< 2 seconds", isEstimate: false },
-        { label: "Scale", value: "Docker Containerized", isEstimate: false }
+        { label: "Model Direction", value: "CNN for Clinical Images", isEstimate: false },
+        { label: "Deployment", value: "Dockerized", isEstimate: false },
+        { label: "Focus", value: "AI for Social Good", isEstimate: false },
       ],
       improvements: [
-        "Expand training dataset with more diverse MRI scans",
-        "Implement multi-class segmentation for precise tumor boundaries",
-        "Add confidence scoring system for medical decision support"
+        "Expand dataset diversity across modalities and demographics",
+        "Integrate uncertainty estimation for risk-aware inference",
+        "Add explainability overlays for clinician trust",
       ],
-      whyThisApproach: "Chose VGG16-based architecture over custom CNNs because it provides proven transfer learning capabilities for medical imaging while maintaining inference speed suitable for real-time clinical use."
-    } as CaseStudyData
+      whyThisApproach:
+        "An iterative CNN experimentation approach with reproducible deployment is practical for research-to-application translation in constrained healthcare settings.",
+    } as CaseStudyData,
   },
   {
-    id: "expenseflow-quest",
-    title: "ExpenseFlow Quest",
-    github: "https://github.com/AviMath2412/expense-flow-quest",
-    tech: ["React", "TypeScript", "PostgreSQL", "Prisma"],
+    id: "local-rag-chatbot",
+    title: "Local RAG Chatbot",
+    github: "https://github.com/AviMath2412/rag",
+    tech: ["Streamlit", "LangChain", "Ollama", "Chroma", "Python"],
     highlights: [
-      "Enterprise expense management with RBAC + multi-currency",
-      "Automation reduces approval time by 45%",
-      "Serves 500+ users on backend with scaled database design",
+      "Built a local-first RAG chatbot for PDF documents.",
+      "Implemented grounded retrieval with source-aware responses and citations.",
+      "Used persistent Chroma indexing with operational health checks.",
     ],
-    color: "from-zinc-300 to-zinc-600",
-    hasCaseStudy: true,
-    caseStudy: {
-      problem: "Enterprise teams struggle with manual expense tracking, slow approval workflows, and lack of multi-currency support.",
-      myRole: "Full-stack developer: architected PostgreSQL schema with Prisma ORM, implemented RBAC system, and built React frontend.",
-      solutionArchitecture: [
-        "PostgreSQL database with Prisma ORM",
-        "Role-based access control (RBAC)",
-        "React + TypeScript frontend",
-        "Multi-currency support with real-time exchange rates"
-      ],
-      keyChallenges: [
-        "Designing scalable RBAC system for complex hierarchies",
-        "Implementing multi-currency calculations with accurate exchange rates"
-      ],
-      results: [
-        { label: "Approval Time Reduction", value: "45%", isEstimate: false },
-        { label: "Backend Users", value: "500+", isEstimate: false }
-      ],
-      improvements: [
-        "Add receipt OCR for automatic expense extraction",
-        "Implement advanced analytics dashboard"
-      ],
-      whyThisApproach: "Selected Prisma ORM for type safety and faster development while maintaining performance."
-    } as CaseStudyData
+    color: "from-purple-300 to-purple-600",
+    hasCaseStudy: false,
+  },
+  {
+    id: "ai-content-modernization-dashboard",
+    title: "AI Content Modernization Dashboard",
+    github: "https://github.com/AviMath2412/content_mordernization",
+    tech: ["Next.js", "Flask", "Perspective API", "Gemini", "PostgreSQL"],
+    highlights: [
+      "Combined moderation scoring with AI-powered explanation and rephrasing.",
+      "Built a dual-AI workflow with modernized alternative generation.",
+      "Implemented full-stack architecture with persistent moderation logs.",
+    ],
+    color: "from-zinc-300 to-zinc-500",
+    hasCaseStudy: false,
   },
 ];
 
 export const achievements = [
   {
-    title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
-    validity: "Oct 2025",
-    icon: null,
+    title: "Apple Swift Student Challenge 2026 — Winner",
+    validity: "2026 · Selected globally among top student developers",
+    type: "achievement",
+    iconType: "trophy",
+  },
+  {
+    title: "Meta × PyTorch OpenEnv Hackathon — Grand Finalist",
+    validity: "2026 · Top teams out of 52,000+ registered developers",
+    type: "hackathon",
+    iconType: "code",
+  },
+  {
+    title: "Oracle OCI 2025 Generative AI Professional",
+    validity: "Oct 2025 · Valid through 2027",
     type: "certification",
+    iconType: "certificate",
   },
   {
     title: "Oracle AI Vector Search Certified Professional",
-    validity: "Oct 2025",
-    icon: null,
+    validity: "Oct 2025 · Valid through 2027",
     type: "certification",
+    iconType: "certificate",
   },
   {
-    title: "Walmart USA Advanced Software Engineering Virtual Experience",
-    validity: "Jan 2026",
-    icon: null,
-    type: "certification",
-  },
-  {
-    title: "Smart India Hackathon 2025 - Grand Finale Volunteer",
-    validity: "Dec 2025",
-    icon: null,
+    title: "Smart India Hackathon 2025 — Grand Finale Volunteer",
+    validity: "Dec 2025 · Ministry of Education, Government of India",
     type: "achievement",
+    iconType: "star",
   },
   {
-    title: "Led technical teams in national hackathons (SBI Life, EY Techathon)",
-    validity: "2024-2025",
-    icon: null,
+    title: "SBI Life Hack-AI-Thon — Technical Lead",
+    validity: "2024 · National AI-focused hackathon",
     type: "hackathon",
+    iconType: "code",
+  },
+  {
+    title: "EY Techathon 5.0 — Technical Lead",
+    validity: "2024–2025 · National hackathon",
+    type: "hackathon",
+    iconType: "code",
   },
 ];

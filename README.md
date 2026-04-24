@@ -1,166 +1,231 @@
 # Avi Mathur - Portfolio Website
 
-A modern, aesthetic, production-grade portfolio website built with Next.js 14, TypeScript, Tailwind CSS, and Framer Motion.
+[![Next.js](https://img.shields.io/badge/Next.js-16.0-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-## 🚀 Features
+Modern, performant portfolio website showcasing AI/ML research projects, achievements, and professional experience.
 
-- ⚡ Built with Next.js 14 App Router
-- 🎨 Styled with Tailwind CSS
-- ✨ Smooth animations with Framer Motion
-- 🌙 Dark mode by default with theme toggle
-- 📱 Fully responsive design
-- 🎯 SEO optimized with metadata and sitemap
-- 🔥 Modern glassmorphism UI
-- 📧 Contact form with EmailJS integration
-- ♿ Accessibility compliant
+🌐 **Live Site**: [avimathur.tech](https://avimathur.tech)
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-- **Framework:** Next.js 14
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Email:** EmailJS
-- **Deployment:** Vercel (recommended)
+- **Modern Design**: Clean, professional UI with dark mode support
+- **3D Graphics**: Interactive Three.js particle effects
+- **Smooth Animations**: Framer Motion for fluid transitions
+- **Fully Responsive**: Optimized for all devices and screen sizes
+- **SEO Optimized**: Complete meta tags, sitemap, and structured data
+- **Accessible**: WCAG 2.1 AA compliant with keyboard navigation
+- **Performance**: Lighthouse score 90+ across all metrics
+- **Secure**: Comprehensive security headers and input validation
+
+## 🚀 Tech Stack
+
+### Core
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion 12
+
+### 3D Graphics
+- **Three.js**: 3D rendering
+- **React Three Fiber**: React renderer for Three.js
+- **React Three Drei**: Useful helpers for R3F
+
+### Additional
+- **Form Handling**: Web3Forms API
+- **Icons**: Lucide React
+- **Fonts**: Google Fonts (Inter, JetBrains Mono, Cormorant Garamond)
 
 ## 📦 Installation
 
-1. Clone the repository:
+### Prerequisites
+- Node.js 20.x or higher
+- npm or yarn
+
+### Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/AviMath2412/portfolio.git
+   cd portfolio
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Create environment file**:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. **Update environment variables**:
+   ```env
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
+
+5. **Run development server**:
+   ```bash
+   npm run dev
+   ```
+
+6. **Open browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🏗️ Build
+
+### Production Build
 ```bash
-git clone <your-repo-url>
-cd portfolio
+npm run build
+npm run start
 ```
 
-2. Install dependencies:
+### Lint
 ```bash
-npm install
+npm run lint
 ```
-
-3. Run the development server:
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 📧 EmailJS Setup
-
-To enable the contact form:
-
-1. Sign up at [EmailJS](https://www.emailjs.com/)
-2. Create an email service
-3. Create an email template
-4. Get your credentials (Service ID, Template ID, Public Key)
-5. Update `components/sections/Contact.tsx` with your credentials:
-
-```typescript
-await emailjs.sendForm(
-  "YOUR_SERVICE_ID",
-  "YOUR_TEMPLATE_ID",
-  formRef.current,
-  "YOUR_PUBLIC_KEY"
-);
-```
-
-## 🎨 Customization
-
-### Colors
-Edit `tailwind.config.ts` to customize the color scheme:
-- `deepBlue`: #0A1128
-- `neonAzure`: #00C2FF
-- `softWhite`: #F5F7FA
-- `blueViolet`: #6E00FF
-
-### Content
-All content is centralized in `data/content.ts`. Update:
-- Personal information
-- Skills
-- Experience
-- Projects
-- Certifications
-
-### Logo & Branding
-The logo and vector compass symbol are in `components/Logo.tsx`.
 
 ## 📁 Project Structure
 
 ```
-portfolio/
 ├── app/
 │   ├── layout.tsx          # Root layout with metadata
 │   ├── page.tsx            # Home page
+│   ├── error.tsx           # Error boundary
+│   ├── not-found.tsx       # 404 page
+│   ├── loading.tsx         # Loading state
 │   ├── globals.css         # Global styles
-│   ├── sitemap.ts          # SEO sitemap
-│   └── robots.ts           # Robots.txt
+│   ├── robots.ts           # Robots.txt generation
+│   └── sitemap.ts          # Sitemap generation
 ├── components/
 │   ├── sections/           # Page sections
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx
+│   │   ├── Projects.tsx
 │   │   ├── Skills.tsx
 │   │   ├── Experience.tsx
-│   │   ├── Projects.tsx
+│   │   ├── Achievements.tsx
 │   │   └── Contact.tsx
-│   ├── Logo.tsx            # Logo & symbol components
-│   ├── Navigation.tsx      # Navigation bar
-│   ├── ThemeProvider.tsx   # Theme context
-│   └── Footer.tsx          # Footer component
+│   ├── three/              # 3D components
+│   │   ├── HeroScene.tsx
+│   │   └── ParticleField.tsx
+│   ├── ui/                 # UI components
+│   └── Navigation.tsx      # Main navigation
 ├── data/
-│   └── content.ts          # All content data
+│   └── content.ts          # Site content and data
+├── lib/
+│   └── utils.ts            # Utility functions
 ├── public/                 # Static assets
-└── tailwind.config.ts      # Tailwind configuration
+└── next.config.ts          # Next.js configuration
 ```
+
+## 🔒 Security
+
+This project implements comprehensive security measures:
+
+- **HTTP Security Headers**: HSTS, CSP, X-Frame-Options, etc.
+- **Input Validation**: All form inputs validated and sanitized
+- **XSS Protection**: React's built-in escaping + additional measures
+- **CSRF Protection**: Handled by Web3Forms API
+- **Rate Limiting**: Form submission rate limiting
+- **Dependency Security**: Regular audits with npm audit
+
+See [SECURITY.md](SECURITY.md) for detailed security information.
 
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
 
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Deploy with one click
+1. **Push to GitHub**:
+   ```bash
+   git push origin main
+   ```
 
-### Other Platforms
+2. **Import to Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Import your repository
+   - Configure environment variables
+   - Deploy
 
-Build the production version:
-```bash
-npm run build
-```
+3. **Set Environment Variables**:
+   ```
+   NEXT_PUBLIC_SITE_URL=https://avimathur.tech
+   ```
 
-Start the production server:
-```bash
-npm start
-```
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
-## 📝 SEO Checklist
+## ♿ Accessibility
 
-- [x] Meta tags configured
-- [x] Open Graph tags added
-- [x] Sitemap generated
-- [x] Robots.txt configured
-- [x] Semantic HTML
-- [x] Alt text for images
-- [x] ARIA labels
-- [ ] Add your domain to `sitemap.ts` and `robots.ts`
-- [ ] Create and add `og.png` image to `/public`
-- [ ] Add favicon files
+- **WCAG 2.1 AA Compliant**: Meets accessibility standards
+- **Keyboard Navigation**: Full keyboard support with skip links
+- **Screen Reader Friendly**: Semantic HTML and ARIA labels
+- **Reduced Motion**: Respects user motion preferences
+- **Color Contrast**: Meets minimum contrast ratios
 
-## 🎯 Performance Optimization
+## 📊 Performance
 
-- Lazy loading for images
-- Optimized fonts with Next.js font optimization
-- Minimal JavaScript bundle
-- CSS purging with Tailwind
-- Static generation where possible
+- **Lighthouse Score**: 90+ across all metrics
+- **Core Web Vitals**: Optimized LCP, FID, CLS
+- **Code Splitting**: Lazy loading for 3D components
+- **Image Optimization**: Next.js Image component
+- **Font Optimization**: Google Fonts with display swap
 
-## 📄 License
+## 🎨 Customization
 
-MIT License - feel free to use this template for your own portfolio!
+### Update Content
 
-## 🤝 Contact
+Edit `data/content.ts` to update:
+- Personal information
+- Projects
+- Skills
+- Experience
+- Achievements
 
-- **Email:** mathuravi668@gmail.com
-- **LinkedIn:** [linkedin.com/in/avi-mathur](https://linkedin.com/in/avi-mathur)
-- **GitHub:** [github.com/AviMath2412](https://github.com/AviMath2412)
+### Modify Styles
+
+- **Colors**: Update Tailwind config in `tailwind.config.ts`
+- **Fonts**: Change in `app/layout.tsx`
+- **Global Styles**: Edit `app/globals.css`
+
+### Add Sections
+
+1. Create component in `components/sections/`
+2. Import and add to `app/page.tsx`
+3. Update navigation in `components/Navigation.tsx`
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📧 Contact
+
+**Avi Mathur**
+- Email: mathuravi668@gmail.com
+- LinkedIn: [linkedin.com/in/avi-mathur-a3a25727b](https://www.linkedin.com/in/avi-mathur-a3a25727b/)
+- GitHub: [github.com/AviMath2412](https://github.com/AviMath2412)
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+- [Three.js](https://threejs.org/) - 3D graphics library
+- [Web3Forms](https://web3forms.com/) - Form backend
+- [Vercel](https://vercel.com/) - Hosting platform
 
 ---
 
-Built with ❤️ by Avi Mathur
+**Built with ❤️ by Avi Mathur**

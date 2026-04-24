@@ -70,7 +70,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-caption text-zinc-500 mb-4 block"
+                className="section-eyebrow mb-4 block"
               >
                 Get In Touch
               </motion.span>
@@ -78,29 +78,29 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-heading-1 mb-6 text-white"
+                className="section-title mb-6"
               >
-                Let's Build Something <span className="accent-gradient">Amazing</span>
+                Let&apos;s Build Something <span className="accent-gradient">Meaningful</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-body text-zinc-500 max-w-2xl mx-auto"
+                className="text-body text-zinc-600 max-w-2xl mx-auto"
               >
-                Ready to discuss your next project? I'm always excited to collaborate on innovative solutions and bring ideas to life.
+                Ready to discuss your next project? I&apos;m always excited to collaborate on innovative AI systems.
               </motion.p>
             </div>
 
             <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {/* Contact methods */}
-              <div className="lg:col-span-2 space-y-4 lg:space-y-6 order-2 lg:order-1">
+              <div className="lg:col-span-2 space-y-4 order-2 lg:order-1">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4, duration: 0.6 }}
                 >
-                  <h3 className="text-heading-3 text-white mb-8">Contact Information</h3>
+                  <h3 className="text-heading-3 text-zinc-900 dark:text-zinc-100 mb-8">Contact Information</h3>
                   <div className="space-y-4">
                     {contactMethods.map((method, index) => (
                       <motion.div
@@ -110,14 +110,14 @@ export default function Contact() {
                         transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
                         className="glass-card rounded-xl p-4 flex items-center gap-4 group hover:scale-[1.02] transition-all"
                       >
-                        <div className="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center text-zinc-400 group-hover:bg-white/10 transition-colors">
+                        <div className="w-12 h-12 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-700 group-hover:bg-zinc-200 transition-colors dark:bg-zinc-800 dark:text-zinc-200 dark:group-hover:bg-zinc-700">
                           {method.icon}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-caption text-zinc-500 mb-1">{method.label}</p>
                           {method.label === "Email" ? (
                             <div className="flex items-center gap-2">
-                              <p className="text-body text-white group-hover:text-zinc-300 transition-colors truncate">
+                              <p className="text-body text-zinc-900 dark:text-zinc-100 transition-colors truncate">
                                 {method.value}
                               </p>
                               <button
@@ -141,13 +141,13 @@ export default function Contact() {
                               href={method.href}
                               target={method.href.startsWith('http') ? '_blank' : undefined}
                               rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                              className="text-body text-white group-hover:text-zinc-300 transition-colors truncate block"
+                              className="text-body text-zinc-900 dark:text-zinc-100 transition-colors truncate block"
                             >
                               {method.value}
                             </a>
                           )}
                         </div>
-                        <svg className="w-5 h-5 text-zinc-600 group-hover:text-zinc-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-5 h-5 text-zinc-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </motion.div>
@@ -155,27 +155,6 @@ export default function Contact() {
                   </div>
                 </motion.div>
 
-                {/* Quick response note */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                  className="glass-card rounded-xl p-6"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-body font-medium text-white mb-2">Quick Response</h4>
-                      <p className="text-body-small text-zinc-400">
-                        I typically respond within 24 hours. For urgent matters, feel free to call directly.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
               </div>
 
               {/* Contact form */}
@@ -186,7 +165,7 @@ export default function Contact() {
                   transition={{ delay: 0.6, duration: 0.6 }}
                   className="glass-card rounded-2xl p-8"
                 >
-                  <h3 className="text-heading-3 text-white mb-8">Send a Message</h3>
+                  <h3 className="text-heading-3 text-zinc-900 dark:text-zinc-100 mb-8">Send a Message</h3>
 
                   {formStatus === "success" && (
                     <motion.div
@@ -198,7 +177,7 @@ export default function Contact() {
                         <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <p className="text-body text-green-300">Message sent successfully! I'll get back to you soon.</p>
+                        <p className="text-body text-green-700">Message sent successfully! I&apos;ll get back to you soon.</p>
                       </div>
                     </motion.div>
                   )}
@@ -213,7 +192,7 @@ export default function Contact() {
                         <svg className="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                        <p className="text-body text-red-300">Something went wrong. Please try again or email me directly.</p>
+                        <p className="text-body text-red-700">Something went wrong. Please try again or email me directly.</p>
                       </div>
                     </motion.div>
                   )}
@@ -227,10 +206,37 @@ export default function Contact() {
                       const form = e.currentTarget;
                       const formData = new FormData(form);
 
+                      // Basic input sanitization
+                      const name = (formData.get("name") as string)?.trim();
+                      const email = (formData.get("email") as string)?.trim();
+                      const message = (formData.get("message") as string)?.trim();
+
+                      // Validation
+                      if (!name || name.length < 2 || name.length > 100) {
+                        setFormStatus("error");
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                        return;
+                      }
+
+                      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                        setFormStatus("error");
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                        return;
+                      }
+
+                      if (!message || message.length < 10 || message.length > 5000) {
+                        setFormStatus("error");
+                        setTimeout(() => setFormStatus("idle"), 5000);
+                        return;
+                      }
+
                       try {
                         const response = await fetch(form.action, {
                           method: "POST",
-                          body: formData
+                          body: formData,
+                          headers: {
+                            Accept: "application/json",
+                          },
                         });
 
                         const data = await response.json();
@@ -244,6 +250,7 @@ export default function Contact() {
                           setTimeout(() => setFormStatus("idle"), 5000);
                         }
                       } catch (error) {
+                        console.error("Form submission error:", error);
                         setFormStatus("error");
                         setTimeout(() => setFormStatus("idle"), 5000);
                       }
@@ -264,8 +271,11 @@ export default function Contact() {
                           id="name"
                           name="name"
                           required
+                          minLength={2}
+                          maxLength={100}
                           placeholder="Your full name"
                           className="ai-input"
+                          autoComplete="name"
                         />
                       </div>
                       <div>
@@ -277,8 +287,10 @@ export default function Contact() {
                           id="email"
                           name="email"
                           required
+                          maxLength={254}
                           placeholder="your.email@example.com"
                           className="ai-input"
+                          autoComplete="email"
                         />
                       </div>
                     </div>
@@ -291,6 +303,8 @@ export default function Contact() {
                         id="message"
                         name="message"
                         required
+                        minLength={10}
+                        maxLength={5000}
                         rows={6}
                         placeholder="Tell me about your project or how I can help..."
                         className="ai-input resize-none"

@@ -15,6 +15,7 @@ interface GlowingEffectProps {
   disabled?: boolean;
   movementDuration?: number;
   borderWidth?: number;
+  colorScheme?: "default" | "rl" | "systems" | "llms";
 }
 
 const GlowingEffect = memo(({
@@ -28,6 +29,7 @@ const GlowingEffect = memo(({
   movementDuration = 2,
   borderWidth = 1,
   disabled = true,
+  colorScheme = "default",
 }: GlowingEffectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const lastPosition = useRef({ x: 0, y: 0 });
@@ -67,7 +69,7 @@ const GlowingEffect = memo(({
         if (!isActive) return;
 
         const currentAngle = parseFloat(element.style.getPropertyValue("--start")) || 0;
-        let targetAngle = (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) / Math.PI + 90;
+        const targetAngle = (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) / Math.PI + 90;
         const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
         const newAngle = currentAngle + angleDiff;
 
@@ -115,18 +117,57 @@ const GlowingEffect = memo(({
           "--repeating-conic-gradient-times": "5",
           "--gradient": variant === "white"
             ? `repeating-conic-gradient(from 236.84deg at 50% 50%, var(--black), var(--black) calc(25% / var(--repeating-conic-gradient-times)))`
-            : `radial-gradient(circle, #6366f1 10%, #6366f100 20%),
-               radial-gradient(circle at 40% 40%, #8b5cf6 5%, #8b5cf600 15%),
-               radial-gradient(circle at 60% 60%, #22d3ee 10%, #22d3ee00 20%), 
-               radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
-               repeating-conic-gradient(
-                 from 236.84deg at 50% 50%,
-                 #6366f1 0%,
-                 #8b5cf6 calc(25% / var(--repeating-conic-gradient-times)),
-                 #22d3ee calc(50% / var(--repeating-conic-gradient-times)), 
-                 #4c7894 calc(75% / var(--repeating-conic-gradient-times)),
-                 #6366f1 calc(100% / var(--repeating-conic-gradient-times))
-               )`,
+            : colorScheme === "rl"
+              ? `radial-gradient(circle, #22c55e 10%, #22c55e00 20%),
+                 radial-gradient(circle at 40% 40%, #4ade80 5%, #4ade8000 15%),
+                 radial-gradient(circle at 60% 60%, #86efac 10%, #86efac00 20%), 
+                 radial-gradient(circle at 40% 60%, #15803d 10%, #15803d00 20%),
+                 repeating-conic-gradient(
+                   from 236.84deg at 50% 50%,
+                   #22c55e 0%,
+                   #4ade80 calc(25% / var(--repeating-conic-gradient-times)),
+                   #86efac calc(50% / var(--repeating-conic-gradient-times)), 
+                   #15803d calc(75% / var(--repeating-conic-gradient-times)),
+                   #22c55e calc(100% / var(--repeating-conic-gradient-times))
+                 )`
+              : colorScheme === "systems"
+                ? `radial-gradient(circle, #3b82f6 10%, #3b82f600 20%),
+                   radial-gradient(circle at 40% 40%, #60a5fa 5%, #60a5fa00 15%),
+                   radial-gradient(circle at 60% 60%, #93c5fd 10%, #93c5fd00 20%), 
+                   radial-gradient(circle at 40% 60%, #1d4ed8 10%, #1d4ed800 20%),
+                   repeating-conic-gradient(
+                     from 236.84deg at 50% 50%,
+                     #3b82f6 0%,
+                     #60a5fa calc(25% / var(--repeating-conic-gradient-times)),
+                     #93c5fd calc(50% / var(--repeating-conic-gradient-times)), 
+                     #1d4ed8 calc(75% / var(--repeating-conic-gradient-times)),
+                     #3b82f6 calc(100% / var(--repeating-conic-gradient-times))
+                   )`
+                : colorScheme === "llms"
+                  ? `radial-gradient(circle, #a855f7 10%, #a855f700 20%),
+                     radial-gradient(circle at 40% 40%, #c084fc 5%, #c084fc00 15%),
+                     radial-gradient(circle at 60% 60%, #d8b4fe 10%, #d8b4fe00 20%), 
+                     radial-gradient(circle at 40% 60%, #7e22ce 10%, #7e22ce00 20%),
+                     repeating-conic-gradient(
+                       from 236.84deg at 50% 50%,
+                       #a855f7 0%,
+                       #c084fc calc(25% / var(--repeating-conic-gradient-times)),
+                       #d8b4fe calc(50% / var(--repeating-conic-gradient-times)), 
+                       #7e22ce calc(75% / var(--repeating-conic-gradient-times)),
+                       #a855f7 calc(100% / var(--repeating-conic-gradient-times))
+                     )`
+                  : `radial-gradient(circle, #6366f1 10%, #6366f100 20%),
+                     radial-gradient(circle at 40% 40%, #8b5cf6 5%, #8b5cf600 15%),
+                     radial-gradient(circle at 60% 60%, #22d3ee 10%, #22d3ee00 20%), 
+                     radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
+                     repeating-conic-gradient(
+                       from 236.84deg at 50% 50%,
+                       #6366f1 0%,
+                       #8b5cf6 calc(25% / var(--repeating-conic-gradient-times)),
+                       #22d3ee calc(50% / var(--repeating-conic-gradient-times)), 
+                       #4c7894 calc(75% / var(--repeating-conic-gradient-times)),
+                       #6366f1 calc(100% / var(--repeating-conic-gradient-times))
+                     )`,
         } as React.CSSProperties}
         className={cn(
           "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",

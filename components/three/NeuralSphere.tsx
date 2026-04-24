@@ -7,15 +7,26 @@ import * as THREE from "three";
 interface NeuralSphereProps {
   position?: [number, number, number];
   scale?: number;
+  learningRate?: number;
 }
 
-export default function NeuralSphere({ position = [0, 0, 0], scale = 1 }: NeuralSphereProps) {
+export default function NeuralSphere({
+  position = [0, 0, 0],
+  scale = 1,
+  learningRate = 1,
+}: NeuralSphereProps) {
   const sphereRef = useRef<THREE.Mesh>(null);
   const wireframeRef = useRef<THREE.LineSegments>(null);
   const particlesRef = useRef<THREE.Points>(null);
+  const elapsedRef = useRef(0);
 
   // Create neural network nodes (particles around the sphere)
   const { nodePositions, connections } = useMemo(() => {
+    const pseudoRandom = (i: number, j: number) => {
+      const seed = Math.sin(i * 12.9898 + j * 78.233) * 43758.5453;
+      return seed - Math.floor(seed);
+    };
+
     const nodeCount = 50;
     const nodePositions = new Float32Array(nodeCount * 3);
     const connections = [];
@@ -35,7 +46,7 @@ export default function NeuralSphere({ position = [0, 0, 0], scale = 1 }: Neural
 
       // Create connections to nearby nodes
       for (let j = i + 1; j < nodeCount; j++) {
-        if (Math.random() < 0.1) { // 10% chance of connection
+        if (pseudoRandom(i, j) < 0.1) {
           connections.push(i, j);
         }
       }
@@ -66,31 +77,32 @@ export default function NeuralSphere({ position = [0, 0, 0], scale = 1 }: Neural
     return geometry;
   }, [nodePositions, connections]);
 
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
+  useFrame((_, delta) => {
+    elapsedRef.current += delta;
+    const time = elapsedRef.current;
 
     // Rotate the entire neural sphere
     if (sphereRef.current) {
-      sphereRef.current.rotation.y = time * 0.2;
-      sphereRef.current.rotation.x = Math.sin(time * 0.1) * 0.1;
+      sphereRef.current.rotation.y = time * 0.2 * learningRate;
+      sphereRef.current.rotation.x = Math.sin(time * 0.1 * learningRate) * 0.1;
     }
 
     // Animate wireframe
     if (wireframeRef.current) {
-      wireframeRef.current.rotation.y = time * 0.15;
-      wireframeRef.current.rotation.z = time * 0.05;
+      wireframeRef.current.rotation.y = time * 0.15 * learningRate;
+      wireframeRef.current.rotation.z = time * 0.05 * learningRate;
     }
 
     // Pulse effect on particles
     if (particlesRef.current) {
       const material = particlesRef.current.material as THREE.PointsMaterial;
-      material.opacity = 0.6 + Math.sin(time * 2) * 0.2;
-      particlesRef.current.rotation.y = -time * 0.1;
+      material.opacity = 0.6 + Math.sin(time * 2 * learningRate) * 0.2;
+      particlesRef.current.rotation.y = -time * 0.1 * learningRate;
     }
   });
 
   return (
-    <group position={position} scale={scale}>
+    <group position={position} scale={scale * (1 + (learningRate - 1) * 0.07)}>
       {/* Core sphere with holographic material */}
       <mesh ref={sphereRef}>
         <sphereGeometry args={[1, 32, 32]} />

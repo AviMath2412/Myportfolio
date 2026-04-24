@@ -3,140 +3,190 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
-import { achievements } from "@/data/content";
+
+const achievementsData = [
+  {
+    title: "Apple Swift Student Challenge 2026 — Winner",
+    type: "achievement",
+    validity: "2026 · Selected globally among top student developers",
+  },
+  {
+    title: "Meta × PyTorch OpenEnv Hackathon — Grand Finalist",
+    type: "hackathon",
+    validity: "2026 · Top teams out of 52,000+ registered developers",
+  },
+  {
+    title: "AWS Academy Graduate — Cloud Foundations",
+    type: "certification",
+    validity: "Apr 2026 · Issued by Amazon Web Services",
+  },
+  {
+    title: "Oracle OCI 2025 Generative AI Professional",
+    type: "certification",
+    validity: "Oct 2025 · Valid through 2027",
+  },
+  {
+    title: "Oracle AI Vector Search Certified Professional",
+    type: "certification",
+    validity: "Oct 2025 · Valid through 2027",
+  },
+  {
+    title: "Led technical teams at EY Techathon 5.0 & SBI Life Hack-AI-Thon",
+    type: "hackathon",
+    validity: "National AI-focused hackathons",
+  },
+];
 
 const filterTypes = [
-  { label: "All", value: "all" },
   { label: "Certifications", value: "certification" },
   { label: "Achievements", value: "achievement" },
   { label: "Hackathons", value: "hackathon" },
 ];
 
+const typeLabel: Record<string, string> = {
+  certification: "Certification",
+  hackathon: "Hackathon",
+  achievement: "Achievement",
+};
+
 export default function Achievements() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("certification");
   const prefersReduced = useReducedMotion();
 
-  const filteredAchievements = achievements.filter(
-    (achievement: any) => activeFilter === "all" || achievement.type === activeFilter
+  const filteredAchievements = achievementsData.filter(
+    (achievement) =>
+      activeFilter === "all" || achievement.type === activeFilter
   );
 
   return (
-    <section id="achievements" ref={ref} className="section-padding relative">
+    <section
+      id="achievements"
+      ref={ref}
+      className="section-padding relative scroll-mt-[100px]"
+    >
       <div className="container-custom">
         <ScrollReveal>
           <motion.div
-            initial={prefersReduced ? {} : { opacity: 0, y: 50 }}
+            initial={prefersReduced ? {} : { opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: prefersReduced ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: prefersReduced ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Section header */}
-            <div className="mb-12 text-center">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-caption text-zinc-500 mb-4 block"
+            <div className="mb-14">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mb-3"
               >
                 Recognition & Impact
-              </motion.span>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-heading-1 mb-6 text-white"
-              >
-                Notable <span className="accent-gradient">Achievements</span>
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-body text-zinc-500 max-w-2xl mx-auto"
-              >
-                Recognition for contributions to AI innovation, hackathons, and professional certifications
               </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.15, duration: 0.5 }}
+                className="text-2xl font-semibold text-white tracking-tight"
+              >
+                Achievements
+              </motion.h2>
             </div>
 
             {/* Filter tabs */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-3 justify-center mb-10"
+              transition={{ delay: 0.25 }}
+              className="flex flex-wrap gap-1 mb-12"
             >
               {filterTypes.map((filter) => (
                 <button
                   key={filter.value}
                   onClick={() => setActiveFilter(filter.value)}
-                  className={`relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeFilter === filter.value
-                    ? "text-black dark:text-black"
-                    : "text-zinc-500 hover:text-white"
-                    }`}
+                  className={`relative px-4 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+                    activeFilter === filter.value
+                      ? "bg-white/10 text-white"
+                      : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
+                  }`}
                 >
-                  {activeFilter === filter.value && (
-                    <motion.div
-                      layoutId="activeFilterTab"
-                      className="absolute inset-0 rounded-full bg-white"
-                    />
-                  )}
-                  <span className="relative z-10">{filter.label}</span>
+                  {filter.label}
                 </button>
               ))}
             </motion.div>
 
-            {/* Achievements grid */}
-            <motion.div
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
-            >
-              {filteredAchievements.map((achievement: any, index: number) => (
+            {/* Achievements list */}
+            <motion.div layout className="flex flex-col divide-y divide-white/[0.06]">
+              {filteredAchievements.map((achievement, index) => (
                 <motion.div
                   key={achievement.title}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="relative glass-card rounded-2xl p-6 overflow-hidden group"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: index * 0.05, duration: 0.35 }}
+                  className="group flex items-start justify-between gap-6 py-5 hover:bg-white/[0.02] transition-colors duration-200 px-2 -mx-2 rounded-lg cursor-default"
                 >
-                  {/* Minimal Header */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1.5 h-6 bg-zinc-700 group-hover:bg-white transition-colors" />
-                    <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-                      {achievement.type}
-                    </span>
+                  {/* Left: title + description */}
+                  <div className="flex items-start gap-4 min-w-0">
+                    {/* Dot indicator */}
+                    <div
+                      className={`mt-[7px] flex-shrink-0 w-1.5 h-1.5 rounded-full ${
+                        achievement.type === "certification"
+                          ? "bg-sky-400"
+                          : achievement.type === "hackathon"
+                          ? "bg-amber-400"
+                          : "bg-indigo-400"
+                      }`}
+                    />
+                    <div className="min-w-0">
+                      <p className="text-[14px] font-medium text-zinc-100 leading-snug mb-1 group-hover:text-white transition-colors">
+                        {achievement.title}
+                      </p>
+                      {achievement.validity && (
+                        <p className="text-[12px] text-zinc-500 leading-relaxed">
+                          {achievement.validity}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
-                  <h3 className="text-sm font-bold text-white mb-3 leading-snug group-hover:text-zinc-300 transition-colors">
-                    {achievement.title}
-                  </h3>
-
-                  <p className="text-[10px] text-zinc-500 font-mono tracking-tighter">
-                    {achievement.validity}
-                  </p>
+                  {/* Right: type label */}
+                  <span className="flex-shrink-0 text-[11px] uppercase tracking-[0.12em] text-zinc-600 group-hover:text-zinc-500 transition-colors pt-0.5">
+                    {typeLabel[achievement.type] ?? achievement.type}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Bottom CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="text-center mt-16"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="mt-16 pt-8 border-t border-white/[0.06] flex items-center justify-between"
             >
-              <p className="text-body text-zinc-500 mb-6">
-                Continuously seeking opportunities to contribute to innovative projects and technological advancement
+              <p className="text-[13px] text-zinc-500">
+                Continuously seeking opportunities to contribute to innovative research
               </p>
-              <a
-                href="#projects"
-                className="premium-button inline-flex items-center gap-2"
+                <a
+                    href="#projects"
+
+                className="text-[13px] text-zinc-300 hover:text-white transition-colors flex items-center gap-2 group"
               >
-                View My Projects
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                View Projects
+                <svg
+                  className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </a>
             </motion.div>
